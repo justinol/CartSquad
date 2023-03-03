@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66561BF429B146EF00B9BC6B /* CartScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66561BF329B146EF00B9BC6B /* CartScreenVC.swift */; };
+		66561BF629B162A800B9BC6B /* NestedCartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66561BF529B162A700B9BC6B /* NestedCartTableViewCell.swift */; };
 		D0541ED529AD8F430053346E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0541ED429AD8F430053346E /* AppDelegate.swift */; };
 		D0541ED729AD8F430053346E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0541ED629AD8F430053346E /* SceneDelegate.swift */; };
 		D0541ED929AD8F430053346E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0541ED829AD8F430053346E /* ViewController.swift */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		66561BF329B146EF00B9BC6B /* CartScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartScreenVC.swift; sourceTree = "<group>"; };
+		66561BF529B162A700B9BC6B /* NestedCartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedCartTableViewCell.swift; sourceTree = "<group>"; };
 		D0541ED129AD8F430053346E /* CartSquad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CartSquad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0541ED429AD8F430053346E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0541ED629AD8F430053346E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 				D0541EDD29AD8F440053346E /* Assets.xcassets */,
 				D0541EDF29AD8F440053346E /* LaunchScreen.storyboard */,
 				D0541EE229AD8F440053346E /* Info.plist */,
+				66561BF329B146EF00B9BC6B /* CartScreenVC.swift */,
+				66561BF529B162A700B9BC6B /* NestedCartTableViewCell.swift */,
 			);
 			path = CartSquad;
 			sourceTree = "<group>";
@@ -142,9 +148,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66561BF429B146EF00B9BC6B /* CartScreenVC.swift in Sources */,
 				D0541ED929AD8F430053346E /* ViewController.swift in Sources */,
 				D0541ED529AD8F430053346E /* AppDelegate.swift in Sources */,
 				D0541ED729AD8F430053346E /* SceneDelegate.swift in Sources */,
+				66561BF629B162A800B9BC6B /* NestedCartTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
