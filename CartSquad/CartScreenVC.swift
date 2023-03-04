@@ -41,11 +41,13 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         let titleLabel = UILabel()
         titleLabel.text = "Title"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel.textColor = .white
         
         // Create the subtitle label
         let subtitleLabel = UILabel()
-        subtitleLabel.text = "Subtitle"
-        subtitleLabel.textColor = .gray
+        titleLabel.font = UIFont.systemFont(ofSize: 24)
+        subtitleLabel.text = "Shopping at Target"
+        subtitleLabel.textColor = .white
         
         // Add the subviews to the stack views
         horizontalStackView.addArrangedSubview(imageView)
@@ -69,5 +71,9 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellData.count
+    }
+    
+    @IBAction func unwindToCartHomeVC(segue: UIStoryboardSegue) {
+        
     }
 }
