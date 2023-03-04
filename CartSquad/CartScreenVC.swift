@@ -18,6 +18,13 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         cartTable.delegate = self
         cartTable.dataSource = self
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 
     // Custom Navbar
@@ -59,18 +66,25 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         return horizontalStackView
     }()
     
-    var cellData: [[String]] = [["item1-1", "item1-2", "item1-3", "item1-4", "item1-5", "item1-6", "item1-7", "item1-8"], ["item2-1", "item2-2"]]
+//    var cellData: [[String]] = [["item1-1", "item1-2", "item1-3", "item1-4", "item1-5", "item1-6", "item1-7", "item1-8"], ["item2-1", "item2-2"]]
+    
+    var cellData: [[CartItem]] = [[CartItem(itemName: "chicken", itemPrice: 5.99, itemQuantity: 1)]]
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCartCell", for: indexPath) as! NestedCartTableViewCell
         
-        cell.innerData = cellData[indexPath.row]
+        cell.cartItems = cellData[indexPath.row]
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellData.count
+    }
+    
+    // Prevent cell highlighting
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
     
     @IBAction func unwindToCartHomeVC(segue: UIStoryboardSegue) {

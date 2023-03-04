@@ -13,8 +13,9 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
 
     @IBOutlet weak var itemsTable: UITableView!
     @IBOutlet weak var itemsTableHeightConstraint: NSLayoutConstraint!
+    let cellHeight = 70.0
     
-    var innerData: [String] = [] {
+    var cartItems: [CartItem] = [] {
         didSet {
             itemsTable.reloadData()
             updateItemsTableHeight()
@@ -30,19 +31,33 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return innerData.count
+        return cartItems.count
     }
+    
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
-        cell.textLabel?.text = innerData[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! CartItemTableViewCell
+        cell.cartItem = cartItems[indexPath.row]
+        cell.onDelete = {
+            self.cartItems.remove(at: indexPath.row)
+            self.itemsTable.reloadData()
+        }
         return cell
     }
     
+    // Ensure constant cell height
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cellHeight
+    }
+    
+    // Prevent cell highlighting
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
     private func updateItemsTableHeight() {
-        let rowHeight: CGFloat = 44.0 // set the row height of cells
-        let numberOfRows = CGFloat(innerData.count)
-        let newHeight = rowHeight * numberOfRows
+        let numberOfRows = CGFloat(cartItems.count)
+        let newHeight = cellHeight * numberOfRows
         
         // update the height constraint of the itemsTable
         itemsTableHeightConstraint.constant = newHeight
