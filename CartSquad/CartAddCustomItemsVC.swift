@@ -9,13 +9,7 @@ import UIKit
 
 class CartAddCustomItemsVC: UIViewController {
 
-    @IBOutlet weak var navbar: UINavigationBar!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-
-    func customNavbar() {
-        navbar.barTintColor = UIColor.red
     }
 }

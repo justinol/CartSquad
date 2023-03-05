@@ -16,7 +16,7 @@ class CartItemTableViewCell: UITableViewCell {
     @IBOutlet weak var itemQuantityField: CustomTextField!
     @IBOutlet weak var itemTotalCost: UILabel!
     
-    // Closure to delete cell
+    // Closure to delete cell from owning table
     var onDelete: (() -> Void)?
     
     var cartItem: CartItem? {
@@ -26,7 +26,6 @@ class CartItemTableViewCell: UITableViewCell {
             
             // Add observer to the CartItem's itemQuantity property
             cartItem?.addObserver(self, forKeyPath: "itemQuantity", options: [.old, .new], context: nil)
-            print("set cart item for cell")
         }
         willSet {
             // Remove observer to the CartItem's itemQuantity property
@@ -51,8 +50,7 @@ class CartItemTableViewCell: UITableViewCell {
     // Observe changes to the CartItem object's itemQuantity property and update UI
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "itemQuantity" {
-            itemQuantityField.text = "\(cartItem?.itemQuantity ?? 0)"
-            itemTotalCost.text = "$\(cartItem?.calculateTotalCost() ?? 0)"
+            cartItem?.populateCartItemTableViewCellInfo(cell: self)
         }
     }
     

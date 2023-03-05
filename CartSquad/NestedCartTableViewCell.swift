@@ -7,13 +7,14 @@
 
 import UIKit
 
-// A class that defines a cell for the table cart screen.
-// This class defines how to work with a table view within this cell.
+// A class that defines a cell for a user subcart.
 class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var itemsTable: UITableView!
     @IBOutlet weak var itemsTableHeightConstraint: NSLayoutConstraint!
     let cellHeight = 70.0
+    // Closure to update outer table size provided by outer table.
+    var updateOuterTableSize: (() -> Void)?
     
     var cartItems: [CartItem] = [] {
         didSet {
@@ -38,9 +39,11 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! CartItemTableViewCell
         cell.cartItem = cartItems[indexPath.row]
+        // provide cell closure to delete itself from this table
         cell.onDelete = {
             self.cartItems.remove(at: indexPath.row)
             self.itemsTable.reloadData()
+            self.updateItemsTableHeight()
         }
         return cell
     }
@@ -65,9 +68,8 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
         // notify the table view to update its layout
         itemsTable.setNeedsLayout()
         
-        // notify the parent table view to update its layout as well
-        superview?.setNeedsLayout()
-        superview?.layoutIfNeeded()
+        // update parent table to reflect changes
+        updateOuterTableSize?()
     }
     
 }

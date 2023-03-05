@@ -31,4 +31,13 @@ class CartCreateCustomItemVC: UIViewController, UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "unwindToCartHomeVC" {
+            if let destinationVC = segue.destination as? CartScreenVC {
+                let cartItem = CartItem(itemName: nameField.text, itemPrice: Float(priceField.text ?? "0.00")!, itemQuantity: Int(quantityField.text ?? "1")!)
+                destinationVC.addItemToUserSubcart(userId: 0, cartItem: cartItem)
+            }
+        }
+    }
 }

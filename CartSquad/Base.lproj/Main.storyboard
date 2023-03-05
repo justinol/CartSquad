@@ -149,10 +149,10 @@
                                                                 </constraints>
                                                             </tableViewCellContentView>
                                                             <connections>
-                                                                <outlet property="itemNameLabel" destination="KAS-N6-paW" id="gOL-4Y-XaP"/>
-                                                                <outlet property="itemPriceEachLabel" destination="YCI-W1-Q56" id="A9h-GE-v4H"/>
-                                                                <outlet property="itemQuantityField" destination="UwK-8S-AD5" id="RRB-IB-PzN"/>
-                                                                <outlet property="itemTotalCost" destination="GfJ-3b-McT" id="n4i-gw-ZOH"/>
+                                                                <outlet property="itemNameLabel" destination="KAS-N6-paW" id="NPF-T1-VLp"/>
+                                                                <outlet property="itemPriceEachLabel" destination="YCI-W1-Q56" id="SWG-SY-aGk"/>
+                                                                <outlet property="itemQuantityField" destination="UwK-8S-AD5" id="gSZ-H3-dXi"/>
+                                                                <outlet property="itemTotalCost" destination="GfJ-3b-McT" id="y5x-fV-i3A"/>
                                                             </connections>
                                                         </tableViewCell>
                                                     </prototypes>
@@ -187,8 +187,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="itemsTable" destination="dxl-ut-QlO" id="VWg-d2-h9o"/>
-                                            <outlet property="itemsTableHeightConstraint" destination="u3Y-LH-lgF" id="zR7-Y8-Am0"/>
+                                            <outlet property="itemsTable" destination="dxl-ut-QlO" id="rs5-mZ-4SW"/>
+                                            <outlet property="itemsTableHeightConstraint" destination="u3Y-LH-lgF" id="Fss-fG-BPP"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -380,7 +380,7 @@
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MIT-YA-3w3" customClass="CustomTextField" customModule="CartSquad" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MIT-YA-3w3" userLabel="Name Field" customClass="CustomTextField" customModule="CartSquad" customModuleProvider="target">
                                 <rect key="frame" x="27" y="133" width="377" height="38.333333333333343"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -398,7 +398,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ANI-GS-zQq" customClass="CustomTextField" customModule="CartSquad" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ANI-GS-zQq" userLabel="Price Field" customClass="CustomTextField" customModule="CartSquad" customModuleProvider="target">
                                 <rect key="frame" x="27" y="265" width="377" height="38.333333333333343"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -456,7 +456,7 @@
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="t9B-bC-Bos" kind="unwind" unwindAction="unwindToCartHomeVCWithSegue:" id="gRf-DP-T4A"/>
+                                    <segue destination="t9B-bC-Bos" kind="unwind" identifier="unwindToCartHomeVC" unwindAction="unwindToCartHomeVCWithSegue:" id="gRf-DP-T4A"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -465,8 +465,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="OjA-AD-TUL"/>
                     <connections>
-                        <outlet property="nameField" destination="ANI-GS-zQq" id="fVK-qP-WKa"/>
-                        <outlet property="priceField" destination="ANI-GS-zQq" id="kmg-Ze-Lxx"/>
+                        <outlet property="nameField" destination="MIT-YA-3w3" id="gOx-qm-CuW"/>
+                        <outlet property="priceField" destination="ANI-GS-zQq" id="S9B-Yy-hSJ"/>
                         <outlet property="quantityField" destination="uSp-aJ-JjB" id="4qD-Hj-8Bf"/>
                     </connections>
                 </viewController>

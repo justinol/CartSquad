@@ -66,16 +66,20 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         return horizontalStackView
     }()
     
-//    var cellData: [[String]] = [["item1-1", "item1-2", "item1-3", "item1-4", "item1-5", "item1-6", "item1-7", "item1-8"], ["item2-1", "item2-2"]]
+   var cellData: [[CartItem]] = [[CartItem(itemName: "chicken", itemPrice: 5.99, itemQuantity: 1), CartItem(itemName: "avocado", itemPrice: 1.10, itemQuantity: 3), CartItem(itemName: "greek yogurt", itemPrice: 6.99, itemQuantity: 1)], [CartItem(itemName: "ice cream", itemPrice: 3.99, itemQuantity: 2)]]
     
-    var cellData: [[CartItem]] = [[CartItem(itemName: "chicken", itemPrice: 5.99, itemQuantity: 1)]]
+    //var cellData: [[CartItem]] = [[], []]
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UserCartCell", for: indexPath) as! NestedCartTableViewCell
+        let userSubcartCell = tableView.dequeueReusableCell(withIdentifier: "UserCartCell", for: indexPath) as! NestedCartTableViewCell
+        // give cell a closure to update this outer table size
+        userSubcartCell.updateOuterTableSize = {
+            self.cartTable.beginUpdates()
+            self.cartTable.endUpdates()
+        }
+        userSubcartCell.cartItems = cellData[indexPath.row]
         
-        cell.cartItems = cellData[indexPath.row]
-        
-        return cell
+        return userSubcartCell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -88,6 +92,11 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     @IBAction func unwindToCartHomeVC(segue: UIStoryboardSegue) {
-        
+ 
+    }
+    
+    func addItemToUserSubcart(userId: Int, cartItem: CartItem) {
+        var cell = cartTable.cellForRow(at: IndexPath(row: 0, section: 0)) as! NestedCartTableViewCell
+        cell.cartItems.append(cartItem)
     }
 }
