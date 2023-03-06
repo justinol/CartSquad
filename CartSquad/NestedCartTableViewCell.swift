@@ -6,12 +6,18 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 // A class that defines a cell for a user subcart.
 class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var itemsTable: UITableView!
     @IBOutlet weak var itemsTableHeightConstraint: NSLayoutConstraint!
+    
+    // database properties
+    var cartId: Int = 0
+    var ownerId: Int = 0
+    
     let cellHeight = 70.0
     // Closure to update outer table size provided by outer table.
     var updateOuterTableSize: (() -> Void)?
@@ -22,6 +28,9 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
             updateItemsTableHeight()
         }
     }
+    
+    // Dict to store mapping of cart item names to their cell row
+    var cartItemNameToCellRow: [String:Int] = [:]
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -38,13 +47,10 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! CartItemTableViewCell
-        cell.cartItem = cartItems[indexPath.row]
-        // provide cell closure to delete itself from this table
-        cell.onDelete = {
-            self.cartItems.remove(at: indexPath.row)
-            self.itemsTable.reloadData()
-            self.updateItemsTableHeight()
-        }
+        let cartItem = cartItems[indexPath.row]
+        cell.cartItem = cartItem
+        cartItemNameToCellRow[cartItem.itemName!] = indexPath.row
+        
         return cell
     }
     
@@ -72,4 +78,39 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
         updateOuterTableSize?()
     }
     
+    
+    // listen for subcart changes from the database
+    func listenForDatabaseUpdates() {
+        let db = Firestore.firestore()
+        db.collection("carts").document("cart\(cartId)").collection("users").document(String(ownerId)).collection("userCartItems").addSnapshotListener { querySnapshot, error in
+            guard let snapshot = querySnapshot else {
+                print("Error fetching documents: \(error!)")
+                return
+            }
+            snapshot.documentChanges.forEach { diff in
+                let cartItemData = diff.document.data()
+                let itemName = cartItemData["itemName"] as? String
+                let itemPrice = cartItemData["itemPrice"] as! Float
+                let itemQuantity = cartItemData["itemQuantity"] as! Int
+                if (diff.type == .added) {
+                    // new added from database, update datasource (which will update UI)
+                    let cartItem = CartItem(itemName: itemName, itemPrice: itemPrice, itemQuantity: itemQuantity)
+                    self.cartItems.append(cartItem)
+                } else if (diff.type == .modified) {
+                    // item updated, update data source and UI locally
+                    let cellRow = self.cartItemNameToCellRow[itemName!]!
+                    self.cartItems[cellRow].itemQuantity = itemQuantity
+                    let cell = self.itemsTable.cellForRow(at: IndexPath(row: cellRow, section: 0)) as! CartItemTableViewCell
+                    cell.cartItem?.populateCartItemTableViewCellInfo(cell: cell)
+                } else if (diff.type == .removed) {
+                    // item removed, update data source and UI locally
+                    let cellRow = self.cartItemNameToCellRow[itemName!]!
+                    self.cartItems.remove(at: cellRow)
+                    self.cartItemNameToCellRow[itemName!] = nil
+                    self.itemsTable.reloadData()
+                    self.updateItemsTableHeight()
+                }
+            }
+        }
+    }
 }

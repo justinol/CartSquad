@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class CartCreateCustomItemVC: UIViewController, UITextFieldDelegate {
 
@@ -35,9 +36,22 @@ class CartCreateCustomItemVC: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "unwindToCartHomeVC" {
             if let destinationVC = segue.destination as? CartScreenVC {
-                let cartItem = CartItem(itemName: nameField.text, itemPrice: Float(priceField.text ?? "0.00")!, itemQuantity: Int(quantityField.text ?? "1")!)
+                let priceEach = Float(priceField.text?.count == 0 ? "0.00" : priceField.text!)!
+                let quantity = Int(quantityField.text?.count == 0 ? "1" : quantityField.text!)!
+                
+                let cartItem = CartItem(itemName: nameField.text,
+                                        itemPrice: priceEach,
+                                        itemQuantity: quantity)
                 destinationVC.addItemToUserSubcart(userId: 0, cartItem: cartItem)
             }
         }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "unwindToCartHomeVC" {
+            // cancel segue if required field "nameField" is empty
+            return nameField.text != ""
+        }
+        return true
     }
 }

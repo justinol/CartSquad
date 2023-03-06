@@ -10,7 +10,6 @@ import UIKit
 class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var cartTable: UITableView!
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,12 +65,20 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         return horizontalStackView
     }()
     
-   var cellData: [[CartItem]] = [[CartItem(itemName: "chicken", itemPrice: 5.99, itemQuantity: 1), CartItem(itemName: "avocado", itemPrice: 1.10, itemQuantity: 3), CartItem(itemName: "greek yogurt", itemPrice: 6.99, itemQuantity: 1)], [CartItem(itemName: "ice cream", itemPrice: 3.99, itemQuantity: 2)]]
+//   var cellData: [[CartItem]] = [[CartItem(itemName: "chicken", itemPrice: 5.99, itemQuantity: 1), CartItem(itemName: "avocado", itemPrice: 1.10, itemQuantity: 3), CartItem(itemName: "greek yogurt", itemPrice: 6.99, itemQuantity: 1)], [CartItem(itemName: "ice cream", itemPrice: 3.99, itemQuantity: 2)]]
     
-    //var cellData: [[CartItem]] = [[], []]
+    var cellData: [[CartItem]] = [[], []]
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let userSubcartCell = tableView.dequeueReusableCell(withIdentifier: "UserCartCell", for: indexPath) as! NestedCartTableViewCell
+        userSubcartCell.cartId = 0
+        if (indexPath.row == 0) {
+            userSubcartCell.ownerId = 0
+        } else if (indexPath.row == 1) {
+            userSubcartCell.ownerId = 1
+        }
+        userSubcartCell.listenForDatabaseUpdates()
+        
         // give cell a closure to update this outer table size
         userSubcartCell.updateOuterTableSize = {
             self.cartTable.beginUpdates()
@@ -96,7 +103,10 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func addItemToUserSubcart(userId: Int, cartItem: CartItem) {
-        var cell = cartTable.cellForRow(at: IndexPath(row: 0, section: 0)) as! NestedCartTableViewCell
-        cell.cartItems.append(cartItem)
+        print("adding item to user subcart!")
+        cartItem.overwriteInUserSubcartInDatabase()
+        //let userId = AuthUser.username == "user1" ? 0 : 1
+        //let cell = cartTable.cellForRow(at: IndexPath(row: userId, section: 0)) as! NestedCartTableViewCell
+        //cell.cartItems.append(cartItem)
     }
 }

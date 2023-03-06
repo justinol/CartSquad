@@ -16,8 +16,6 @@ class CartItemTableViewCell: UITableViewCell {
     @IBOutlet weak var itemQuantityField: CustomTextField!
     @IBOutlet weak var itemTotalCost: UILabel!
     
-    // Closure to delete cell from owning table
-    var onDelete: (() -> Void)?
     
     var cartItem: CartItem? {
         didSet {
@@ -41,10 +39,15 @@ class CartItemTableViewCell: UITableViewCell {
     
     // Update the cartItem's quantity property with new text field value
     @objc func quantityFieldDidChange(_ textField: UITextField) {
-        if let quantity = Int(textField.text ?? "0"), quantity == 0 {
-            onDelete?()
+        let newQuantity = Int(textField.text ?? "0") ?? 0
+        cartItem?.itemQuantity = newQuantity
+        if (newQuantity > 0) {
+            // new quantity is > 0, trigger database overwrite for cartItem
+            cartItem?.overwriteInUserSubcartInDatabase()
+        } else if (newQuantity == 0) {
+            // new quantity is 0, trigger database deletion for cartItem
+            cartItem?.removeFromUserSubcartInDatabase()
         }
-        cartItem?.itemQuantity = Int(textField.text ?? "0") ?? 0
     }
     
     // Observe changes to the CartItem object's itemQuantity property and update UI
