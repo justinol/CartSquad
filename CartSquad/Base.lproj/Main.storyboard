@@ -101,6 +101,9 @@
                                             <color key="baseForegroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="baseBackgroundColor" red="0.72941176470000002" green="0.094117647060000004" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gzK-BG-dcY"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zb9-g7-Ykt">
                                         <rect key="frame" x="202.66666666666666" y="281" width="25" height="29"/>
@@ -151,7 +154,7 @@
                                             <color key="baseBackgroundColor" red="0.72941176470000002" green="0.094117647060000004" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <segue destination="pHC-E7-ImI" kind="show" id="bFj-TZ-8t5">
+                                            <segue destination="pHC-E7-ImI" kind="show" identifier="gotoCreateAcc" id="bFj-TZ-8t5">
                                                 <segue key="commit" inheritsFrom="parent" id="GLF-5c-WY1"/>
                                                 <segue key="preview" inheritsFrom="commit" id="HTv-8x-MEq"/>
                                             </segue>
@@ -187,6 +190,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="l1Q-ph-5Px"/>
+                    <connections>
+                        <outlet property="emailText" destination="hI6-bX-voR" id="PDa-Bh-YzJ"/>
+                        <outlet property="passwordText" destination="Vbn-hi-rk1" id="2T2-on-FzI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -346,7 +353,7 @@
                                     <color key="baseBackgroundColor" red="0.72941176470000002" green="0.094117647060000004" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="cJh-2L-tsh" kind="show" id="gWk-ju-84R"/>
+                                    <action selector="createAccountButtonPressed:" destination="pHC-E7-ImI" eventType="touchUpInside" id="k1S-6Q-87n"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nAv-Ez-fRA">
@@ -401,6 +408,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="SV8-7j-cxL"/>
+                    <connections>
+                        <outlet property="confirmPassword" destination="5Kr-fx-4YB" id="6iB-kg-R3a"/>
+                        <outlet property="createEmailText" destination="77e-sn-dH1" id="Ngq-By-CDQ"/>
+                        <outlet property="createPasswordText" destination="3wX-h9-bi7" id="pY5-vq-A81"/>
+                        <outlet property="createUsernameText" destination="lp9-a2-azC" id="vbt-Od-Kyj"/>
+                        <segue destination="cJh-2L-tsh" kind="show" identifier="createAccount" id="FKc-fq-unI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wRO-SB-wu8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="ZhM-px-X71" userLabel="Exit" sceneMemberID="exit"/>
@@ -770,12 +784,19 @@
                                         <rect key="frame" x="18.666666666666657" y="100" width="315" height="223"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5LW-2B-fMd">
-                                        <rect key="frame" x="99" y="130" width="153" height="157"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6g2-rL-L20">
+                                        <rect key="frame" x="7" y="331" width="109" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="camera-create"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Add button"/>
+                                        <connections>
+                                            <action selector="AddImageButtonPressed:" destination="Rln-MX-oHA" eventType="touchUpInside" id="I0Z-oP-jCW"/>
+                                        </connections>
                                     </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gKA-Ca-NUi">
+                                        <rect key="frame" x="101" y="142" width="150" height="150"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
@@ -784,6 +805,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="vGt-FI-NTP"/>
+                    <connections>
+                        <outlet property="profilePicture" destination="gKA-Ca-NUi" id="si1-qI-rZK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DpQ-5D-Mrd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="TbH-wE-sdb" userLabel="Exit" sceneMemberID="exit"/>
@@ -797,7 +821,6 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Image" width="93" height="100"/>
-        <image name="camera-create" width="39" height="38"/>
         <image name="image 7" width="148" height="150"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

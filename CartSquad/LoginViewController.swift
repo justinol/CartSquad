@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var emailText: UITextField!
+    @IBOutlet weak var passwordText: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,4 +23,19 @@ class LoginViewController: UIViewController {
         
     }
 
+    @IBAction func loginButtonPressed(_ sender: Any) {
+        guard let email = emailText.text, let password = passwordText.text else{
+            print("Please enter email or password")
+            return
+        }
+        
+        Auth.auth().signIn(withEmail: email, password: password) {firebaseResult, error in
+            if let error = error  {
+                print("error signing in \(error.localizedDescription)")
+                return
+            }
+            
+        }
+        
+    }
 }

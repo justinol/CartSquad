@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		74093CC029B6A1D3004FD061 /* UserProfileCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74093CBF29B6A1D3004FD061 /* UserProfileCreator.swift */; };
 		740B1B3A29B2D30D00493B33 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B1B3929B2D30D00493B33 /* CreateAccountViewController.swift */; };
 		740B1B3C29B2D33E00493B33 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B1B3B29B2D33E00493B33 /* LoginViewController.swift */; };
 		7456C8D129B1854900A9C13C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7456C8D029B1854900A9C13C /* GoogleService-Info.plist */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		74093CBF29B6A1D3004FD061 /* UserProfileCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCreator.swift; sourceTree = "<group>"; };
 		740B1B3929B2D30D00493B33 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		740B1B3B29B2D33E00493B33 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7456C8D029B1854900A9C13C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				D0541EDF29AD8F440053346E /* LaunchScreen.storyboard */,
 				D0541EE229AD8F440053346E /* Info.plist */,
 				7456C8D029B1854900A9C13C /* GoogleService-Info.plist */,
+				74093CBF29B6A1D3004FD061 /* UserProfileCreator.swift */,
 			);
 			path = CartSquad;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				740B1B3A29B2D30D00493B33 /* CreateAccountViewController.swift in Sources */,
 				D0541ED929AD8F430053346E /* ViewController.swift in Sources */,
 				74E00E0F29B56B4A00C018FF /* PeronalInfoViewController.swift in Sources */,
+				74093CC029B6A1D3004FD061 /* UserProfileCreator.swift in Sources */,
 				74E00E1329B592FE00C018FF /* PicPopupViewController.swift in Sources */,
 				D0541ED529AD8F430053346E /* AppDelegate.swift in Sources */,
 				740B1B3C29B2D33E00493B33 /* LoginViewController.swift in Sources */,
