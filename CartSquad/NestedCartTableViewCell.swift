@@ -49,6 +49,7 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! CartItemTableViewCell
         let cartItem = cartItems[indexPath.row]
+        cell.itemImageView.image = UIImage(named: "NoImageIcon")
         cell.cartItem = cartItem
         cartItemNameToCellRow[cartItem.itemName!] = indexPath.row
         
@@ -94,29 +95,7 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
                 let itemPrice = cartItemData["itemPrice"] as! Float
                 let itemQuantity = cartItemData["itemQuantity"] as! Int
                 let itemImageURL = cartItemData["imageURL"] as! String
-                print("url:\(itemImageURL)")
                 if (diff.type == .added) {
-                    // new added from database, update datasource (which will update UI)
-//                    var itemImage: UIImage?
-//                    if (itemImageURL != "none") {
-//                        // get image from image url
-//                        print("getting image from url")
-//                        let storage = Storage.storage()
-//                        let itemImageURLRef = storage.reference(forURL: itemImageURL)
-//                        itemImageURLRef.getData(maxSize: 10 * 1024 * 1024) { data, error in
-//                            if error != nil {
-//                                // error occured
-//                            } else {
-//                                itemImage = UIImage(data: data!)
-//                                let cellRow = self.cartItemNameToCellRow[itemName]!
-//                                self.cartItems[cellRow].image = itemImage
-//                                let cell = self.itemsTable.cellForRow(at: IndexPath(row: cellRow, section: 0)) as! CartItemTableViewCell
-//                                cell.cartItem?.populateCartItemTableViewCellInfo(cell: cell)
-//                            }
-//                        }
-//                    } else {
-//                        print("no image for\(itemName)")
-//                    }
                     let cartItem = CartItem(itemName: itemName, itemPrice: itemPrice, itemQuantity: itemQuantity, imageURL: itemImageURL)
                     self.cartItems.append(cartItem)
                 } else if (diff.type == .modified) {

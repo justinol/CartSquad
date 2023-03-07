@@ -57,6 +57,10 @@ class CartItemTableViewCell: UITableViewCell {
         }
     }
     
+    override func prepareForReuse() {
+        itemImageView.image = UIImage(named: "NoImageIcon")
+    }
+    
     deinit {
         // Remove observer from the CartItem object's itemQuantity property upon cell deallocation
         cartItem?.removeObserver(self, forKeyPath: "itemQuantity")
