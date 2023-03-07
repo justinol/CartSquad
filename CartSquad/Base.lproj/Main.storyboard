@@ -498,11 +498,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cartTable" destination="pF6-B7-fB3" id="Mqs-em-jXh"/>
+                        <segue destination="nOe-Lr-R1k" kind="show" identifier="ToCartIdentifier" id="WuA-sV-3Pt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lod-XT-JhR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1078.6046511627908" y="1252.7896995708156"/>
+            <point key="canvasLocation" x="1006" y="1253"/>
         </scene>
         <!--Member Settings-->
         <scene sceneID="Nl6-dG-5yH">
@@ -1186,6 +1187,440 @@
             </objects>
             <point key="canvasLocation" x="3396" y="942"/>
         </scene>
+        <!--Cart ScreenVC-->
+        <scene sceneID="8sv-LS-pwS">
+            <objects>
+                <viewController id="nOe-Lr-R1k" customClass="CartScreenVC" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="I5c-Se-BGG">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="agX-kL-YTj">
+                                <rect key="frame" x="20" y="113" width="390" height="785"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserCartCell" id="l4V-vg-c8F" customClass="NestedCartTableViewCell" customModule="CartSquad" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="390" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="l4V-vg-c8F" id="lCX-tC-rim">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Knv-Uh-vxh" userLabel="UserImage">
+                                                    <rect key="frame" x="7" y="2" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="bzk-8Y-OoS"/>
+                                                        <constraint firstAttribute="height" constant="50" id="szl-mm-Q9d"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username's Items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1lb-kr-8Y7">
+                                                    <rect key="frame" x="65" y="17" width="138" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="0Zd-nu-Fye" userLabel="Items Table">
+                                                    <rect key="frame" x="7" y="54" width="375" height="192"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="192" id="RJ0-gk-eU8"/>
+                                                    </constraints>
+                                                    <prototypes>
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ItemCell" rowHeight="70" id="iX6-oB-9wB" customClass="CartItemTableViewCell" customModule="CartSquad" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="50" width="375" height="70"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iX6-oB-9wB" id="fAB-Qx-UTv">
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="NoImageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="S0L-HL-aIz" userLabel="ItemImage">
+                                                                        <rect key="frame" x="13" y="10" width="50" height="50"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="50" id="Nuj-TL-qkS"/>
+                                                                            <constraint firstAttribute="width" constant="50" id="YgW-F5-zN5"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Item Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDD-lN-8pb">
+                                                                        <rect key="frame" x="71" y="10.000000000000002" width="95" height="21.666666666666671"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="$0.00 / each" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1l8-yd-hYM" userLabel="ItemPriceEach">
+                                                                        <rect key="frame" x="71" y="42" width="81" height="17"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6TG-eI-xY2" userLabel="TotalCost">
+                                                                        <rect key="frame" x="308" y="37" width="63" height="27"/>
+                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NNI-UB-1oB" userLabel="ItemQuantityField" customClass="CustomTextField" customModule="CartSquad" customModuleProvider="target">
+                                                                        <rect key="frame" x="193" y="29" width="80" height="36"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="80" id="igF-Ly-Azi"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                                    </textField>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="trailing" secondItem="NNI-UB-1oB" secondAttribute="trailing" constant="102" id="6ZD-5g-JEp"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="6TG-eI-xY2" secondAttribute="bottom" constant="6" id="6t5-WB-jGk"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="NNI-UB-1oB" secondAttribute="bottom" constant="5" id="Hiu-ti-Jnx"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="6TG-eI-xY2" secondAttribute="trailing" constant="4" id="Lzl-3e-vtX"/>
+                                                                    <constraint firstItem="S0L-HL-aIz" firstAttribute="top" secondItem="fAB-Qx-UTv" secondAttribute="top" constant="10" id="Mdl-9v-pNX"/>
+                                                                    <constraint firstItem="1l8-yd-hYM" firstAttribute="top" secondItem="BDD-lN-8pb" secondAttribute="bottom" constant="10.333333333333329" id="V40-iC-oKW"/>
+                                                                    <constraint firstItem="BDD-lN-8pb" firstAttribute="top" secondItem="fAB-Qx-UTv" secondAttribute="top" constant="10" id="X4Z-BK-Rhb"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="S0L-HL-aIz" secondAttribute="bottom" constant="10" id="dRO-9O-3QF"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="1l8-yd-hYM" secondAttribute="bottom" constant="11" id="gSG-VN-281"/>
+                                                                    <constraint firstItem="6TG-eI-xY2" firstAttribute="top" secondItem="fAB-Qx-UTv" secondAttribute="top" constant="37" id="hOg-Oe-AFd"/>
+                                                                    <constraint firstItem="BDD-lN-8pb" firstAttribute="leading" secondItem="S0L-HL-aIz" secondAttribute="trailing" constant="8" symbolic="YES" id="moJ-P5-ArX"/>
+                                                                    <constraint firstItem="S0L-HL-aIz" firstAttribute="centerY" secondItem="fAB-Qx-UTv" secondAttribute="centerY" id="qMa-qH-odY"/>
+                                                                    <constraint firstItem="NNI-UB-1oB" firstAttribute="leading" secondItem="fAB-Qx-UTv" secondAttribute="leading" constant="193" id="qut-4s-dEq"/>
+                                                                    <constraint firstItem="1l8-yd-hYM" firstAttribute="leading" secondItem="S0L-HL-aIz" secondAttribute="trailing" constant="8" symbolic="YES" id="tz4-oq-C1z"/>
+                                                                    <constraint firstItem="NNI-UB-1oB" firstAttribute="top" secondItem="fAB-Qx-UTv" secondAttribute="top" constant="29" id="vFd-h5-cop"/>
+                                                                </constraints>
+                                                            </tableViewCellContentView>
+                                                            <connections>
+                                                                <outlet property="itemImageView" destination="S0L-HL-aIz" id="kcx-GE-oV8"/>
+                                                                <outlet property="itemNameLabel" destination="BDD-lN-8pb" id="opc-Im-QEb"/>
+                                                                <outlet property="itemPriceEachLabel" destination="1l8-yd-hYM" id="r1N-tl-8PA"/>
+                                                                <outlet property="itemQuantityField" destination="NNI-UB-1oB" id="mVW-n4-U3V"/>
+                                                                <outlet property="itemTotalCost" destination="6TG-eI-xY2" id="CBg-z5-6EQ"/>
+                                                            </connections>
+                                                        </tableViewCell>
+                                                    </prototypes>
+                                                </tableView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXN-k8-CRk">
+                                                    <rect key="frame" x="144.66666666666666" y="254" width="101" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="35" id="0PW-Gt-Cdq"/>
+                                                        <constraint firstAttribute="width" constant="101" id="CUF-nn-Xjz"/>
+                                                    </constraints>
+                                                    <color key="tintColor" red="0.72941176470000002" green="0.094117647060000004" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="Add Items">
+                                                        <color key="baseBackgroundColor" red="0.72941176470000002" green="0.094117647060000004" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <segue destination="UJq-NX-enh" kind="show" id="aFO-l9-xoL"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="bXN-k8-CRk" firstAttribute="top" secondItem="0Zd-nu-Fye" secondAttribute="bottom" constant="8" symbolic="YES" id="0eg-cZ-oTf"/>
+                                                <constraint firstItem="1lb-kr-8Y7" firstAttribute="leading" secondItem="Knv-Uh-vxh" secondAttribute="trailing" constant="8" symbolic="YES" id="4yH-ii-y3w"/>
+                                                <constraint firstItem="bXN-k8-CRk" firstAttribute="centerX" secondItem="lCX-tC-rim" secondAttribute="centerX" id="IC9-8H-Nj2"/>
+                                                <constraint firstAttribute="trailing" secondItem="0Zd-nu-Fye" secondAttribute="trailing" constant="8" id="Uyh-j9-jTf"/>
+                                                <constraint firstItem="Knv-Uh-vxh" firstAttribute="top" secondItem="lCX-tC-rim" secondAttribute="top" constant="2" id="XWu-1B-y1S"/>
+                                                <constraint firstItem="0Zd-nu-Fye" firstAttribute="leading" secondItem="lCX-tC-rim" secondAttribute="leading" constant="7" id="Zgh-wT-xhU"/>
+                                                <constraint firstItem="1lb-kr-8Y7" firstAttribute="top" secondItem="lCX-tC-rim" secondAttribute="top" constant="17" id="dO5-6U-HaQ"/>
+                                                <constraint firstItem="Knv-Uh-vxh" firstAttribute="leading" secondItem="lCX-tC-rim" secondAttribute="leading" constant="7" id="jCY-DJ-aZG"/>
+                                                <constraint firstItem="0Zd-nu-Fye" firstAttribute="top" secondItem="Knv-Uh-vxh" secondAttribute="bottom" constant="2" id="p03-ep-Eu6"/>
+                                                <constraint firstAttribute="bottom" secondItem="bXN-k8-CRk" secondAttribute="bottom" constant="11" id="uQV-6k-ZAb"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="itemsTable" destination="0Zd-nu-Fye" id="DbA-ni-Jq5"/>
+                                            <outlet property="itemsTableHeightConstraint" destination="RJ0-gk-eU8" id="t9W-FX-y5K"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fdV-gP-xUT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fdV-gP-xUT" firstAttribute="trailing" secondItem="agX-kL-YTj" secondAttribute="trailing" constant="20" id="4D2-im-6rk"/>
+                            <constraint firstItem="agX-kL-YTj" firstAttribute="top" secondItem="fdV-gP-xUT" secondAttribute="top" constant="10" id="HpG-sI-r8i"/>
+                            <constraint firstItem="agX-kL-YTj" firstAttribute="leading" secondItem="fdV-gP-xUT" secondAttribute="leading" constant="20" id="R5X-Cc-tEO"/>
+                            <constraint firstItem="fdV-gP-xUT" firstAttribute="bottom" secondItem="agX-kL-YTj" secondAttribute="bottom" id="dco-0K-r10"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="neU-Is-S8w">
+                        <nil key="title"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="Settingsicon" id="ElC-2g-RL4"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cartTable" destination="agX-kL-YTj" id="MRz-d3-F9R"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sdB-p1-KS4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1880" y="1624"/>
+        </scene>
+        <!--Add Items-->
+        <scene sceneID="nfQ-B4-FDA">
+            <objects>
+                <viewController id="UJq-NX-enh" customClass="CartAddItemsScreenVC" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Xg2-9M-Ntv">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Search Target" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQf-b1-r8Y">
+                                <rect key="frame" x="28" y="116" width="132" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="STORE SEARCH COMING SOON" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQ0-zR-qHy">
+                                <rect key="frame" x="28" y="144" width="248" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search..." translatesAutoresizingMaskIntoConstraints="NO" id="4Oy-K4-cQn">
+                                <rect key="frame" x="-2" y="173" width="431" height="56"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="UJq-NX-enh" id="Lot-Rg-GwM"/>
+                                </connections>
+                            </searchBar>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Az-aV-lHP">
+                                <rect key="frame" x="20" y="270" width="160" height="5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.69411764710000001" green="0.65490196079999996" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="OR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZE-48-hZh">
+                                <rect key="frame" x="203" y="262" width="25" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vgu-aZ-EFz">
+                                <rect key="frame" x="134" y="329" width="165" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.64313725489999995" green="0.086274509799999996" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Add Custom Items">
+                                    <color key="baseBackgroundColor" red="0.72941176470000002" green="0.094117647060000004" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="Ys6-et-yAr" kind="presentation" id="s0d-Gy-O8k"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mOn-oa-BRe">
+                                <rect key="frame" x="250" y="270" width="160" height="5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.69411764710000001" green="0.65490196079999996" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="VAo-Cs-aNu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Items" id="opw-zT-BsG"/>
+                    <connections>
+                        <outlet property="storeSearchBar" destination="4Oy-K4-cQn" id="SkM-y4-XeY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jzf-0j-8mM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2747" y="1624"/>
+        </scene>
+        <!--Cart Add Custom ItemsVC-->
+        <scene sceneID="BGB-72-hcW">
+            <objects>
+                <viewController id="Ys6-et-yAr" customClass="CartAddCustomItemsVC" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bj7-cn-rsi">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="863"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ORZ-rr-Noi">
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Custom Items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zia-80-3Ar">
+                                        <rect key="frame" x="150" y="15" width="151" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.72941176470000002" green="0.094117647060000004" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search custom items..." translatesAutoresizingMaskIntoConstraints="NO" id="5WY-uV-0pH">
+                                <rect key="frame" x="-2" y="117" width="430" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Ys6-et-yAr" id="DGV-Pr-epc"/>
+                                </connections>
+                            </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YO1-Se-avN">
+                                <rect key="frame" x="20" y="69" width="99" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="New">
+                                    <color key="baseBackgroundColor" red="0.72941176470000002" green="0.094117647060000004" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="SDZ-5b-Hra" kind="presentation" id="hsZ-Da-BOx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="WUy-xC-zBJ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="llY-aH-7W2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3560" y="1624"/>
+        </scene>
+        <!--Cart Create Custom ItemVC-->
+        <scene sceneID="Hmx-Hx-QKQ">
+            <objects>
+                <viewController id="SDZ-5b-Hra" customClass="CartCreateCustomItemVC" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1oF-He-YT5">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="863"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bUd-LQ-Ac1">
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Create New Custom Item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLT-Yv-jjv">
+                                        <rect key="frame" x="116" y="15" width="203" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.72941176470000002" green="0.094117647060000004" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Item Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Is-mq-bxY">
+                                <rect key="frame" x="33" y="86" width="161" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cc0-zu-jyt">
+                                <rect key="frame" x="20" y="80" width="13" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Required" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsa-jG-BNP">
+                                <rect key="frame" x="202" y="93" width="80" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="20"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZPc-am-Qke" userLabel="Name Field" customClass="CustomTextField" customModule="CartSquad" customModuleProvider="target">
+                                <rect key="frame" x="27" y="133" width="377" height="38.333333333333343"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Pw-de-1CY">
+                                <rect key="frame" x="20" y="188" width="390" height="5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.69411764710000001" green="0.65490196079999996" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STs-u5-fbd">
+                                <rect key="frame" x="33" y="218" width="77" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rGD-ig-A1H" userLabel="Price Field" customClass="CustomTextField" customModule="CartSquad" customModuleProvider="target">
+                                <rect key="frame" x="27" y="265" width="377" height="38.333333333333343"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="laX-8y-tNw">
+                                <rect key="frame" x="20" y="320" width="390" height="5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.69411764710000001" green="0.65490196079999996" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Item Quanitity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZK-KD-Gaa">
+                                <rect key="frame" x="26" y="595" width="211" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Item Quantity" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sXK-zT-NGR" customClass="CustomTextField" customModule="CartSquad" customModuleProvider="target">
+                                <rect key="frame" x="20" y="642" width="377" height="38.333333333333371"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oTM-vT-cxQ">
+                                <rect key="frame" x="14" y="722" width="390" height="5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.69411764710000001" green="0.65490196079999996" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Item Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0G-bh-Rn1">
+                                <rect key="frame" x="20" y="342" width="166" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jp0-ad-Jcj">
+                                <rect key="frame" x="20" y="562" width="390" height="5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.69411764710000001" green="0.65490196079999996" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NoImageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="LPd-zJ-Xn6">
+                                <rect key="frame" x="104" y="387" width="222" height="115"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YQ2-AR-PIM">
+                                <rect key="frame" x="113" y="769" width="205" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.72941176470000002" green="0.094117647060000004" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Save and Add to Cart">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="gf5-t4-VrY" kind="unwind" identifier="unwindToCartHomeVC" unwindAction="unwindToCartHomeVCWithSegue:" id="VFP-nc-uvz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssR-Ea-g11" userLabel="AddItemImageButton">
+                                <rect key="frame" x="246" y="481" width="80" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="camera" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="30"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="addCustomItemImageButtonPressed:" destination="SDZ-5b-Hra" eventType="touchUpInside" id="XOh-m2-hMB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="TZJ-3W-bk3"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="J7B-GM-pMV"/>
+                    <connections>
+                        <outlet property="itemImageView" destination="LPd-zJ-Xn6" id="6rr-Yu-QHb"/>
+                        <outlet property="nameField" destination="ZPc-am-Qke" id="Yim-HC-TtR"/>
+                        <outlet property="priceField" destination="rGD-ig-A1H" id="rtM-gm-M0e"/>
+                        <outlet property="quantityField" destination="sXK-zT-NGR" id="FPd-hN-gId"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5M6-7z-Nsb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="gf5-t4-VrY" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4393" y="1624"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="EAW-EN-yFD"/>
@@ -1194,6 +1629,10 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Image" width="93" height="100"/>
+        <image name="NoImageIcon" width="22" height="22"/>
+        <image name="Settingsicon" width="35" height="35"/>
+        <image name="UserIcon" width="24" height="24"/>
+        <image name="camera" catalog="system" width="128" height="93"/>
         <image name="cart.circle" catalog="system" width="128" height="123"/>
         <image name="person.circle" catalog="system" width="128" height="123"/>
         <image name="plus.circle" catalog="system" width="128" height="123"/>
@@ -1211,6 +1650,9 @@
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

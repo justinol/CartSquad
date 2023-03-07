@@ -63,9 +63,9 @@ class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         return 120
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        <#code#>
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "ToCartIdentifier", sender: self)
+    }
     
     func addCart(newCart: Cart) {
         cartList?.append(newCart)
