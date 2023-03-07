@@ -8,14 +8,20 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var splashLabel: UILabel!
+    
+    var inviteVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "InviteViewController")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        splashLabel.text = "Cart Squad"
     }
 
-
+    @IBAction func onButtonPressed(_ sender: Any) {
+        if let sheet = inviteVC.sheetPresentationController {
+            sheet.detents = [.medium()]
+        }
+        
+        self.present(inviteVC, animated:true)
+    }
+    
 }
 

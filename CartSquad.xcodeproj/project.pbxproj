@@ -14,6 +14,26 @@
 		D0541EDE29AD8F440053346E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0541EDD29AD8F440053346E /* Assets.xcassets */; };
 		D0541EE129AD8F440053346E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0541EDF29AD8F440053346E /* LaunchScreen.storyboard */; };
 		D074736829AFF6A600B0B1D3 /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = D074736729AFF6A600B0B1D3 /* .gitattributes */; };
+		D074739329B3FA4A00B0B1D3 /* CreateCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074739229B3FA4A00B0B1D3 /* CreateCartViewController.swift */; };
+		D074739529B43CF100B0B1D3 /* AddStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074739429B43CF100B0B1D3 /* AddStoreViewController.swift */; };
+		D074739729B4524B00B0B1D3 /* StoreSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074739629B4524B00B0B1D3 /* StoreSearchViewController.swift */; };
+		D074739929B4895F00B0B1D3 /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074739829B4895F00B0B1D3 /* InviteViewController.swift */; };
+		D074739B29B56B9500B0B1D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D074739A29B56B9500B0B1D3 /* GoogleService-Info.plist */; };
+		D074739E29B56EF500B0B1D3 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D074739D29B56EF500B0B1D3 /* FirebaseFirestore */; };
+		D07473A029B56EF500B0B1D3 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D074739F29B56EF500B0B1D3 /* FirebaseFirestoreSwift */; };
+		D07473A229B56FA400B0B1D3 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07473A129B56FA400B0B1D3 /* SplashViewController.swift */; };
+		D07473A429B593D300B0B1D3 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07473A329B593D300B0B1D3 /* Store.swift */; };
+		D07473AA29B5AE9400B0B1D3 /* StoreChangerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07473A929B5AE9400B0B1D3 /* StoreChangerProtocol.swift */; };
+		D07473AC29B5BA4100B0B1D3 /* SelectedStoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07473AB29B5BA4100B0B1D3 /* SelectedStoreCell.swift */; };
+		D07473AE29B5CAD400B0B1D3 /* SearchStoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07473AD29B5CAD400B0B1D3 /* SearchStoreCell.swift */; };
+		D07473B229B67CA500B0B1D3 /* CreateCartTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07473B129B67CA500B0B1D3 /* CreateCartTableViewController.swift */; };
+		D07473B429B6812D00B0B1D3 /* CreateCartNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07473B329B6812D00B0B1D3 /* CreateCartNameCell.swift */; };
+		D07473B629B6813E00B0B1D3 /* CreateCartImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07473B529B6813D00B0B1D3 /* CreateCartImageCell.swift */; };
+		D07473B829B6814D00B0B1D3 /* CreateCartStoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07473B729B6814D00B0B1D3 /* CreateCartStoreCell.swift */; };
+		D07473BA29B6816300B0B1D3 /* CreateCartDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07473B929B6816300B0B1D3 /* CreateCartDateCell.swift */; };
+		D07473C029B685A700B0B1D3 /* ImagePickerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07473BF29B685A700B0B1D3 /* ImagePickerProtocol.swift */; };
+		D07473C229B6B09100B0B1D3 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07473C129B6B09100B0B1D3 /* Cart.swift */; };
+		D07473C429B6CC1000B0B1D3 /* CreateCartSaveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07473C329B6CC1000B0B1D3 /* CreateCartSaveCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +46,24 @@
 		D0541EE029AD8F440053346E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0541EE229AD8F440053346E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D074736729AFF6A600B0B1D3 /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
+		D074739229B3FA4A00B0B1D3 /* CreateCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCartViewController.swift; sourceTree = "<group>"; };
+		D074739429B43CF100B0B1D3 /* AddStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStoreViewController.swift; sourceTree = "<group>"; };
+		D074739629B4524B00B0B1D3 /* StoreSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSearchViewController.swift; sourceTree = "<group>"; };
+		D074739829B4895F00B0B1D3 /* InviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
+		D074739A29B56B9500B0B1D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D07473A129B56FA400B0B1D3 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		D07473A329B593D300B0B1D3 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		D07473A929B5AE9400B0B1D3 /* StoreChangerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreChangerProtocol.swift; sourceTree = "<group>"; };
+		D07473AB29B5BA4100B0B1D3 /* SelectedStoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedStoreCell.swift; sourceTree = "<group>"; };
+		D07473AD29B5CAD400B0B1D3 /* SearchStoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStoreCell.swift; sourceTree = "<group>"; };
+		D07473B129B67CA500B0B1D3 /* CreateCartTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCartTableViewController.swift; sourceTree = "<group>"; };
+		D07473B329B6812D00B0B1D3 /* CreateCartNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCartNameCell.swift; sourceTree = "<group>"; };
+		D07473B529B6813D00B0B1D3 /* CreateCartImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCartImageCell.swift; sourceTree = "<group>"; };
+		D07473B729B6814D00B0B1D3 /* CreateCartStoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCartStoreCell.swift; sourceTree = "<group>"; };
+		D07473B929B6816300B0B1D3 /* CreateCartDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCartDateCell.swift; sourceTree = "<group>"; };
+		D07473BF29B685A700B0B1D3 /* ImagePickerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerProtocol.swift; sourceTree = "<group>"; };
+		D07473C129B6B09100B0B1D3 /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
+		D07473C329B6CC1000B0B1D3 /* CreateCartSaveCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCartSaveCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +71,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D074739E29B56EF500B0B1D3 /* FirebaseFirestore in Frameworks */,
+				D07473A029B56EF500B0B1D3 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,9 +103,27 @@
 				D0541ED629AD8F430053346E /* SceneDelegate.swift */,
 				D0541ED829AD8F430053346E /* ViewController.swift */,
 				D0541EDA29AD8F430053346E /* Main.storyboard */,
+				D07473A129B56FA400B0B1D3 /* SplashViewController.swift */,
+				D074739229B3FA4A00B0B1D3 /* CreateCartViewController.swift */,
+				D074739429B43CF100B0B1D3 /* AddStoreViewController.swift */,
+				D074739629B4524B00B0B1D3 /* StoreSearchViewController.swift */,
+				D074739829B4895F00B0B1D3 /* InviteViewController.swift */,
+				D07473A329B593D300B0B1D3 /* Store.swift */,
+				D07473C129B6B09100B0B1D3 /* Cart.swift */,
+				D07473A929B5AE9400B0B1D3 /* StoreChangerProtocol.swift */,
 				D0541EDD29AD8F440053346E /* Assets.xcassets */,
 				D0541EDF29AD8F440053346E /* LaunchScreen.storyboard */,
 				D0541EE229AD8F440053346E /* Info.plist */,
+				D074739A29B56B9500B0B1D3 /* GoogleService-Info.plist */,
+				D07473AB29B5BA4100B0B1D3 /* SelectedStoreCell.swift */,
+				D07473AD29B5CAD400B0B1D3 /* SearchStoreCell.swift */,
+				D07473B129B67CA500B0B1D3 /* CreateCartTableViewController.swift */,
+				D07473B329B6812D00B0B1D3 /* CreateCartNameCell.swift */,
+				D07473B529B6813D00B0B1D3 /* CreateCartImageCell.swift */,
+				D07473B729B6814D00B0B1D3 /* CreateCartStoreCell.swift */,
+				D07473B929B6816300B0B1D3 /* CreateCartDateCell.swift */,
+				D07473BF29B685A700B0B1D3 /* ImagePickerProtocol.swift */,
+				D07473C329B6CC1000B0B1D3 /* CreateCartSaveCell.swift */,
 			);
 			path = CartSquad;
 			sourceTree = "<group>";
@@ -86,6 +144,10 @@
 			dependencies = (
 			);
 			name = CartSquad;
+			packageProductDependencies = (
+				D074739D29B56EF500B0B1D3 /* FirebaseFirestore */,
+				D074739F29B56EF500B0B1D3 /* FirebaseFirestoreSwift */,
+			);
 			productName = CartSquad;
 			productReference = D0541ED129AD8F430053346E /* CartSquad.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +176,9 @@
 				Base,
 			);
 			mainGroup = D0541EC829AD8F430053346E;
+			packageReferences = (
+				D074739C29B56EF500B0B1D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = D0541ED229AD8F430053346E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -130,6 +195,7 @@
 			files = (
 				D0541EE129AD8F440053346E /* LaunchScreen.storyboard in Resources */,
 				D0541EDE29AD8F440053346E /* Assets.xcassets in Resources */,
+				D074739B29B56B9500B0B1D3 /* GoogleService-Info.plist in Resources */,
 				D0541EDC29AD8F430053346E /* Main.storyboard in Resources */,
 				D074736829AFF6A600B0B1D3 /* .gitattributes in Resources */,
 			);
@@ -142,9 +208,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D07473B229B67CA500B0B1D3 /* CreateCartTableViewController.swift in Sources */,
 				D0541ED929AD8F430053346E /* ViewController.swift in Sources */,
 				D0541ED529AD8F430053346E /* AppDelegate.swift in Sources */,
+				D074739529B43CF100B0B1D3 /* AddStoreViewController.swift in Sources */,
+				D07473B629B6813E00B0B1D3 /* CreateCartImageCell.swift in Sources */,
+				D07473A429B593D300B0B1D3 /* Store.swift in Sources */,
+				D07473C229B6B09100B0B1D3 /* Cart.swift in Sources */,
+				D074739329B3FA4A00B0B1D3 /* CreateCartViewController.swift in Sources */,
+				D07473C429B6CC1000B0B1D3 /* CreateCartSaveCell.swift in Sources */,
+				D074739729B4524B00B0B1D3 /* StoreSearchViewController.swift in Sources */,
+				D07473BA29B6816300B0B1D3 /* CreateCartDateCell.swift in Sources */,
+				D07473AA29B5AE9400B0B1D3 /* StoreChangerProtocol.swift in Sources */,
+				D07473AC29B5BA4100B0B1D3 /* SelectedStoreCell.swift in Sources */,
+				D074739929B4895F00B0B1D3 /* InviteViewController.swift in Sources */,
 				D0541ED729AD8F430053346E /* SceneDelegate.swift in Sources */,
+				D07473A229B56FA400B0B1D3 /* SplashViewController.swift in Sources */,
+				D07473B429B6812D00B0B1D3 /* CreateCartNameCell.swift in Sources */,
+				D07473AE29B5CAD400B0B1D3 /* SearchStoreCell.swift in Sources */,
+				D07473C029B685A700B0B1D3 /* ImagePickerProtocol.swift in Sources */,
+				D07473B829B6814D00B0B1D3 /* CreateCartStoreCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +445,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D074739C29B56EF500B0B1D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D074739D29B56EF500B0B1D3 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D074739C29B56EF500B0B1D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		D074739F29B56EF500B0B1D3 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D074739C29B56EF500B0B1D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D0541EC929AD8F430053346E /* Project object */;
 }
