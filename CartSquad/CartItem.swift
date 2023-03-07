@@ -127,12 +127,15 @@ class CartItem: NSObject {
         }
         
         // remove image from cloud storage
-        let storage = Storage.storage()
-        let itemImageRef = storage.reference().child("cart_item_images").child(String(AuthUser.userId)).child("\(itemName!).jpeg")
-        itemImageRef.delete { error in
-            if error != nil {
-                print("error deleting image drom db")
+        if image != nil || imageURL != "none" {
+            let storage = Storage.storage()
+            let itemImageRef = storage.reference().child("cart_item_images").child(String(AuthUser.userId)).child("\(itemName!).jpeg")
+            itemImageRef.delete { error in
+                if error != nil {
+                    print("error deleting image drom db")
+                }
             }
         }
+
     }
 }
