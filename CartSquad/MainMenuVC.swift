@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CartAdder {
     
     let cartCellId = "cartCellIdentifier"
     
@@ -61,6 +61,22 @@ class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
+    }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        <#code#>
+//    }
+    
+    func addCart(newCart: Cart) {
+        cartList?.append(newCart)
+        cartTable.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddCartSegueIdentifer", let destination = segue.destination as?
+            CreateCartTableViewController {
+            destination.delegate = self
+        }
     }
     
 }
