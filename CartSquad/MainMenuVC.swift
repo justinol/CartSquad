@@ -13,6 +13,7 @@ class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     
     @IBOutlet weak var cartTable: UITableView!
     var cartList:[Cart]?
+    var selectedCart:Cart? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,13 +26,13 @@ class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             name: "Pollos Hermanos",
             image: UIImage(named: "Saul") ?? UIImage(),
             store: "Target",
-            date: "2023-03-20")
+            date: "March 20 2023")
         )
         cartList?.append(Cart(
             name: "Pizza Party",
             image: UIImage(named: "Pizza") ?? UIImage(),
             store: "HEB",
-            date: "2023-03-25")
+            date: "March 25 2023")
         )
     }
 
@@ -64,6 +65,8 @@ class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = indexPath.row
+        selectedCart = cartList![row]
         self.performSegue(withIdentifier: "ToCartIdentifier", sender: self)
     }
     
@@ -76,6 +79,9 @@ class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         if segue.identifier == "AddCartSegueIdentifer", let destination = segue.destination as?
             CreateCartTableViewController {
             destination.delegate = self
+        }
+        if segue.identifier == "ToCartIdentifier", let destination = segue.destination as? CartScreenVC {
+            destination.currentCart = selectedCart
         }
     }
     

@@ -16,6 +16,7 @@ class PeronalInfoViewController: UIViewController {
         self.navigationItem.setHidesBackButton(true, animated: false)
     }
     
+    //unwind to the personal info view controller. To be continued in beta
     @IBAction func unwindToPersonalInfo(_ seg: UIStoryboardSegue) {
         
     }

@@ -662,7 +662,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DfK-fn-FRg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="610" y="1992"/>
+            <point key="canvasLocation" x="343" y="2149"/>
         </scene>
         <!--Create Cart-->
         <scene sceneID="aPr-vY-Tv2">

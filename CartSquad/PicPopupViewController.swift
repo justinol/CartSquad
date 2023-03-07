@@ -19,6 +19,7 @@ class PicPopupViewController: UIViewController, UINavigationControllerDelegate, 
         // Do any additional setup after loading the view.
     }
     
+    //When the button is pressed, an image is being chosen from the phone photos.
     @IBAction func AddImageButtonPressed(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             imagePicker.delegate = self
@@ -29,7 +30,7 @@ class PicPopupViewController: UIViewController, UINavigationControllerDelegate, 
         }
         
     }
-    
+    //changes the image shown from the image view controller to the image chosen from the image button pressed function.
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         self.dismiss(animated: true, completion: nil)
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {

@@ -10,6 +10,8 @@ import UIKit
 class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var cartTable: UITableView!
+    
+    var currentCart:Cart?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +38,8 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         view.addSubview(horizontalStackView)
         
         // Create the image view
-        let imageView = UIImageView(image: UIImage(named: "NoImageIcon"))
-        imageView.contentMode = .scaleAspectFit
+//        let imageView = UIImageView(image: currentCart!.image)
+//        imageView.contentMode = .scaleAspectFit
         
         // Create the vertical stack view
         let verticalStackView = UIStackView()
@@ -45,18 +47,18 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         // Create the title label
         let titleLabel = UILabel()
-        titleLabel.text = "Title"
+        titleLabel.text = currentCart!.name
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         titleLabel.textColor = .white
         
         // Create the subtitle label
         let subtitleLabel = UILabel()
         titleLabel.font = UIFont.systemFont(ofSize: 24)
-        subtitleLabel.text = "Shopping at Target"
+        subtitleLabel.text = "Shopping at \(currentCart!.store)"
         subtitleLabel.textColor = .white
         
-        // Add the subviews to the stack views
-        horizontalStackView.addArrangedSubview(imageView)
+//        // Add the subviews to the stack views
+//        horizontalStackView.addArrangedSubview(imageView)
         horizontalStackView.addArrangedSubview(verticalStackView)
         verticalStackView.addArrangedSubview(titleLabel)
         verticalStackView.addArrangedSubview(subtitleLabel)

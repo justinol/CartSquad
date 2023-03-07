@@ -22,6 +22,8 @@ class CreateAccountViewController: UIViewController {
         self.navigationItem.setHidesBackButton(true, animated: false)
     }
     
+    //create accounts when button is pressed.
+    //segues to the main menu screen.
     @IBAction func createAccountButtonPressed(_ sender: Any) {
         guard let createEmail = createEmailText.text, let createPass = createPasswordText.text,
              let confirmPass = confirmPassword.text else {

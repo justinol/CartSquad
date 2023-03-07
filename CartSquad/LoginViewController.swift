@@ -19,10 +19,13 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    //segue unwinds to the login view controller.
     @IBAction func unwindToLogin(_ seg: UIStoryboardSegue) {
         
     }
-
+    
+    //When the login button is pressed, the email and password information is passed
+    // into the firebase authentication system and segues into the main menu.
     @IBAction func loginButtonPressed(_ sender: Any) {
         guard let email = emailText.text, let password = passwordText.text else{
             print("Please enter email or password")
