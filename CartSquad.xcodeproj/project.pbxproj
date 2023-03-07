@@ -20,8 +20,11 @@
 		74E00E0929B5644D00C018FF /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 74E00E0829B5644D00C018FF /* FirebaseFirestoreSwift */; };
 		74E00E0B29B5644D00C018FF /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 74E00E0A29B5644D00C018FF /* FirebaseStorage */; };
 		74E00E0D29B5644D00C018FF /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 74E00E0C29B5644D00C018FF /* FirebaseStorageCombine-Community */; };
-		74E00E0F29B56B4A00C018FF /* PeronalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E00E0E29B56B4A00C018FF /* PeronalInfoViewController.swift */; };
 		74E00E1329B592FE00C018FF /* PicPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E00E1229B592FE00C018FF /* PicPopupViewController.swift */; };
+		8214C36229B6CDF0005F7419 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C36029B6CDF0005F7419 /* Cart.swift */; };
+		8214C36329B6CDF0005F7419 /* MainMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C36129B6CDF0005F7419 /* MainMenuVC.swift */; };
+		8287FBE729B6D6EE00229728 /* saveForBeta.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8287FBE629B6D6EE00229728 /* saveForBeta.storyboard */; };
+		82EE091F29B6CD8A0045DA40 /* PeronalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EE091D29B6CD8A0045DA40 /* PeronalInfoViewController.swift */; };
 		D0541ED529AD8F430053346E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0541ED429AD8F430053346E /* AppDelegate.swift */; };
 		D0541ED729AD8F430053346E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0541ED629AD8F430053346E /* SceneDelegate.swift */; };
 		D0541ED929AD8F430053346E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0541ED829AD8F430053346E /* ViewController.swift */; };
@@ -36,8 +39,11 @@
 		740B1B3929B2D30D00493B33 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		740B1B3B29B2D33E00493B33 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7456C8D029B1854900A9C13C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		74E00E0E29B56B4A00C018FF /* PeronalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeronalInfoViewController.swift; sourceTree = "<group>"; };
 		74E00E1229B592FE00C018FF /* PicPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicPopupViewController.swift; sourceTree = "<group>"; };
+		8214C36029B6CDF0005F7419 /* Cart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
+		8214C36129B6CDF0005F7419 /* MainMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuVC.swift; sourceTree = "<group>"; };
+		8287FBE629B6D6EE00229728 /* saveForBeta.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = saveForBeta.storyboard; sourceTree = "<group>"; };
+		82EE091D29B6CD8A0045DA40 /* PeronalInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeronalInfoViewController.swift; sourceTree = "<group>"; };
 		D0541ED129AD8F430053346E /* CartSquad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CartSquad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0541ED429AD8F430053346E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0541ED629AD8F430053346E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,9 +100,12 @@
 				D0541ED829AD8F430053346E /* ViewController.swift */,
 				740B1B3929B2D30D00493B33 /* CreateAccountViewController.swift */,
 				740B1B3B29B2D33E00493B33 /* LoginViewController.swift */,
-				74E00E0E29B56B4A00C018FF /* PeronalInfoViewController.swift */,
+				82EE091D29B6CD8A0045DA40 /* PeronalInfoViewController.swift */,
 				74E00E1229B592FE00C018FF /* PicPopupViewController.swift */,
 				D0541EDA29AD8F430053346E /* Main.storyboard */,
+				8287FBE629B6D6EE00229728 /* saveForBeta.storyboard */,
+				8214C36029B6CDF0005F7419 /* Cart.swift */,
+				8214C36129B6CDF0005F7419 /* MainMenuVC.swift */,
 				D0541EDD29AD8F440053346E /* Assets.xcassets */,
 				D0541EDF29AD8F440053346E /* LaunchScreen.storyboard */,
 				D0541EE229AD8F440053346E /* Info.plist */,
@@ -182,6 +191,7 @@
 				D0541EDE29AD8F440053346E /* Assets.xcassets in Resources */,
 				7456C8D129B1854900A9C13C /* GoogleService-Info.plist in Resources */,
 				D0541EDC29AD8F430053346E /* Main.storyboard in Resources */,
+				8287FBE729B6D6EE00229728 /* saveForBeta.storyboard in Resources */,
 				D074736829AFF6A600B0B1D3 /* .gitattributes in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,11 +204,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				740B1B3A29B2D30D00493B33 /* CreateAccountViewController.swift in Sources */,
+				82EE091F29B6CD8A0045DA40 /* PeronalInfoViewController.swift in Sources */,
 				D0541ED929AD8F430053346E /* ViewController.swift in Sources */,
-				74E00E0F29B56B4A00C018FF /* PeronalInfoViewController.swift in Sources */,
 				74093CC029B6A1D3004FD061 /* UserProfileCreator.swift in Sources */,
 				74E00E1329B592FE00C018FF /* PicPopupViewController.swift in Sources */,
+				8214C36329B6CDF0005F7419 /* MainMenuVC.swift in Sources */,
 				D0541ED529AD8F430053346E /* AppDelegate.swift in Sources */,
+				8214C36229B6CDF0005F7419 /* Cart.swift in Sources */,
 				740B1B3C29B2D33E00493B33 /* LoginViewController.swift in Sources */,
 				D0541ED729AD8F430053346E /* SceneDelegate.swift in Sources */,
 			);

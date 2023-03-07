@@ -35,7 +35,7 @@ class LoginViewController: UIViewController {
                 return
             }
             
+            self.performSegue(withIdentifier: "mainMenuSegue", sender: self)
         }
-        
     }
 }
