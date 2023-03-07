@@ -15,7 +15,7 @@ class CartItemTableViewCell: UITableViewCell {
     @IBOutlet weak var itemPriceEachLabel: UILabel!
     @IBOutlet weak var itemQuantityField: CustomTextField!
     @IBOutlet weak var itemTotalCost: UILabel!
-    
+    @IBOutlet weak var itemImageView: UIImageView!
     
     var cartItem: CartItem? {
         didSet {

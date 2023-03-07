@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import FirebaseFirestore
+import FirebaseStorage
 
 class CartItem: NSObject {
     var itemName: String?
@@ -15,14 +16,16 @@ class CartItem: NSObject {
     @objc dynamic var itemQuantity: Int = 0
     var itemTotalCost: Float?
     var image: UIImage?
+    var imageURL: String?
     
-    init(itemName: String? = nil, itemPrice: Float = 0.00, itemQuantity: Int = 1, image: UIImage? = nil) {
+    init(itemName: String?, itemPrice: Float = 0.00, itemQuantity: Int = 1, image: UIImage? = nil, imageURL: String? = nil) {
         super.init()
         self.itemName = itemName
         self.itemPrice = itemPrice
         self.itemQuantity = itemQuantity
         itemTotalCost = calculateTotalCost()
         self.image = image
+        self.imageURL = imageURL
     }
     
     func calculateTotalCost() -> Float {
@@ -38,18 +41,73 @@ class CartItem: NSObject {
         } else {
             cell.itemPriceEachLabel.text = "price unspecified"
         }
+        if let img = image {
+            // set UI image
+            cell.itemImageView.image = img
+        }
+//        else if let imgURL = imageURL {
+//            if (imgURL != "none") {
+//                // get image from image url and set
+//                print("getting image from url for \(String(describing: self.itemName))")
+//                let storage = Storage.storage()
+//                let itemImageURLRef = storage.reference(forURL: imgURL)
+//                itemImageURLRef.getData(maxSize: 10 * 1024 * 1024) { data, error in
+//                    if error != nil {
+//                        // error occured
+//                    } else {
+//                        self.image = UIImage(data: data!)
+//                        cell.itemImageView.image = self.image
+//                    }
+//                }
+//            }
+//        }
     }
     
     // Add/Update this cart item to a user's subcart within in a cart in the FireStore database
     func overwriteInUserSubcartInDatabase() {
         print("overwrote \(itemName!) in db")
+
         let db = Firestore.firestore()
         let cartId = "cart\(0)"
-        let data: [String:Any] = ["itemName": itemName!,
+        var data: [String:Any] = ["itemName": itemName!,
                                   "itemPrice": itemPrice,
                                   "itemQuantity": itemQuantity,
-                                  "lastUpdated": FieldValue.serverTimestamp()]
-        db.collection("carts").document(cartId).collection("users").document(String(AuthUser.userId)).collection("userCartItems").document(itemName!).setData(data)
+                                  "lastUpdated": FieldValue.serverTimestamp(),
+                                  "imageURL": "none"]
+        
+        let itemDoc = db.collection("carts").document(cartId).collection("users").document(String(AuthUser.userId)).collection("userCartItems").document(itemName!)
+        
+        // if img is not nil, upload to cloudstore
+        if let img = image, let imageData = img.jpegData(compressionQuality: 0.9) {
+            print("uploading image")
+            let metaData = StorageMetadata()
+            metaData.contentType = "image/jpeg"
+            
+            let storage = Storage.storage()
+            let itemImageRef = storage.reference().child("cart_item_images").child(String(AuthUser.userId)).child("\(itemName!).jpeg")
+            
+            itemImageRef.putData(imageData, metadata: metaData) { metaData, error in
+                guard metaData != nil else {
+                    print("cart item image upload error")
+                    return
+                }
+                print("cart item \(self.itemName!) image uploaded to cloudstore")
+                // get image url
+                itemImageRef.downloadURL { (url, error) in
+                    guard let downloadURL = url else {
+                        return
+                    }
+                    print("image url:\(downloadURL)")
+                    // image url obtained, update cartItem data in firestore
+                    data["imageURL"] = downloadURL.absoluteString
+                    // set data AFTER image upload has finished
+                    itemDoc.setData(data)
+                }
+            }
+        } else {
+            // set data with no image url
+            itemDoc.setData(data)
+        }
     }
     
     // Remove this cart item from a user's subcart within in a cart in the FireStore database

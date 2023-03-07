@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseStorage
 
 // A class that defines a cell for a user subcart.
 class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate {
@@ -89,24 +90,46 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
             }
             snapshot.documentChanges.forEach { diff in
                 let cartItemData = diff.document.data()
-                let itemName = cartItemData["itemName"] as? String
+                let itemName = cartItemData["itemName"] as! String
                 let itemPrice = cartItemData["itemPrice"] as! Float
                 let itemQuantity = cartItemData["itemQuantity"] as! Int
+                let itemImageURL = cartItemData["imageURL"] as! String
+                print("url:\(itemImageURL)")
                 if (diff.type == .added) {
                     // new added from database, update datasource (which will update UI)
-                    let cartItem = CartItem(itemName: itemName, itemPrice: itemPrice, itemQuantity: itemQuantity)
+//                    var itemImage: UIImage?
+//                    if (itemImageURL != "none") {
+//                        // get image from image url
+//                        print("getting image from url")
+//                        let storage = Storage.storage()
+//                        let itemImageURLRef = storage.reference(forURL: itemImageURL)
+//                        itemImageURLRef.getData(maxSize: 10 * 1024 * 1024) { data, error in
+//                            if error != nil {
+//                                // error occured
+//                            } else {
+//                                itemImage = UIImage(data: data!)
+//                                let cellRow = self.cartItemNameToCellRow[itemName]!
+//                                self.cartItems[cellRow].image = itemImage
+//                                let cell = self.itemsTable.cellForRow(at: IndexPath(row: cellRow, section: 0)) as! CartItemTableViewCell
+//                                cell.cartItem?.populateCartItemTableViewCellInfo(cell: cell)
+//                            }
+//                        }
+//                    } else {
+//                        print("no image for\(itemName)")
+//                    }
+                    let cartItem = CartItem(itemName: itemName, itemPrice: itemPrice, itemQuantity: itemQuantity, imageURL: itemImageURL)
                     self.cartItems.append(cartItem)
                 } else if (diff.type == .modified) {
                     // item updated, update data source and UI locally
-                    let cellRow = self.cartItemNameToCellRow[itemName!]!
+                    let cellRow = self.cartItemNameToCellRow[itemName]!
                     self.cartItems[cellRow].itemQuantity = itemQuantity
                     let cell = self.itemsTable.cellForRow(at: IndexPath(row: cellRow, section: 0)) as! CartItemTableViewCell
                     cell.cartItem?.populateCartItemTableViewCellInfo(cell: cell)
                 } else if (diff.type == .removed) {
                     // item removed, update data source and UI locally
-                    let cellRow = self.cartItemNameToCellRow[itemName!]!
+                    let cellRow = self.cartItemNameToCellRow[itemName]!
                     self.cartItems.remove(at: cellRow)
-                    self.cartItemNameToCellRow[itemName!] = nil
+                    self.cartItemNameToCellRow[itemName] = nil
                     self.itemsTable.reloadData()
                     self.updateItemsTableHeight()
                 }

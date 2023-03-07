@@ -6,16 +6,21 @@
 //
 
 import UIKit
-import FirebaseFirestore
 
-class CartCreateCustomItemVC: UIViewController, UITextFieldDelegate {
+class CartCreateCustomItemVC: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     @IBOutlet weak var nameField: CustomTextField!
     @IBOutlet weak var priceField: CustomTextField!
     @IBOutlet weak var quantityField: CustomTextField!
+    @IBOutlet weak var itemImageView: UIImageView!
+    let imagePicker = UIImagePickerController()
+    // denotes whether or not the user set a custom image
+    var didSetImage: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         nameField.delegate = self
         priceField.delegate = self
@@ -39,11 +44,32 @@ class CartCreateCustomItemVC: UIViewController, UITextFieldDelegate {
                 let priceEach = Float(priceField.text?.count == 0 ? "0.00" : priceField.text!)!
                 let quantity = Int(quantityField.text?.count == 0 ? "1" : quantityField.text!)!
                 
+                let itemImage = didSetImage ? itemImageView.image : nil
                 let cartItem = CartItem(itemName: nameField.text,
                                         itemPrice: priceEach,
-                                        itemQuantity: quantity)
+                                        itemQuantity: quantity, image: itemImage)
                 destinationVC.addItemToUserSubcart(userId: 0, cartItem: cartItem)
             }
+        }
+    }
+    
+    // Present UIImagePickerController when the user presses the add custom item image button.
+    @IBAction func addCustomItemImageButtonPressed(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary
+            imagePicker.allowsEditing = true
+            
+            present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    // Set item image when user finishes picking an image
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        self.dismiss(animated: true, completion: nil)
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            itemImageView.image = image
+            didSetImage = true
         }
     }
     
