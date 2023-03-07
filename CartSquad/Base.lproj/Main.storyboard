@@ -11,7 +11,6 @@
         <!--New Cart-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="CreateCartViewController" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
@@ -197,6 +196,7 @@
                         <outlet property="storeTable" destination="6YC-NQ-Gei" id="QYu-gF-98c"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="240" y="-657"/>
         </scene>
@@ -284,7 +284,7 @@
                                                     <rect key="frame" x="250" y="11" width="120" height="120"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iYo-Ub-6Kx">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iYo-Ub-6Kx">
                                                     <rect key="frame" x="20" y="37" width="150" height="100"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -318,7 +318,7 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="4vJ-8x-atn" kind="presentation" id="0Q7-aL-MNB"/>
+                                    <action selector="searchButtonPressed:" destination="uLX-sj-lvv" eventType="touchUpInside" id="N8G-V0-pav"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -329,11 +329,13 @@
                     <connections>
                         <outlet property="nearbyStoresTable" destination="kHt-Dk-eme" id="Kf2-nM-jB1"/>
                         <outlet property="searchDistanceLabel" destination="nhr-tm-taU" id="pj3-pP-wgw"/>
+                        <outlet property="searchTF" destination="EHT-iq-nVS" id="zZv-tl-LxN"/>
+                        <segue destination="4vJ-8x-atn" kind="presentation" identifier="SearchStoreSegueIdentifier" id="nBV-Og-BfH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgH-jL-xij" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2499" y="-3"/>
+            <point key="canvasLocation" x="2492" y="-3"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="PIo-AD-GS6">
@@ -456,7 +458,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8BA-nw-NDT">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8BA-nw-NDT">
                                                     <rect key="frame" x="20" y="39" width="150" height="100"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -469,7 +471,7 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Search results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9er-nq-moW">
-                                <rect key="frame" x="20" y="80" width="125" height="24"/>
+                                <rect key="frame" x="20" y="80" width="390" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
@@ -480,10 +482,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="zeC-1C-3tk"/>
+                    <connections>
+                        <outlet property="searchQueryLabel" destination="9er-nq-moW" id="zQ1-c9-VuU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Tl-Ke-4KJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3237" y="-3"/>
+            <point key="canvasLocation" x="3235.8139534883721" y="-3.218884120171674"/>
         </scene>
         <!--Splash View Controller-->
         <scene sceneID="tXo-AY-cKc">
@@ -669,7 +674,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozZ-R1-gAj">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozZ-R1-gAj">
                                                                 <rect key="frame" x="11" y="11" width="150" height="100"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -752,6 +757,9 @@
                                             <buttonConfiguration key="configuration" style="plain" title="Save">
                                                 <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
                                             </buttonConfiguration>
+                                            <connections>
+                                                <action selector="onSaveButtonPressed:" destination="mvG-QA-tNr" eventType="touchUpInside" id="WhJ-Lc-9K3"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>

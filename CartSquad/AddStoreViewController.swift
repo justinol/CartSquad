@@ -7,7 +7,7 @@
 
 import UIKit
 
-let target = Store(name: "Target", address: "123 Guadalupe St.", image: UIImage(named: "targetLogo")!)
+let target = Store(name: "Target", address: "2025 Guadalupe St STE 01-100, Austin, TX 78705", image: UIImage(named: "targetLogo")!)
 var stores:[Store] = [target]
 
 
@@ -15,6 +15,7 @@ class AddStoreViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var searchDistanceLabel: UILabel!
     @IBOutlet weak var nearbyStoresTable: UITableView!
+    @IBOutlet weak var searchTF: UITextField!
     
     var distance:Int = 50
     var delegate:UIViewController!
@@ -60,11 +61,29 @@ class AddStoreViewController: UIViewController, UITableViewDelegate, UITableView
         return 200
     }
     
+    
+    @IBAction func searchButtonPressed(_ sender: Any) {
+        if (searchTF.text?.isEmpty)! {
+            let controller = UIAlertController(
+                title: "Missing search",
+                message: "Please search for a store:",
+                preferredStyle: .alert)
+            controller.addAction(UIAlertAction(title: "OK", style: .default))
+                present(controller, animated: true)
+        } else{
+            performSegue(withIdentifier: "SearchStoreSegueIdentifier", sender: self)
+        }
+    }
+    
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "SearchStoreSegueIdentifier", let nextVC = segue.destination as? StoreSearchViewController {
+            nextVC.delegate = self
+            
+            nextVC.searchQuery = searchTF.text!
+            nextVC.searchDistance = distance
+        }
     }
     
 

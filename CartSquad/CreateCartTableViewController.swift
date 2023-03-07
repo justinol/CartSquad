@@ -29,17 +29,17 @@ class CreateCartTableViewController: UITableViewController, ImagePicker, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -67,16 +67,16 @@ class CreateCartTableViewController: UITableViewController, ImagePicker, UINavig
             imageController.delegate = self
             imageController.sourceType = .photoLibrary
             imageController.allowsEditing = true
-
+            
             present(imageController, animated: true, completion: nil)
         }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            self.dismiss(animated: true, completion: nil)
-            if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage  {
-                let cell = self.tableView.cellForRow(at: IndexPath.init(row:1, section:0)) as! CreateCartImageCell
-                cell.cartImageView.image = image
+        self.dismiss(animated: true, completion: nil)
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage  {
+            let cell = self.tableView.cellForRow(at: IndexPath.init(row:1, section:0)) as! CreateCartImageCell
+            cell.cartImageView.image = image
         }
     }
     
@@ -85,7 +85,44 @@ class CreateCartTableViewController: UITableViewController, ImagePicker, UINavig
         let cell = self.tableView.cellForRow(at: IndexPath.init(row:2, section:0)) as! CreateCartStoreCell
         cell.storeTable.reloadData()
     }
-
+    
+    @IBAction func onSaveButtonPressed(_ sender: Any) {
+        let nameCell = self.tableView.cellForRow(at: IndexPath.init(row:0, section:0)) as! CreateCartNameCell
+        let imageCell = self.tableView.cellForRow(at: IndexPath.init(row:1, section:0)) as! CreateCartImageCell
+        let selectedStore = chosenStore
+        let dateCell = self.tableView.cellForRow(at: IndexPath.init(row:3, section:0)) as! CreateCartDateCell
+        
+        let nameError = nameCell.cartNameTF.text?.isEmpty
+        let imageError = imageCell.cartImageView.image == nil
+        let storeError = selectedStore == nil
+        let dateError = dateCell.dateTF.text?.isEmpty
+        
+        if nameError! || imageError || storeError || dateError! {
+            let controller = UIAlertController(
+                title: "Missing info",
+                message: "Please add missing information:",
+                preferredStyle: .alert)
+            controller.addAction(UIAlertAction(title: "OK", style: .default))
+            
+            if nameError! {
+                controller.message = "Please add a cart name"
+                present(controller, animated: true)
+            } else if imageError {
+                controller.message = "Please add a cart image"
+                present(controller, animated: true)
+            } else if storeError {
+                controller.message = "Please select a store"
+                present(controller, animated: true)
+            } else if dateError! {
+                controller.message = "Please choose a shop date"
+                present(controller, animated: true)
+            }
+        }
+        else {
+            var createdCart = Cart(name: nameCell.cartNameTF.text!, image: imageCell.cartImageView.image!, store: chosenStore!.storeName, date: dateCell.dateTF.text!)
+        }
+        
+    }
     
     // MARK: - Navigation
 

@@ -8,11 +8,15 @@
 import UIKit
 
 class StoreSearchViewController: UIViewController {
-
+    
+    var delegate:UIViewController!
+    var searchQuery:String = ""
+    var searchDistance:Int = 0
+    @IBOutlet weak var searchQueryLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        searchQueryLabel.text = "Search results for \"\(searchQuery)\" within \(searchDistance) mi."
     }
     
 
