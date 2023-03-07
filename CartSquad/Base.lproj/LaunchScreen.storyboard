@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,15 +13,78 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ellipse 2" translatesAutoresizingMaskIntoConstraints="NO" id="CmV-Q2-fLK">
+                                <rect key="frame" x="110.66666666666669" y="203" width="172" height="172"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="172" id="4F8-wz-gho"/>
+                                    <constraint firstAttribute="height" constant="172" id="kZW-ff-4zf"/>
+                                </constraints>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cart" translatesAutoresizingMaskIntoConstraints="NO" id="Gq4-UU-7Zy">
+                                <rect key="frame" x="123.66666666666669" y="226" width="146" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="146" id="UJW-6Y-RVC"/>
+                                    <constraint firstAttribute="height" constant="128" id="W7g-6Z-s74"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIn-EU-0Kp">
+                                <rect key="frame" x="123" y="383" width="147" height="76.666666666666686"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Cart ">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="64" name="Helvetica-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" systemColor="labelColor"/>
+                                <size key="shadowOffset" width="1" height="3"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FxX-ye-LB9">
+                                <rect key="frame" x="98.333333333333329" y="447" width="196.66666666666669" height="76.666666666666629"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Squad">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="64" name="Helvetica-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" systemColor="labelColor"/>
+                                <size key="shadowOffset" width="1" height="3"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" red="0.72941176470000002" green="0.094117647060000004" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="FxX-ye-LB9" firstAttribute="top" secondItem="pIn-EU-0Kp" secondAttribute="bottom" constant="-12.666666666666686" id="Dse-mE-Dw2"/>
+                            <constraint firstItem="pIn-EU-0Kp" firstAttribute="top" secondItem="CmV-Q2-fLK" secondAttribute="bottom" constant="8" symbolic="YES" id="OU6-Zg-SU8"/>
+                            <constraint firstItem="pIn-EU-0Kp" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Sg4-fS-vk3"/>
+                            <constraint firstItem="CmV-Q2-fLK" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="XuE-yZ-KYW"/>
+                            <constraint firstItem="CmV-Q2-fLK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="144" id="dMM-zx-2sF"/>
+                            <constraint firstItem="FxX-ye-LB9" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="hfY-Tv-MUD"/>
+                            <constraint firstItem="Gq4-UU-7Zy" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="lHY-Eb-ntS"/>
+                            <constraint firstItem="Gq4-UU-7Zy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="167" id="wli-4Z-Keo"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Ellipse 2" width="172" height="172"/>
+        <image name="cart" width="94" height="94"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

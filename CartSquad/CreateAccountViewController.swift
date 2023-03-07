@@ -22,7 +22,6 @@ class CreateAccountViewController: UIViewController {
         self.navigationItem.setHidesBackButton(true, animated: false)
     }
     
-    
     @IBAction func createAccountButtonPressed(_ sender: Any) {
         guard let createEmail = createEmailText.text, let createPass = createPasswordText.text,
              let confirmPass = confirmPassword.text else {
