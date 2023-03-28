@@ -38,6 +38,7 @@
 		66CB3B7729B7058D001939F7 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 66CB3B7629B7058D001939F7 /* FirebaseStorage */; };
 		66CB3B7929B7058D001939F7 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 66CB3B7829B7058D001939F7 /* FirebaseStorageCombine-Community */; };
 		66CB3B7B29B705C8001939F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66CB3B7A29B705C8001939F7 /* GoogleService-Info.plist */; };
+		66F5D76B29D3AD5200DC98B4 /* AddCartMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F5D76A29D3AD5200DC98B4 /* AddCartMemberCell.swift */; };
 		74093CC029B6A1D3004FD061 /* UserProfileCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74093CBF29B6A1D3004FD061 /* UserProfileCreator.swift */; };
 		740B1B3A29B2D30D00493B33 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B1B3929B2D30D00493B33 /* CreateAccountViewController.swift */; };
 		740B1B3C29B2D33E00493B33 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B1B3B29B2D33E00493B33 /* LoginViewController.swift */; };
@@ -80,6 +81,7 @@
 		66CB3B6029B70281001939F7 /* AuthUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthUser.swift; sourceTree = "<group>"; };
 		66CB3B6129B70281001939F7 /* CartAddCustomItemsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartAddCustomItemsVC.swift; sourceTree = "<group>"; };
 		66CB3B7A29B705C8001939F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		66F5D76A29D3AD5200DC98B4 /* AddCartMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCartMemberCell.swift; sourceTree = "<group>"; };
 		74093CBF29B6A1D3004FD061 /* UserProfileCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCreator.swift; sourceTree = "<group>"; };
 		740B1B3929B2D30D00493B33 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		740B1B3B29B2D33E00493B33 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				66CB3B5A29B70280001939F7 /* CartItem.swift */,
 				66CB3B5E29B70281001939F7 /* CartItemTableViewCell.swift */,
 				66CB3B5B29B70280001939F7 /* NestedCartTableViewCell.swift */,
+				66F5D76A29D3AD5200DC98B4 /* AddCartMemberCell.swift */,
 			);
 			path = CartScreenProgression;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				66CB3B5829B6FACF001939F7 /* CartAdderProtocol.swift in Sources */,
 				74E00E1329B592FE00C018FF /* PicPopupViewController.swift in Sources */,
 				66CB3B6429B70281001939F7 /* NestedCartTableViewCell.swift in Sources */,
+				66F5D76B29D3AD5200DC98B4 /* AddCartMemberCell.swift in Sources */,
 				8214C36329B6CDF0005F7419 /* MainMenuVC.swift in Sources */,
 				D0541ED529AD8F430053346E /* AppDelegate.swift in Sources */,
 				8214C36229B6CDF0005F7419 /* Cart.swift in Sources */,

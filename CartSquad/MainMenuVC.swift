@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
+import FirebaseStorage
 
 class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CartAdder {
     
@@ -34,6 +37,8 @@ class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             store: "HEB",
             date: "March 25 2023")
         )
+        
+        listenForDatabaseCartUpdatesForUser()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -84,5 +89,54 @@ class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             destination.currentCart = selectedCart
         }
     }
+    
+    // Begin listening to be updated about carts from firebase.
+    func listenForDatabaseCartUpdatesForUser() {
+        // Should always be authenticated on this screen.
+        if let currUser = Auth.auth().currentUser {
+            let db = Firestore.firestore()
+            let uid = currUser.uid
+            db.collection("users").document(uid).collection("carts").addSnapshotListener { querySnapshot, error in
+                guard let snapshot = querySnapshot else {
+                    print("Error fetching documents: \(error!)")
+                    return
+                }
+                snapshot.documentChanges.forEach { diff in
+                    let cartId = diff.document.documentID
+                    let cartRef = db.collection("carts").document(cartId)
+                    if (diff.type == .added) {
+                        cartRef.getDocument { (document, error) in
+                            if let document = document, document.exists {
+                                let cartData = document.data()
+                                print(cartData.map(String.init(describing:)) ?? "nil")
+                                let cartName = cartData!["cartName"] as! String
+                                let cartStore = cartData!["store"] as! String
+                                let cartDate = cartData!["date"] as! String
+                                let cartImageURL = cartData!["imageURL"] as! String
+                                let cartMemberUIDs = cartData!["memberUIDs"] as! [String]
+                                // get image from image url
+                                let storage = Storage.storage()
+                                let cartImageURLRef = storage.reference(forURL: cartImageURL)
+                                cartImageURLRef.getData(maxSize: 10 * 1024 * 1024) { data, error in
+                                    if error != nil {
+                                        // error occured
+                                    } else {
+                                        print("getting image from storage")
+                                        let cartImage = UIImage(data: data!)
+                                        let newCart = Cart(name: cartName, image: cartImage!, store: cartStore, date: cartDate)
+                                        newCart.memberUIDs = cartMemberUIDs
+                                        newCart.cartID = cartId
+                                        self.cartList?.append(newCart)
+                                        self.cartTable?.reloadData()
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     
 }

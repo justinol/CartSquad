@@ -128,10 +128,11 @@ class CreateCartTableViewController: UITableViewController, ImagePicker, UINavig
             }
         }
         else {
-            var createdCart = Cart(name: nameCell.cartNameTF.text!, image: imageCell.cartImageView.image!, store: chosenStore!.storeName, date: dateCell.dateTF.text!)
+            let createdCart = Cart(name: nameCell.cartNameTF.text!, image: imageCell.cartImageView.image!, store: chosenStore!.storeName, date: dateCell.dateTF.text!)
+            createdCart.createOnFirestore()
             
-            let otherVC = delegate as! CartAdder
-            otherVC.addCart(newCart: createdCart)
+//            let otherVC = delegate as! CartAdder
+//            otherVC.addCart(newCart: createdCart)
             self.navigationController?.popViewController(animated: true)
             
         }

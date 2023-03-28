@@ -12,9 +12,12 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBOutlet weak var cartTable: UITableView!
     
     var currentCart:Cart?
+    static var currentCartId: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        CartScreenVC.currentCartId = currentCart!.cartID
+        
         navigationItem.titleView = titleStackView
         
         cartTable.delegate = self
@@ -72,27 +75,25 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     var cellData: [[CartItem]] = [[], []]
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let userSubcartCell = tableView.dequeueReusableCell(withIdentifier: "UserCartCell", for: indexPath) as! NestedCartTableViewCell
-        userSubcartCell.cartId = 0
-        if (indexPath.row == 0) {
-            userSubcartCell.ownerId = 0
-        } else if (indexPath.row == 1) {
-            userSubcartCell.ownerId = 1
+        if (indexPath.row < (currentCart?.memberUIDs?.count)!) {
+            let userSubcartCell = tableView.dequeueReusableCell(withIdentifier: "UserCartCell", for: indexPath) as! NestedCartTableViewCell
+            
+            userSubcartCell.listenForDatabaseUpdates()
+            
+            // give cell a closure to update this outer table size
+            userSubcartCell.updateOuterTableSize = {
+                self.cartTable.beginUpdates()
+                self.cartTable.endUpdates()
+            }
+            return userSubcartCell
+        } else {
+            let addMemberToCartCell = tableView.dequeueReusableCell(withIdentifier: "AddCartMemberCell", for: indexPath) as! AddCartMemberCell
+            return addMemberToCartCell
         }
-        userSubcartCell.listenForDatabaseUpdates()
-        
-        // give cell a closure to update this outer table size
-        userSubcartCell.updateOuterTableSize = {
-            self.cartTable.beginUpdates()
-            self.cartTable.endUpdates()
-        }
-        userSubcartCell.cartItems = cellData[indexPath.row]
-        
-        return userSubcartCell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellData.count
+        return (currentCart?.memberUIDs!.count)! + 1
     }
     
     // Prevent cell highlighting

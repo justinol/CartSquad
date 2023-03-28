@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import FirebaseFirestore
 import FirebaseStorage
+import FirebaseAuth
 
 class CartItem: NSObject {
     var itemName: String?
@@ -72,14 +73,13 @@ class CartItem: NSObject {
         print("overwrote \(itemName!) in db")
 
         let db = Firestore.firestore()
-        let cartId = "cart\(0)"
         var data: [String:Any] = ["itemName": itemName!,
                                   "itemPrice": itemPrice,
                                   "itemQuantity": itemQuantity,
                                   "lastUpdated": FieldValue.serverTimestamp(),
                                   "imageURL": "none"]
         
-        let itemDoc = db.collection("carts").document(cartId).collection("users").document(String(AuthUser.userId)).collection("userCartItems").document(itemName!)
+        let itemDoc = db.collection("carts").document(CartScreenVC.currentCartId).collection("users").document(Auth.auth().currentUser!.uid).collection("userCartItems").document(itemName!)
         
         // if img is not nil, upload to cloudstore
         if let img = image, let imageData = img.jpegData(compressionQuality: 0.9) {
@@ -88,7 +88,7 @@ class CartItem: NSObject {
             metaData.contentType = "image/jpeg"
             
             let storage = Storage.storage()
-            let itemImageRef = storage.reference().child("cart_item_images").child(String(AuthUser.userId)).child("\(itemName!).jpeg")
+            let itemImageRef = storage.reference().child("cart_item_images").child(Auth.auth().currentUser!.uid).child("\(itemName!).jpeg")
             
             itemImageRef.putData(imageData, metadata: metaData) { metaData, error in
                 guard metaData != nil else {
@@ -117,8 +117,7 @@ class CartItem: NSObject {
     // Remove this cart item from a user's subcart within in a cart in the FireStore database
     func removeFromUserSubcartInDatabase() {
         let db = Firestore.firestore()
-        let cartId = "cart\(0)"
-        db.collection("carts").document(cartId).collection("users").document(String(AuthUser.userId)).collection("userCartItems").document(itemName!).delete() { err in
+        db.collection("carts").document(CartScreenVC.currentCartId).collection("users").document(Auth.auth().currentUser!.uid).collection("userCartItems").document(itemName!).delete() { err in
             if let err = err {
                 print("Error removing document: \(err)")
             } else {
@@ -129,7 +128,7 @@ class CartItem: NSObject {
         // remove image from cloud storage
         if image != nil || imageURL != "none" {
             let storage = Storage.storage()
-            let itemImageRef = storage.reference().child("cart_item_images").child(String(AuthUser.userId)).child("\(itemName!).jpeg")
+            let itemImageRef = storage.reference().child("cart_item_images").child(Auth.auth().currentUser!.uid).child("\(itemName!).jpeg")
             itemImageRef.delete { error in
                 if error != nil {
                     print("error deleting image drom db")

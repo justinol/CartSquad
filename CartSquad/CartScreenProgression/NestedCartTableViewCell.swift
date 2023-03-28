@@ -8,16 +8,16 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseStorage
+import FirebaseAuth
 
 // A class that defines a cell for a user subcart.
 class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var itemsTable: UITableView!
     @IBOutlet weak var itemsTableHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var usernameLabel: UILabel!
     
-    // database properties
-    var cartId: Int = 0
-    var ownerId: Int = 0
+    var snapshotListener: ListenerRegistration?
     
     let cellHeight = 70.0
     // Closure to update outer table size provided by outer table.
@@ -36,6 +36,7 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        usernameLabel.text = Auth.auth().currentUser?.uid
         itemsTable.dataSource = self
         itemsTable.delegate = self
         updateItemsTableHeight()
@@ -84,7 +85,7 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
     // listen for subcart changes from the database
     func listenForDatabaseUpdates() {
         let db = Firestore.firestore()
-        db.collection("carts").document("cart\(cartId)").collection("users").document(String(ownerId)).collection("userCartItems").addSnapshotListener { querySnapshot, error in
+        snapshotListener = db.collection("carts").document(CartScreenVC.currentCartId).collection("users").document(Auth.auth().currentUser!.uid).collection("userCartItems").addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error fetching documents: \(error!)")
                 return
@@ -113,6 +114,13 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
                     self.updateItemsTableHeight()
                 }
             }
+        }
+    }
+    
+    deinit {
+        // Stop listening for snapshots when this object is deallocated.
+        if let snapshotListener = snapshotListener {
+            snapshotListener.remove()
         }
     }
 }
