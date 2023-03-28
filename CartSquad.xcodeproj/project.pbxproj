@@ -117,6 +117,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		66F5D76829D3764200DC98B4 /* CartScreenProgression */ = {
+			isa = PBXGroup;
+			children = (
+				66CB3B5929B70280001939F7 /* CartAddItemsScreenVC.swift */,
+				66CB3B5C29B70280001939F7 /* CartScreenVC.swift */,
+				66CB3B6129B70281001939F7 /* CartAddCustomItemsVC.swift */,
+				66CB3B5D29B70280001939F7 /* CartCreateCustomItemVC.swift */,
+				66CB3B5A29B70280001939F7 /* CartItem.swift */,
+				66CB3B5E29B70281001939F7 /* CartItemTableViewCell.swift */,
+				66CB3B5B29B70280001939F7 /* NestedCartTableViewCell.swift */,
+			);
+			path = CartScreenProgression;
+			sourceTree = "<group>";
+		};
 		D0541EC829AD8F430053346E = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +151,7 @@
 		D0541ED329AD8F430053346E /* CartSquad */ = {
 			isa = PBXGroup;
 			children = (
+				66F5D76829D3764200DC98B4 /* CartScreenProgression */,
 				D0541ED429AD8F430053346E /* AppDelegate.swift */,
 				D0541ED629AD8F430053346E /* SceneDelegate.swift */,
 				D0541ED829AD8F430053346E /* ViewController.swift */,
@@ -168,14 +183,7 @@
 				66CB3B4029B6F583001939F7 /* StoreSearchViewController.swift */,
 				66CB3B5729B6FACF001939F7 /* CartAdderProtocol.swift */,
 				66CB3B6029B70281001939F7 /* AuthUser.swift */,
-				66CB3B6129B70281001939F7 /* CartAddCustomItemsVC.swift */,
-				66CB3B5929B70280001939F7 /* CartAddItemsScreenVC.swift */,
-				66CB3B5D29B70280001939F7 /* CartCreateCustomItemVC.swift */,
-				66CB3B5A29B70280001939F7 /* CartItem.swift */,
-				66CB3B5E29B70281001939F7 /* CartItemTableViewCell.swift */,
-				66CB3B5C29B70280001939F7 /* CartScreenVC.swift */,
 				66CB3B5F29B70281001939F7 /* CustomTextField.swift */,
-				66CB3B5B29B70280001939F7 /* NestedCartTableViewCell.swift */,
 			);
 			path = CartSquad;
 			sourceTree = "<group>";
