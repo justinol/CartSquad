@@ -18,6 +18,8 @@ class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     var cartList:[Cart]?
     var selectedCart:Cart? = nil
     
+    var snapshotListener: ListenerRegistration?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         cartTable.delegate = self
@@ -96,45 +98,38 @@ class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         if let currUser = Auth.auth().currentUser {
             let db = Firestore.firestore()
             let uid = currUser.uid
-            db.collection("users").document(uid).collection("carts").addSnapshotListener { querySnapshot, error in
+            snapshotListener = db.collection("users").document(uid).collection("carts").addSnapshotListener { querySnapshot, error in
                 guard let snapshot = querySnapshot else {
                     print("Error fetching documents: \(error!)")
                     return
                 }
+                // User carts changed.
                 snapshot.documentChanges.forEach { diff in
                     let cartId = diff.document.documentID
+                    // Get cart from carts/ collection
                     let cartRef = db.collection("carts").document(cartId)
                     if (diff.type == .added) {
                         cartRef.getDocument { (document, error) in
                             if let document = document, document.exists {
-                                let cartData = document.data()
-                                print(cartData.map(String.init(describing:)) ?? "nil")
-                                let cartName = cartData!["cartName"] as! String
-                                let cartStore = cartData!["store"] as! String
-                                let cartDate = cartData!["date"] as! String
-                                let cartImageURL = cartData!["imageURL"] as! String
-                                let cartMemberUIDs = cartData!["memberUIDs"] as! [String]
-                                // get image from image url
-                                let storage = Storage.storage()
-                                let cartImageURLRef = storage.reference(forURL: cartImageURL)
-                                cartImageURLRef.getData(maxSize: 10 * 1024 * 1024) { data, error in
-                                    if error != nil {
-                                        // error occured
-                                    } else {
-                                        print("getting image from storage")
-                                        let cartImage = UIImage(data: data!)
-                                        let newCart = Cart(name: cartName, image: cartImage!, store: cartStore, date: cartDate)
-                                        newCart.memberUIDs = cartMemberUIDs
-                                        newCart.cartID = cartId
-                                        self.cartList?.append(newCart)
-                                        self.cartTable?.reloadData()
-                                    }
-                                }
+                                var cartData = document.data()!
+                                cartData["cartId"] = cartId
+                                _ = Cart(dbCartData: cartData, onFinishInit: { cart in
+                                    self.cartList?.append(cart)
+                                    self.cartTable?.reloadData()
+                                })
                             }
                         }
                     }
                 }
             }
+        }
+    }
+    
+    
+    deinit {
+        // Remove listener for database updates on deinit.
+        if let snapshotListener = snapshotListener {
+            snapshotListener.remove()
         }
     }
     

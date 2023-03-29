@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 
 // Custom cell for user subcart item's table
@@ -16,6 +17,18 @@ class CartItemTableViewCell: UITableViewCell {
     @IBOutlet weak var itemQuantityField: CustomTextField!
     @IBOutlet weak var itemTotalCost: UILabel!
     @IBOutlet weak var itemImageView: UIImageView!
+    
+    var ownerUID: String? {
+        didSet {
+            let shouldEnableInteraction = (ownerUID == Auth.auth().currentUser?.uid)
+            itemQuantityField.isUserInteractionEnabled = shouldEnableInteraction
+            if (shouldEnableInteraction) {
+                itemQuantityField.setBlackBorder()
+            } else {
+                itemQuantityField.setClearBorder()
+            }
+        }
+    }
     
     var cartItem: CartItem? {
         didSet {
@@ -43,7 +56,7 @@ class CartItemTableViewCell: UITableViewCell {
         cartItem?.itemQuantity = newQuantity
         if (newQuantity > 0) {
             // new quantity is > 0, trigger database overwrite for cartItem
-            cartItem?.overwriteInUserSubcartInDatabase()
+            cartItem?.updateQuantityForCartItemInDatabase()
         } else if (newQuantity == 0) {
             // new quantity is 0, trigger database deletion for cartItem
             cartItem?.removeFromUserSubcartInDatabase()

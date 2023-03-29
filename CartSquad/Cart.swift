@@ -26,6 +26,30 @@ class Cart {
         self.date = date
     }
     
+    // Init from database update
+    init(dbCartData: [String:Any], onFinishInit: @escaping(Cart)->()) {
+        name = dbCartData["cartName"] as! String
+        store = dbCartData["store"] as! String
+        date = dbCartData["date"] as! String
+        memberUIDs = dbCartData["memberUIDs"] as? [String]
+        cartID = dbCartData["cartId"] as? String
+        image = UIImage()
+        
+        // Get image from firebase storage
+        let cartImageURL = dbCartData["imageURL"] as! String
+        let storage = Storage.storage()
+        let cartImageURLRef = storage.reference(forURL: cartImageURL)
+        cartImageURLRef.getData(maxSize: 10 * 1024 * 1024) { data, error in
+            print("getting image from storage")
+            if error != nil {
+                // error occured
+            } else {
+                self.image = UIImage(data: data!)!
+            }
+            onFinishInit(self)
+        }
+    }
+    
     // Call when cart is created by a user for the first time to save this cart
     // under this user on firestore.
     func createOnFirestore()  {

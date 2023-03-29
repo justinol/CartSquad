@@ -68,8 +68,8 @@ class CartItem: NSObject {
         }
     }
     
-    // Add/Update this cart item to a user's subcart within in a cart in the FireStore database
-    func overwriteInUserSubcartInDatabase() {
+    // Add this cart item to a user's subcart within in a cart in the FireStore database
+    func addToUserSubcartInDatabase() {
         print("overwrote \(itemName!) in db")
 
         let db = Firestore.firestore()
@@ -114,6 +114,17 @@ class CartItem: NSObject {
         }
     }
     
+    // Update the quantity field only for this cart item in FireStore database.
+    func updateQuantityForCartItemInDatabase()  {
+        let db = Firestore.firestore()
+        let cartItemRef = db.collection("carts").document(CartScreenVC.currentCartId).collection("users").document(Auth.auth().currentUser!.uid).collection("userCartItems").document(itemName!)
+        cartItemRef.updateData(["itemQuantity": itemQuantity]) { err in
+            if err != nil {
+                print("Error updating cart item quantity")
+            }
+        }
+    }
+    
     // Remove this cart item from a user's subcart within in a cart in the FireStore database
     func removeFromUserSubcartInDatabase() {
         let db = Firestore.firestore()
@@ -135,6 +146,5 @@ class CartItem: NSObject {
                 }
             }
         }
-
     }
 }

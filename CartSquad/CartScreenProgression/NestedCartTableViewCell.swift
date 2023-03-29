@@ -16,8 +16,15 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
     @IBOutlet weak var itemsTable: UITableView!
     @IBOutlet weak var itemsTableHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var addItemsButton: UIButton!
     
     var snapshotListener: ListenerRegistration?
+    
+    var ownerUID: String? {
+        didSet {
+            addItemsButton.isHidden = (ownerUID != Auth.auth().currentUser?.uid)
+        }
+    }
     
     let cellHeight = 70.0
     // Closure to update outer table size provided by outer table.
@@ -36,7 +43,7 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        usernameLabel.text = Auth.auth().currentUser?.uid
+        usernameLabel.text = ownerUID!
         itemsTable.dataSource = self
         itemsTable.delegate = self
         updateItemsTableHeight()
@@ -50,6 +57,7 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! CartItemTableViewCell
         let cartItem = cartItems[indexPath.row]
+        cell.ownerUID = ownerUID
         cell.itemImageView.image = UIImage(named: "NoImageIcon")
         cell.cartItem = cartItem
         cartItemNameToCellRow[cartItem.itemName!] = indexPath.row
@@ -67,6 +75,13 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
         return false
     }
     
+    // Allow swipe to remove item.
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            cartItems[indexPath.row].removeFromUserSubcartInDatabase()
+        }
+    }
+    
     private func updateItemsTableHeight() {
         let numberOfRows = CGFloat(cartItems.count)
         let newHeight = cellHeight * numberOfRows
@@ -82,10 +97,10 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
     }
     
     
-    // listen for subcart changes from the database
+    // listen for subcart changes from the database (new items/item removal)
     func listenForDatabaseUpdates() {
         let db = Firestore.firestore()
-        snapshotListener = db.collection("carts").document(CartScreenVC.currentCartId).collection("users").document(Auth.auth().currentUser!.uid).collection("userCartItems").addSnapshotListener { querySnapshot, error in
+        snapshotListener = db.collection("carts").document(CartScreenVC.currentCartId).collection("users").document(ownerUID!).collection("userCartItems").addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error fetching documents: \(error!)")
                 return
@@ -97,6 +112,7 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
                 let itemQuantity = cartItemData["itemQuantity"] as! Int
                 let itemImageURL = cartItemData["imageURL"] as! String
                 if (diff.type == .added) {
+                    print("adding cart item for id: \(self.ownerUID!)")
                     let cartItem = CartItem(itemName: itemName, itemPrice: itemPrice, itemQuantity: itemQuantity, imageURL: itemImageURL)
                     self.cartItems.append(cartItem)
                 } else if (diff.type == .modified) {
@@ -115,6 +131,19 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
                 }
             }
         }
+    }
+    
+    override func prepareForReuse() {
+        // Stop listening for snapshots if this cell had a snapshot listener
+        // and will be reused.
+        if let snapshotListener = snapshotListener {
+            snapshotListener.remove()
+        }
+        if (cartItems.count > 0) {
+            cartItems = []
+        }
+        cartItemNameToCellRow = [:]
+        ownerUID = nil
     }
     
     deinit {

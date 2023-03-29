@@ -1325,6 +1325,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="addItemsButton" destination="bXN-k8-CRk" id="jib-6R-db3"/>
                                             <outlet property="itemsTable" destination="0Zd-nu-Fye" id="DbA-ni-Jq5"/>
                                             <outlet property="itemsTableHeightConstraint" destination="RJ0-gk-eU8" id="t9W-FX-y5K"/>
                                             <outlet property="usernameLabel" destination="1lb-kr-8Y7" id="eDS-eS-AT3"/>
@@ -1338,7 +1339,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRM-SH-AxE">
-                                                    <rect key="frame" x="129.66666666666669" y="4.3333333333333321" width="130.66666666666669" height="35"/>
+                                                    <rect key="frame" x="129.66666666666669" y="4.3333333333333428" width="130.66666666666669" height="34.999999999999986"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="filled" title="Add Members">
                                                         <color key="baseBackgroundColor" red="0.78548878430000002" green="0.17374122140000001" blue="0.1380057633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1617,7 +1618,7 @@
                                 <color key="backgroundColor" red="0.69411764710000001" green="0.65490196079999996" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NoImageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="LPd-zJ-Xn6">
-                                <rect key="frame" x="104" y="384" width="222" height="115"/>
+                                <rect key="frame" x="104" y="384" width="222" height="112"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YQ2-AR-PIM">

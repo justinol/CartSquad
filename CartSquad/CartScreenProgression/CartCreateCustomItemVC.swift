@@ -40,7 +40,7 @@ class CartCreateCustomItemVC: UIViewController, UITextFieldDelegate, UINavigatio
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "unwindToCartHomeVC" {
-            if let destinationVC = segue.destination as? CartScreenVC {
+            if segue.destination is CartScreenVC {
                 let priceEach = Float(priceField.text?.count == 0 ? "0.00" : priceField.text!)!
                 let quantity = Int(quantityField.text?.count == 0 ? "1" : quantityField.text!)!
                 
@@ -48,7 +48,7 @@ class CartCreateCustomItemVC: UIViewController, UITextFieldDelegate, UINavigatio
                 let cartItem = CartItem(itemName: nameField.text,
                                         itemPrice: priceEach,
                                         itemQuantity: quantity, image: itemImage)
-                destinationVC.addItemToUserSubcart(userId: 0, cartItem: cartItem)
+                cartItem.addToUserSubcartInDatabase()
             }
         }
     }

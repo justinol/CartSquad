@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseStorage
 
 class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -13,11 +15,12 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     var currentCart:Cart?
     static var currentCartId: String!
+    
+    var snapshotListener: ListenerRegistration?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         CartScreenVC.currentCartId = currentCart!.cartID
-        
         navigationItem.titleView = titleStackView
         
         cartTable.delegate = self
@@ -25,6 +28,8 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
+        
+        listenForCartDatabaseUpdates()
     }
     
     @objc func dismissKeyboard() {
@@ -70,14 +75,11 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         return horizontalStackView
     }()
     
-//   var cellData: [[CartItem]] = [[CartItem(itemName: "chicken", itemPrice: 5.99, itemQuantity: 1), CartItem(itemName: "avocado", itemPrice: 1.10, itemQuantity: 3), CartItem(itemName: "greek yogurt", itemPrice: 6.99, itemQuantity: 1)], [CartItem(itemName: "ice cream", itemPrice: 3.99, itemQuantity: 2)]]
-    
-    var cellData: [[CartItem]] = [[], []]
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.row < (currentCart?.memberUIDs?.count)!) {
             let userSubcartCell = tableView.dequeueReusableCell(withIdentifier: "UserCartCell", for: indexPath) as! NestedCartTableViewCell
             
+            userSubcartCell.ownerUID = currentCart?.memberUIDs![indexPath.row]
             userSubcartCell.listenForDatabaseUpdates()
             
             // give cell a closure to update this outer table size
@@ -105,11 +107,31 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
  
     }
     
-    func addItemToUserSubcart(userId: Int, cartItem: CartItem) {
-        print("adding item to user subcart!")
-        cartItem.overwriteInUserSubcartInDatabase()
-        //let userId = AuthUser.username == "user1" ? 0 : 1
-        //let cell = cartTable.cellForRow(at: IndexPath(row: userId, section: 0)) as! NestedCartTableViewCell
-        //cell.cartItems.append(cartItem)
+    // Listen for cart updates from database. Ex: for member addition/removal.
+    func listenForCartDatabaseUpdates() {
+        print("listening for db updates")
+        let db = Firestore.firestore()
+        snapshotListener = db.collection("carts").document(CartScreenVC.currentCartId).addSnapshotListener { docSnapshot, error in
+            guard let document = docSnapshot else {
+                print("Error fetching document")
+                return
+            }
+            guard let data = document.data() else {
+                print("Document data was empty.")
+                return
+            }
+            print("new cart data, setting: \(data)")
+            _ = Cart(dbCartData: data, onFinishInit: { cart in
+                self.currentCart = cart
+                self.cartTable.reloadData()
+            })
+        }
+    }
+    
+    deinit {
+        // Remove listener for cart db updates on deinit.
+        if let snapshotListener = snapshotListener {
+            snapshotListener.remove()
+        }
     }
 }
