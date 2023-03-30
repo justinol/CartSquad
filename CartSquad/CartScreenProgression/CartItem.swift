@@ -79,7 +79,7 @@ class CartItem: NSObject {
                                   "lastUpdated": FieldValue.serverTimestamp(),
                                   "imageURL": "none"]
         
-        let itemDoc = db.collection("carts").document(CartScreenVC.currentCartId).collection("users").document(Auth.auth().currentUser!.uid).collection("userCartItems").document(itemName!)
+        let itemDoc = db.collection("carts").document((CartScreenVC.currentCart?.cartID)!).collection("users").document(Auth.auth().currentUser!.uid).collection("userCartItems").document(itemName!)
         
         // if img is not nil, upload to cloudstore
         if let img = image, let imageData = img.jpegData(compressionQuality: 0.9) {
@@ -117,7 +117,7 @@ class CartItem: NSObject {
     // Update the quantity field only for this cart item in FireStore database.
     func updateQuantityForCartItemInDatabase()  {
         let db = Firestore.firestore()
-        let cartItemRef = db.collection("carts").document(CartScreenVC.currentCartId).collection("users").document(Auth.auth().currentUser!.uid).collection("userCartItems").document(itemName!)
+        let cartItemRef = db.collection("carts").document((CartScreenVC.currentCart?.cartID)!).collection("users").document(Auth.auth().currentUser!.uid).collection("userCartItems").document(itemName!)
         cartItemRef.updateData(["itemQuantity": itemQuantity]) { err in
             if err != nil {
                 print("Error updating cart item quantity")
@@ -128,7 +128,7 @@ class CartItem: NSObject {
     // Remove this cart item from a user's subcart within in a cart in the FireStore database
     func removeFromUserSubcartInDatabase() {
         let db = Firestore.firestore()
-        db.collection("carts").document(CartScreenVC.currentCartId).collection("users").document(Auth.auth().currentUser!.uid).collection("userCartItems").document(itemName!).delete() { err in
+        db.collection("carts").document((CartScreenVC.currentCart?.cartID)!).collection("users").document(Auth.auth().currentUser!.uid).collection("userCartItems").document(itemName!).delete() { err in
             if let err = err {
                 print("Error removing document: \(err)")
             } else {

@@ -100,7 +100,7 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
     // listen for subcart changes from the database (new items/item removal)
     func listenForDatabaseUpdates() {
         let db = Firestore.firestore()
-        snapshotListener = db.collection("carts").document(CartScreenVC.currentCartId).collection("users").document(ownerUID!).collection("userCartItems").addSnapshotListener { querySnapshot, error in
+        snapshotListener = db.collection("carts").document((CartScreenVC.currentCart?.cartID)!).collection("users").document(ownerUID!).collection("userCartItems").addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error fetching documents: \(error!)")
                 return

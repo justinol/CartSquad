@@ -1,13 +1,14 @@
 //
-//  CreateCartTableViewController.swift
+//  EditCartSettingsTableViewController.swift
 //  CartSquad
 //
-//  Created by Justin Lee on 3/6/23.
+//  Created by Alejandro Cisneros on 3/30/23.
 //
 
 import UIKit
+import FirebaseFirestore
 
-class CreateCartTableViewController: UITableViewController, ImagePicker, UINavigationControllerDelegate, UIImagePickerControllerDelegate, StoreChanger {
+class EditCartSettingsTableViewController: UITableViewController, ImagePicker, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var imageController = UIImagePickerController()
     var cartImage:UIImage? = nil
@@ -16,14 +17,12 @@ class CreateCartTableViewController: UITableViewController, ImagePicker, UINavig
         "CreateCartImageCell",
         "CreateCartStoreCell",
         "CreateCartDateCell",
-        "CreateCartSaveCell"
     ]
     let rowHeights:[CGFloat] = [
         100,
         160,
         250,
         150,
-        100
     ]
     
     var delegate:UIViewController!
@@ -39,7 +38,7 @@ class CreateCartTableViewController: UITableViewController, ImagePicker, UINavig
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 4
     }
     
     
@@ -48,6 +47,7 @@ class CreateCartTableViewController: UITableViewController, ImagePicker, UINavig
         let row = indexPath.row
         if cellIdentifiers[row] == "CreateCartImageCell" {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifiers[row], for: indexPath as IndexPath) as! CreateCartImageCell
+            cell.cartImageView.image = CartScreenVC.currentCart?.image
             
             cell.delegate = self
             return cell
@@ -55,12 +55,27 @@ class CreateCartTableViewController: UITableViewController, ImagePicker, UINavig
         else if cellIdentifiers[row] == "CreateCartStoreCell" {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifiers[row], for: indexPath as IndexPath) as! CreateCartStoreCell
             
+            
             chosenStore = nil
             
             return cell
         }
-        else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifiers[row], for: indexPath as IndexPath)
+        else if cellIdentifiers[row] == "CreateCartNameCell" {
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifiers[row], for: indexPath as IndexPath) as! CreateCartNameCell
+            
+            cell.cartNameTF.text = CartScreenVC.currentCart?.name
+            
+            // Add callback for editing end on cart name cell.
+            cell.cartNameTF.addTarget(self, action: #selector(changeCartNameOnFirestore(_:)), for: .editingDidEnd)
+            
+            return cell
+        } else {
+            // Must be CreateCartDateCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifiers[row], for: indexPath as IndexPath) as! CreateCartDateCell
+            
+            cell.dateTF.text = CartScreenVC.currentCart?.date
+            cell.dateChangeCallback = CartScreenVC.currentCart?.changeCartDateOnFirestore
+            
             return cell
         }
     }
@@ -70,8 +85,13 @@ class CreateCartTableViewController: UITableViewController, ImagePicker, UINavig
         return rowHeights[row]
     }
     
+    // Change cart name on firestore
+    @objc func changeCartNameOnFirestore(_ textField: UITextField) {
+        CartScreenVC.currentCart?.changeCartNameOnFirestore(newName: textField.text!)
+    }
     
-    func pickImage(){
+    
+    func pickImage() {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             imageController.delegate = self
             imageController.sourceType = .photoLibrary
@@ -86,6 +106,7 @@ class CreateCartTableViewController: UITableViewController, ImagePicker, UINavig
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage  {
             let cell = self.tableView.cellForRow(at: IndexPath.init(row:1, section:0)) as! CreateCartImageCell
             cell.cartImageView.image = image
+            CartScreenVC.currentCart?.changeCartImageOnFirestore(newImage: image)
         }
     }
     
@@ -127,26 +148,13 @@ class CreateCartTableViewController: UITableViewController, ImagePicker, UINavig
                 present(controller, animated: true)
             }
         }
-        else {
-            Cart.createOnFirestore(name: nameCell.cartNameTF.text!, image: imageCell.cartImageView.image!, store: chosenStore!.storeName, date: dateCell.dateTF.text!)
-            
+        else {            
+//            let otherVC = delegate as! CartAdder
+//            otherVC.addCart(newCart: createdCart)
             self.navigationController?.popViewController(animated: true)
+            
         }
         
     }
     
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ChangeStoreSegueIdentifier", let nextVC = segue.destination as? AddStoreViewController {
-            nextVC.delegate = self
-        }
-        
-        if segue.identifier == "AddStoreSegueIdentifier", let nextVC = segue.destination as? AddStoreViewController {
-            nextVC.delegate = self
-        }
-    }
-    
-
 }

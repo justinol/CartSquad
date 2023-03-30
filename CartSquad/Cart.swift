@@ -16,23 +16,16 @@ class Cart {
     var image:UIImage
     var store:String
     var date:String
-    var memberUIDs: [String]?
-    var cartID: String?
-    
-    init(name:String, image:UIImage, store:String, date:String) {
-        self.name = name
-        self.image = image
-        self.store = store
-        self.date = date
-    }
+    var memberUIDs: [String]
+    var cartID: String
     
     // Init from database update
     init(dbCartData: [String:Any], onFinishInit: @escaping(Cart)->()) {
         name = dbCartData["cartName"] as! String
         store = dbCartData["store"] as! String
         date = dbCartData["date"] as! String
-        memberUIDs = dbCartData["memberUIDs"] as? [String]
-        cartID = dbCartData["cartId"] as? String
+        memberUIDs = (dbCartData["memberUIDs"] as? [String])!
+        cartID = (dbCartData["cartId"] as? String)!
         image = UIImage()
         
         // Get image from firebase storage
@@ -40,7 +33,6 @@ class Cart {
         let storage = Storage.storage()
         let cartImageURLRef = storage.reference(forURL: cartImageURL)
         cartImageURLRef.getData(maxSize: 10 * 1024 * 1024) { data, error in
-            print("getting image from storage")
             if error != nil {
                 // error occured
             } else {
@@ -50,9 +42,9 @@ class Cart {
         }
     }
     
-    // Call when cart is created by a user for the first time to save this cart
+    // Create a cart on firestore for the first time to save this cart
     // under this user on firestore.
-    func createOnFirestore()  {
+    static func createOnFirestore(name:String, image:UIImage, store:String, date:String)  {
         print("creating cart using firebase services")
         // should always be signed in on this screen when this is called
         if let currUser = Auth.auth().currentUser {
@@ -102,6 +94,51 @@ class Cart {
                 cartRef.setData(cartData)
                 // make user who created the cart a member of the cart
                 userCartRef.setData([:])
+            }
+        }
+    }
+    
+    func changeCartNameOnFirestore(newName: String) {
+        let db = Firestore.firestore()
+        let cartRef = db.collection("carts").document(cartID)
+        cartRef.updateData(["cartName": newName]) { err in
+            if err != nil {
+                print("Error updating cart name")
+            }
+        }
+    }
+    
+    func changeCartDateOnFirestore(newString: String) {
+        let db = Firestore.firestore()
+        let cartRef = db.collection("carts").document(cartID)
+        cartRef.updateData(["date": newString])
+    }
+    
+    func changeCartImageOnFirestore(newImage: UIImage) {
+        print("updating cart image")
+        let db = Firestore.firestore()
+        let cartRef = db.collection("carts").document(cartID)
+        if let imageData = newImage.jpegData(compressionQuality: 0.9) {
+            let metaData = StorageMetadata()
+            metaData.contentType = "image/jpeg"
+            
+            let storage = Storage.storage()
+            let itemImageRef = storage.reference().child("cart_images").child(cartID).child("cartImage.jpeg")
+            
+            itemImageRef.putData(imageData, metadata: metaData) { metaData, error in
+                guard metaData != nil else {
+                    print("cart image upload error")
+                    return
+                }
+                print("cart \(self.cartID) image uploaded to cloudstore")
+                // get image url
+                itemImageRef.downloadURL { (url, error) in
+                    guard let downloadURL = url else {
+                        return
+                    }
+                    print("image url:\(downloadURL)")
+                    cartRef.updateData(["imageURL": downloadURL.absoluteString])
+                }
             }
         }
     }

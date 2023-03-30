@@ -19,6 +19,7 @@ class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     var selectedCart:Cart? = nil
     
     var snapshotListener: ListenerRegistration?
+    var idToCartIndex: [String: Int] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,18 +28,6 @@ class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         
         // Adding carts for testing
         cartList = []
-        cartList?.append(Cart(
-            name: "Pollos Hermanos",
-            image: UIImage(named: "Saul") ?? UIImage(),
-            store: "Target",
-            date: "March 20 2023")
-        )
-        cartList?.append(Cart(
-            name: "Pizza Party",
-            image: UIImage(named: "Pizza") ?? UIImage(),
-            store: "HEB",
-            date: "March 25 2023")
-        )
         
         listenForDatabaseCartUpdatesForUser()
     }
@@ -87,8 +76,8 @@ class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             CreateCartTableViewController {
             destination.delegate = self
         }
-        if segue.identifier == "ToCartIdentifier", let destination = segue.destination as? CartScreenVC {
-            destination.currentCart = selectedCart
+        if segue.identifier == "ToCartIdentifier" {
+            CartScreenVC.currentCart = selectedCart
         }
     }
     
@@ -108,13 +97,18 @@ class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
                     let cartId = diff.document.documentID
                     // Get cart from carts/ collection
                     let cartRef = db.collection("carts").document(cartId)
-                    if (diff.type == .added) {
-                        cartRef.getDocument { (document, error) in
-                            if let document = document, document.exists {
-                                var cartData = document.data()!
-                                cartData["cartId"] = cartId
+                    cartRef.getDocument { (document, error) in
+                        if let document = document, document.exists {
+                            var cartData = document.data()!
+                            cartData["cartId"] = cartId
+                            print("got cart from db with id: \(cartId)")
+                            if (cartData["cartName"] == nil) {
+                                return
+                            }
+                            if diff.type == .added {
                                 _ = Cart(dbCartData: cartData, onFinishInit: { cart in
                                     self.cartList?.append(cart)
+                                    self.idToCartIndex[cartId] = self.cartList!.count - 1
                                     self.cartTable?.reloadData()
                                 })
                             }

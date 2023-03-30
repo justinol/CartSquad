@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66B95DCA29D60D6F00181E8C /* EditCartSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B95DC929D60D6F00181E8C /* EditCartSettingsTableViewController.swift */; };
 		66CB3B4829B6F584001939F7 /* CreateCartTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CB3B3929B6F583001939F7 /* CreateCartTableViewController.swift */; };
 		66CB3B4929B6F584001939F7 /* SelectedStoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CB3B3A29B6F583001939F7 /* SelectedStoreCell.swift */; };
 		66CB3B4A29B6F584001939F7 /* CreateCartStoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CB3B3B29B6F583001939F7 /* CreateCartStoreCell.swift */; };
@@ -57,6 +58,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		66B95DC929D60D6F00181E8C /* EditCartSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCartSettingsTableViewController.swift; sourceTree = "<group>"; };
 		66CB3B3929B6F583001939F7 /* CreateCartTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCartTableViewController.swift; sourceTree = "<group>"; };
 		66CB3B3A29B6F583001939F7 /* SelectedStoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedStoreCell.swift; sourceTree = "<group>"; };
 		66CB3B3B29B6F583001939F7 /* CreateCartStoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCartStoreCell.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				66CB3B5E29B70281001939F7 /* CartItemTableViewCell.swift */,
 				66CB3B5B29B70280001939F7 /* NestedCartTableViewCell.swift */,
 				66F5D76A29D3AD5200DC98B4 /* AddCartMemberCell.swift */,
+				66B95DC929D60D6F00181E8C /* EditCartSettingsTableViewController.swift */,
 			);
 			path = CartScreenProgression;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				66CB3B6929B70281001939F7 /* AuthUser.swift in Sources */,
 				D0541ED729AD8F430053346E /* SceneDelegate.swift in Sources */,
 				66CB3B4F29B6F584001939F7 /* StoreSearchViewController.swift in Sources */,
+				66B95DCA29D60D6F00181E8C /* EditCartSettingsTableViewController.swift in Sources */,
 				66CB3B5329B6F584001939F7 /* StoreChangerProtocol.swift in Sources */,
 				66CB3B6329B70281001939F7 /* CartItem.swift in Sources */,
 				66CB3B4A29B6F584001939F7 /* CreateCartStoreCell.swift in Sources */,

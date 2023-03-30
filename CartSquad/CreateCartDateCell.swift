@@ -12,6 +12,8 @@ class CreateCartDateCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var dateTF: UITextField!
     @IBOutlet weak var timeTF: UITextField!
     
+    var dateChangeCallback: ((String) -> ())?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -38,6 +40,9 @@ class CreateCartDateCell: UITableViewCell, UITextFieldDelegate {
     
     @objc func dateChange(datePicker: UIDatePicker) {
         dateTF.text = formatDate(date: datePicker.date)
+        if let dateChangeCallback = dateChangeCallback {
+            dateChangeCallback(dateTF.text!)
+        }
     }
     
     @objc func timeChange(datePicker: UIDatePicker) {
