@@ -34,6 +34,7 @@
 		D07473C029B685A700B0B1D3 /* ImagePickerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07473BF29B685A700B0B1D3 /* ImagePickerProtocol.swift */; };
 		D07473C229B6B09100B0B1D3 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07473C129B6B09100B0B1D3 /* Cart.swift */; };
 		D07473C429B6CC1000B0B1D3 /* CreateCartSaveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07473C329B6CC1000B0B1D3 /* CreateCartSaveCell.swift */; };
+		D0F2423E29D777020060FD6E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D0F2423D29D777020060FD6E /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		D07473BF29B685A700B0B1D3 /* ImagePickerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerProtocol.swift; sourceTree = "<group>"; };
 		D07473C129B6B09100B0B1D3 /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		D07473C329B6CC1000B0B1D3 /* CreateCartSaveCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCartSaveCell.swift; sourceTree = "<group>"; };
+		D0F2423D29D777020060FD6E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 		D0541EC829AD8F430053346E = {
 			isa = PBXGroup;
 			children = (
+				D0F2423D29D777020060FD6E /* .gitignore */,
 				D074736729AFF6A600B0B1D3 /* .gitattributes */,
 				D0541ED329AD8F430053346E /* CartSquad */,
 				D0541ED229AD8F430053346E /* Products */,
@@ -197,6 +200,7 @@
 				D0541EDE29AD8F440053346E /* Assets.xcassets in Resources */,
 				D074739B29B56B9500B0B1D3 /* GoogleService-Info.plist in Resources */,
 				D0541EDC29AD8F430053346E /* Main.storyboard in Resources */,
+				D0F2423E29D777020060FD6E /* .gitignore in Resources */,
 				D074736829AFF6A600B0B1D3 /* .gitattributes in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
