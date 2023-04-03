@@ -2311,7 +2311,7 @@
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Create Item" id="yGL-zE-P2F"/>
+                    <navigationItem key="navigationItem" title="items" id="yGL-zE-P2F"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qfk-Xl-uUT">
                         <rect key="frame" x="0.0" y="59" width="430" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2371,7 +2371,7 @@
             </objects>
             <point key="canvasLocation" x="133" y="2773"/>
         </scene>
-        <!--View Controller-->
+        <!--Custom Items-->
         <scene sceneID="Zvk-Pm-T5n">
             <objects>
                 <viewController id="BVA-4X-e2H" sceneMemberID="viewController">
@@ -2381,7 +2381,7 @@
                         <viewLayoutGuide key="safeArea" id="c0m-U1-evc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="QP8-Ef-7kQ"/>
+                    <navigationItem key="navigationItem" title="Custom Items" id="QP8-Ef-7kQ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bzy-ip-M0i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
