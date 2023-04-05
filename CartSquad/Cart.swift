@@ -111,7 +111,11 @@ class Cart {
     func changeCartDateOnFirestore(newString: String) {
         let db = Firestore.firestore()
         let cartRef = db.collection("carts").document(cartID)
-        cartRef.updateData(["date": newString])
+        cartRef.updateData(["date": newString]) { err in
+            if err != nil {
+                print("Error updating cart date")
+            }
+        }
     }
     
     func changeCartImageOnFirestore(newImage: UIImage) {

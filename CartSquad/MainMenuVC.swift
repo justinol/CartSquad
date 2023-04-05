@@ -76,8 +76,14 @@ class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             CreateCartTableViewController {
             destination.delegate = self
         }
-        if segue.identifier == "ToCartIdentifier" {
+        if segue.identifier == "ToCartIdentifier", let destination = segue.destination as? CartScreenVC {
             CartScreenVC.currentCart = selectedCart
+            // pass in function to propogate cart changes to main menu
+            destination.onCartChangedUpdateMainMenu = { cart in
+                let index = self.idToCartIndex[cart.cartID]!
+                self.cartList?[index] = cart
+                self.cartTable?.reloadData()
+            }
         }
     }
     
@@ -118,7 +124,6 @@ class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             }
         }
     }
-    
     
     deinit {
         // Remove listener for database updates on deinit.

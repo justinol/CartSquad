@@ -14,6 +14,7 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBOutlet weak var cartTable: UITableView!
     
     static var currentCart:Cart?
+    var onCartChangedUpdateMainMenu: ((Cart)->())?
     
     var snapshotListener: ListenerRegistration?
 
@@ -167,6 +168,7 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 CartScreenVC.currentCart = cart
                 self.createCustomNavBarView()
                 self.cartTable.reloadData()
+                self.onCartChangedUpdateMainMenu!(cart)
             })
         }
     }
