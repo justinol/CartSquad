@@ -16,6 +16,7 @@ class Cart {
     var image:UIImage
     var store:String
     var date:String
+    var time: String
     var memberUIDs: [String]
     var cartID: String
     
@@ -24,6 +25,7 @@ class Cart {
         name = dbCartData["cartName"] as! String
         store = dbCartData["store"] as! String
         date = dbCartData["date"] as! String
+        time = dbCartData["time"] as! String
         memberUIDs = (dbCartData["memberUIDs"] as? [String])!
         cartID = (dbCartData["cartId"] as? String)!
         image = UIImage()
@@ -44,7 +46,7 @@ class Cart {
     
     // Create a cart on firestore for the first time to save this cart
     // under this user on firestore.
-    static func createOnFirestore(name:String, image:UIImage, store:String, date:String)  {
+    static func createOnFirestore(name:String, image:UIImage, store:String, date:String, time: String)  {
         print("creating cart using firebase services")
         // should always be signed in on this screen when this is called
         if let currUser = Auth.auth().currentUser {
@@ -53,7 +55,7 @@ class Cart {
             // Get firestore db.
             let db = Firestore.firestore()
             
-            var cartData: [String:Any] = ["cartName": name, "ownerUID": uid, "imageURL": "none", "store": store, "date": date, "memberUIDs": [uid]]
+            var cartData: [String:Any] = ["cartName": name, "ownerUID": uid, "imageURL": "none", "store": store, "date": date, "time": time, "memberUIDs": [uid]]
             
             // Create a unique id for the new cart.
             let cartId = UUID().uuidString
@@ -118,6 +120,16 @@ class Cart {
         }
     }
     
+    func changeCartTimeOnFirestore(newString: String) {
+        let db = Firestore.firestore()
+        let cartRef = db.collection("carts").document(cartID)
+        cartRef.updateData(["time": newString]) { err in
+            if err != nil {
+                print("Error updating cart date")
+            }
+        }
+    }
+    
     func changeCartImageOnFirestore(newImage: UIImage) {
         print("updating cart image")
         let db = Firestore.firestore()
@@ -143,6 +155,24 @@ class Cart {
                     print("image url:\(downloadURL)")
                     cartRef.updateData(["imageURL": downloadURL.absoluteString])
                 }
+            }
+        }
+    }
+    
+    func deleteOnFirestore() {
+        let db = Firestore.firestore()
+        let cartRef = db.collection("carts").document(cartID)
+        for uid in memberUIDs {
+            let userCartRef = db.collection("users").document(uid).collection("carts").document(cartID)
+            userCartRef.delete { err in
+                if err != nil {
+                    print("Error deleting cart from user carts container")
+                }
+            }
+        }
+        cartRef.delete { err in
+            if err != nil {
+                print("Error deleting cart from carts container")
             }
         }
     }

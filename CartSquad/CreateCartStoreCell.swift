@@ -15,6 +15,7 @@ class CreateCartStoreCell: UITableViewCell, UITableViewDelegate, UITableViewData
     
     let noStoreCellIdentifier = "AddStoreCell"
     let selectedStoreCellIdentifier = "SelectedStoreCell"
+    var disableChangeStore: Bool = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,6 +46,9 @@ class CreateCartStoreCell: UITableViewCell, UITableViewDelegate, UITableViewData
         cell.storeName.text = selected.storeName
         cell.storeAddress.text = selected.storeAddress
         cell.storeImage.image = selected.storeImage
+        if disableChangeStore {
+            cell.changeStoreButton.isHidden = true
+        }
         
         return cell
     }

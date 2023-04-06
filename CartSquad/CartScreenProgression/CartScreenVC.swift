@@ -123,7 +123,6 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             }
             
             data["cartId"] = document.documentID
-            print("new cart data, setting: \(data)")
             _ = Cart(dbCartData: data, onFinishInit: { cart in
                 CartScreenVC.currentCart = cart
                 self.createCustomNavBarView(currCart: cart)

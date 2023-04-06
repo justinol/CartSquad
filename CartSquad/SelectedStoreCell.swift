@@ -12,6 +12,7 @@ class SelectedStoreCell: UITableViewCell {
     @IBOutlet weak var storeName: UILabel!
     @IBOutlet weak var storeAddress: UILabel!
     @IBOutlet weak var storeImage: UIImageView!
+    @IBOutlet weak var changeStoreButton: UIButton!
     
     static let identifier = "SelectedStoreCell"
 

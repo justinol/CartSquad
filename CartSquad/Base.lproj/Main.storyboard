@@ -1117,7 +1117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BNM-rv-3sV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2673" y="577"/>
+            <point key="canvasLocation" x="2799" y="577"/>
         </scene>
         <!--Store Search View Controller-->
         <scene sceneID="hN8-vf-9UU">
@@ -1188,7 +1188,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tsb-ZT-Tyi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3473" y="577"/>
+            <point key="canvasLocation" x="3680" y="577"/>
         </scene>
         <!--Cart ScreenVC-->
         <scene sceneID="8sv-LS-pwS">
@@ -1412,13 +1412,6 @@
                                 <rect key="frame" x="28" y="116" width="132" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="STORE SEARCH COMING SOON" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQ0-zR-qHy">
-                                <rect key="frame" x="28" y="144" width="248" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1937,6 +1930,7 @@
                                                         </subviews>
                                                     </tableViewCellContentView>
                                                     <connections>
+                                                        <outlet property="changeStoreButton" destination="hcR-7t-3iO" id="Q8h-fP-ckx"/>
                                                         <outlet property="storeAddress" destination="Zq0-uj-e3r" id="ssb-GT-A5m"/>
                                                         <outlet property="storeImage" destination="80C-Ce-mEU" id="eHc-Z6-qXQ"/>
                                                         <outlet property="storeName" destination="8EJ-69-YUu" id="u6F-C9-Qhp"/>
@@ -1983,24 +1977,23 @@
                                     <outlet property="timeTF" destination="shn-JS-mPd" id="fVY-3o-Snc"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateCartSaveCell" rowHeight="94" id="Ec8-Lx-WcM" customClass="CreateCartSaveCell" customModule="CartSquad" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="709" width="430" height="94"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DeleteCartCell" rowHeight="152" id="Cej-tL-6gC" customClass="DeleteCartTableViewCell" customModule="CartSquad" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="709" width="430" height="152"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ec8-Lx-WcM" id="CAf-ej-fvX">
-                                    <rect key="frame" x="0.0" y="0.0" width="430" height="94"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Cej-tL-6gC" id="1Jb-fN-BkT">
+                                    <rect key="frame" x="0.0" y="0.0" width="430" height="152"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vq9-nH-Nlw">
-                                            <rect key="frame" x="56" y="30" width="315" height="38"/>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbm-UY-Ye7">
+                                            <rect key="frame" x="117" y="49" width="197" height="54"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.64313725489999995" green="0.086274509799999996" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="tintColor" red="0.64313725489999995" green="0.086274509799999996" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" title="Save">
-                                                <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
+                                            <buttonConfiguration key="configuration" style="filled" title="Delete Cart">
+                                                <color key="baseBackgroundColor" red="0.72941176470000002" green="0.094117647060000004" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </buttonConfiguration>
                                             <connections>
-                                                <action selector="onSaveButtonPressed:" destination="CSB-cZ-kqY" eventType="touchUpInside" id="2Yo-kO-TVS"/>
+                                                <action selector="deleteCartButtonPressed:" destination="Cej-tL-6gC" eventType="touchUpInside" id="5Gj-xL-HQB"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -2013,10 +2006,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Cart Settings" id="zMw-TS-kA8"/>
+                    <connections>
+                        <segue destination="9FA-KI-oGI" kind="unwind" identifier="deletingCartToHomeVC" unwindAction="unwindToMainMenuVCWithSegue:" id="B37-cD-4xU"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fGR-1G-4iS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="9FA-KI-oGI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2636" y="1317"/>
+            <point key="canvasLocation" x="2635.8139534883721" y="1316.5236051502147"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

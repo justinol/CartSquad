@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		669CC8BC29DE7A0100E919EF /* DeleteCartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669CC8BB29DE7A0100E919EF /* DeleteCartTableViewCell.swift */; };
 		66B95DCA29D60D6F00181E8C /* EditCartSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B95DC929D60D6F00181E8C /* EditCartSettingsTableViewController.swift */; };
 		66C1B29629DD010700DA0CFA /* CartSearchResultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C1B29529DD010700DA0CFA /* CartSearchResultsVC.swift */; };
 		66C1B29829DD047C00DA0CFA /* CartSearchItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C1B29729DD047C00DA0CFA /* CartSearchItemCollectionViewCell.swift */; };
@@ -62,6 +63,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		669CC8BB29DE7A0100E919EF /* DeleteCartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCartTableViewCell.swift; sourceTree = "<group>"; };
 		66B95DC929D60D6F00181E8C /* EditCartSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCartSettingsTableViewController.swift; sourceTree = "<group>"; };
 		66C1B29529DD010700DA0CFA /* CartSearchResultsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartSearchResultsVC.swift; sourceTree = "<group>"; };
 		66C1B29729DD047C00DA0CFA /* CartSearchItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartSearchItemCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				82EE091D29B6CD8A0045DA40 /* PeronalInfoViewController.swift */,
 				74E00E1229B592FE00C018FF /* PicPopupViewController.swift */,
 				D0541EDA29AD8F430053346E /* Main.storyboard */,
+				669CC8BB29DE7A0100E919EF /* DeleteCartTableViewCell.swift */,
 				8287FBE629B6D6EE00229728 /* saveForBeta.storyboard */,
 				8214C36029B6CDF0005F7419 /* Cart.swift */,
 				8214C36129B6CDF0005F7419 /* MainMenuVC.swift */,
@@ -292,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				669CC8BC29DE7A0100E919EF /* DeleteCartTableViewCell.swift in Sources */,
 				66CB3B5529B6F584001939F7 /* CreateCartSaveCell.swift in Sources */,
 				66CB3B4C29B6F584001939F7 /* CreateCartNameCell.swift in Sources */,
 				66CB3B4929B6F584001939F7 /* SelectedStoreCell.swift in Sources */,

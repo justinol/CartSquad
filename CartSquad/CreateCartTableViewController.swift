@@ -128,7 +128,7 @@ class CreateCartTableViewController: UITableViewController, ImagePicker, UINavig
             }
         }
         else {
-            Cart.createOnFirestore(name: nameCell.cartNameTF.text!, image: imageCell.cartImageView.image!, store: chosenStore!.storeName, date: dateCell.dateTF.text!)
+            Cart.createOnFirestore(name: nameCell.cartNameTF.text!, image: imageCell.cartImageView.image!, store: chosenStore!.storeName, date: dateCell.dateTF.text!, time: dateCell.timeTF.text!)
             
             self.navigationController?.popViewController(animated: true)
         }

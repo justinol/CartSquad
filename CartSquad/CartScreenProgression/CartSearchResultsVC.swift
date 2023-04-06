@@ -63,7 +63,7 @@ class CartSearchResultsVC: UIViewController, UICollectionViewDelegate, UICollect
         cell.titleLabel.text = product.name
         cell.priceLabel.text = "$\(product.price) each"
         cell.priceFloat = Float(product.price)
-        cell.onAddItemToCart = animateSuccessfulItemAdd
+        cell.onAddItemToCart = displayAlertForSuccessfulItemAdd
         downloadImageForCell(imageURL: product.image_url, imageView: cell.itemImageView)
         return cell
     }
@@ -77,6 +77,13 @@ class CartSearchResultsVC: UIViewController, UICollectionViewDelegate, UICollect
         layout.minimumLineSpacing = 5
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         collectionView.collectionViewLayout = layout
+    }
+    
+    func displayAlertForSuccessfulItemAdd() {
+        let alert = UIAlertController(title: "Successfully added", message: "Added item to cart", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        
+        present(alert, animated: true)
     }
     
     func animateSuccessfulItemAdd() {

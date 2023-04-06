@@ -108,7 +108,6 @@ class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
                         if let document = document, document.exists {
                             var cartData = document.data()!
                             cartData["cartId"] = cartId
-                            print("got cart from db with id: \(cartId)")
                             if (cartData["cartName"] == nil) {
                                 return
                             }
@@ -118,11 +117,20 @@ class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
                                     self.idToCartIndex[cartId] = self.cartList!.count - 1
                                     self.cartTable?.reloadData()
                                 })
+                            } else if diff.type == .removed {
+                                print("cart removed on database")
                             }
                         }
                     }
                 }
             }
+        }
+    }
+    
+    func deleteCartWithIdFromCartsList(cartId: String) {
+        if let cartIndex = self.idToCartIndex[cartId] {
+            self.cartList?.remove(at: cartIndex)
+            self.cartTable?.reloadData()
         }
     }
     
@@ -133,5 +141,7 @@ class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         }
     }
     
-    
+    @IBAction func unwindToMainMenuVC(segue: UIStoryboardSegue) {
+ 
+    }
 }

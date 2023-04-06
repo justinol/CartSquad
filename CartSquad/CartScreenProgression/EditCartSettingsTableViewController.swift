@@ -17,15 +17,19 @@ class EditCartSettingsTableViewController: UITableViewController, ImagePicker, U
         "CreateCartImageCell",
         "CreateCartStoreCell",
         "CreateCartDateCell",
+        "DeleteCartCell"
     ]
     let rowHeights:[CGFloat] = [
         100,
         160,
         250,
         150,
+        150
     ]
     
     var delegate:UIViewController!
+    
+    var lastDeletedCartId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +42,7 @@ class EditCartSettingsTableViewController: UITableViewController, ImagePicker, U
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     
@@ -54,10 +58,11 @@ class EditCartSettingsTableViewController: UITableViewController, ImagePicker, U
         }
         else if cellIdentifiers[row] == "CreateCartStoreCell" {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifiers[row], for: indexPath as IndexPath) as! CreateCartStoreCell
+
+            chosenStore = Store(name: CartScreenVC.currentCart!.store, address: "2025 Guadalupe St STE 01-100, Austin, TX 78705", image: UIImage(named: "targetLogo")!)
             
-            
-            chosenStore = nil
-            
+            cell.disableChangeStore = true
+
             return cell
         }
         else if cellIdentifiers[row] == "CreateCartNameCell" {
@@ -69,13 +74,21 @@ class EditCartSettingsTableViewController: UITableViewController, ImagePicker, U
             cell.cartNameTF.addTarget(self, action: #selector(changeCartNameOnFirestore(_:)), for: .editingDidEnd)
             
             return cell
-        } else {
-            // Must be CreateCartDateCell
+        } else if cellIdentifiers[row] == "CreateCartDateCell" {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifiers[row], for: indexPath as IndexPath) as! CreateCartDateCell
             
             cell.dateTF.text = CartScreenVC.currentCart?.date
-            cell.dateChangeCallback = CartScreenVC.currentCart?.changeCartDateOnFirestore
+            cell.timeTF.text = CartScreenVC.currentCart?.time
             
+            cell.dateChangeCallback = CartScreenVC.currentCart?.changeCartDateOnFirestore
+            cell.timeChangeCallback = CartScreenVC.currentCart?.changeCartTimeOnFirestore
+            
+            return cell
+        } else {
+            // Must be DeleteCartCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifiers[row], for: indexPath) as! DeleteCartTableViewCell
+            
+            cell.onDeleteButtonPressed = presentCartDeletionAlert
             return cell
         }
     }
@@ -116,45 +129,28 @@ class EditCartSettingsTableViewController: UITableViewController, ImagePicker, U
         cell.storeTable.reloadData()
     }
     
-    @IBAction func onSaveButtonPressed(_ sender: Any) {
-        let nameCell = self.tableView.cellForRow(at: IndexPath.init(row:0, section:0)) as! CreateCartNameCell
-        let imageCell = self.tableView.cellForRow(at: IndexPath.init(row:1, section:0)) as! CreateCartImageCell
-        let selectedStore = chosenStore
-        let dateCell = self.tableView.cellForRow(at: IndexPath.init(row:3, section:0)) as! CreateCartDateCell
+    
+    func presentCartDeletionAlert() {
+        let deleteAlert = UIAlertController(title: "Delete cart?", message: "This cannot be undone.", preferredStyle: .alert)
         
-        let nameError = nameCell.cartNameTF.text?.isEmpty
-        let imageError = imageCell.cartImageView.image == nil
-        let storeError = selectedStore == nil
-        let dateError = dateCell.dateTF.text?.isEmpty
+        let confirmAction = UIAlertAction(title: "Delete", style: .destructive, handler: {_ in
+            self.lastDeletedCartId = CartScreenVC.currentCart?.cartID
+            CartScreenVC.currentCart?.deleteOnFirestore()
+            self.performSegue(withIdentifier: "deletingCartToHomeVC", sender: nil)
+        })
+        deleteAlert.addAction(confirmAction)
         
-        if nameError! || imageError || storeError || dateError! {
-            let controller = UIAlertController(
-                title: "Missing info",
-                message: "Please add missing information:",
-                preferredStyle: .alert)
-            controller.addAction(UIAlertAction(title: "OK", style: .default))
-            
-            if nameError! {
-                controller.message = "Please add a cart name"
-                present(controller, animated: true)
-            } else if imageError {
-                controller.message = "Please add a cart image"
-                present(controller, animated: true)
-            } else if storeError {
-                controller.message = "Please select a store"
-                present(controller, animated: true)
-            } else if dateError! {
-                controller.message = "Please choose a shop date"
-                present(controller, animated: true)
-            }
-        }
-        else {            
-//            let otherVC = delegate as! CartAdder
-//            otherVC.addCart(newCart: createdCart)
-            self.navigationController?.popViewController(animated: true)
-            
-        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        deleteAlert.addAction(cancelAction)
         
+        self.present(deleteAlert, animated: true)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "deletingCartToHomeVC" {
+            if let destination = segue.destination as? MainMenuVC {
+                destination.deleteCartWithIdFromCartsList(cartId: lastDeletedCartId!)
+            }
+        }
+    }
 }
