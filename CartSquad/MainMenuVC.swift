@@ -104,22 +104,25 @@ class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
                     let cartId = diff.document.documentID
                     // Get cart from carts/ collection
                     let cartRef = db.collection("carts").document(cartId)
-                    cartRef.getDocument { (document, error) in
-                        if let document = document, document.exists {
-                            var cartData = document.data()!
-                            cartData["cartId"] = cartId
-                            if (cartData["cartName"] == nil) {
-                                return
-                            }
-                            if diff.type == .added {
+                    if diff.type == .added {
+                        cartRef.getDocument { (document, error) in
+                            if let document = document, document.exists {
+                                var cartData = document.data()!
+                                cartData["cartId"] = cartId
                                 _ = Cart(dbCartData: cartData, onFinishInit: { cart in
                                     self.cartList?.append(cart)
                                     self.idToCartIndex[cartId] = self.cartList!.count - 1
                                     self.cartTable?.reloadData()
                                 })
-                            } else if diff.type == .removed {
-                                print("cart removed on database")
                             }
+                        }
+                    } else if diff.type == .modified {
+                        print("cart modified on database")
+                    } else if diff.type == .removed {
+                        print("cart removed on database")
+                        if let cartIndex = self.idToCartIndex[cartId] {
+                            self.cartList?.remove(at: cartIndex)
+                            self.cartTable?.reloadData()
                         }
                     }
                 }
@@ -127,16 +130,10 @@ class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         }
     }
     
-    func deleteCartWithIdFromCartsList(cartId: String) {
-        if let cartIndex = self.idToCartIndex[cartId] {
-            self.cartList?.remove(at: cartIndex)
-            self.cartTable?.reloadData()
-        }
-    }
-    
     deinit {
         // Remove listener for database updates on deinit.
         if let snapshotListener = snapshotListener {
+            print("removing snapshot listener on main menu")
             snapshotListener.remove()
         }
     }

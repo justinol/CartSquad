@@ -162,17 +162,35 @@ class Cart {
     func deleteOnFirestore() {
         let db = Firestore.firestore()
         let cartRef = db.collection("carts").document(cartID)
+        // Remove cart id from users/userUID/carts
         for uid in memberUIDs {
             let userCartRef = db.collection("users").document(uid).collection("carts").document(cartID)
             userCartRef.delete { err in
                 if err != nil {
                     print("Error deleting cart from user carts container")
+                } else {
+                    print("Deteted \(self.name) from users/\(uid)/carts/")
                 }
             }
         }
+        
+        // Remove image from storage
+        let storage = Storage.storage()
+        let itemImageRef = storage.reference().child("cart_images").child(cartID).child("cartImage.jpeg")
+        itemImageRef.delete { error in
+            if error != nil {
+                print("error deleting cart image drom db")
+            } else {
+                print("successfully deleted cart image from storage")
+            }
+        }
+        
+        // Delete cart from carts/ on firestore
         cartRef.delete { err in
             if err != nil {
                 print("Error deleting cart from carts container")
+            } else {
+                print("Deleted cart from firestore")
             }
         }
     }

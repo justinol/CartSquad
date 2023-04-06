@@ -119,6 +119,14 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             }
             guard var data = document.data() else {
                 print("Document data was empty.")
+                let cartDeletedAlert = UIAlertController(title: "Cart Notice", message: "This cart was deleted.", preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(title: "Ok", style: .default, handler: {_ in
+                    self.navigationController?.popToRootViewController(animated: true)
+                })
+                cartDeletedAlert.addAction(okAction)
+                
+                self.present(cartDeletedAlert, animated: true)
                 return
             }
             

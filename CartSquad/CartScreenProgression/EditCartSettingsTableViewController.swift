@@ -29,8 +29,6 @@ class EditCartSettingsTableViewController: UITableViewController, ImagePicker, U
     
     var delegate:UIViewController!
     
-    var lastDeletedCartId: String?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -134,9 +132,7 @@ class EditCartSettingsTableViewController: UITableViewController, ImagePicker, U
         let deleteAlert = UIAlertController(title: "Delete cart?", message: "This cannot be undone.", preferredStyle: .alert)
         
         let confirmAction = UIAlertAction(title: "Delete", style: .destructive, handler: {_ in
-            self.lastDeletedCartId = CartScreenVC.currentCart?.cartID
             CartScreenVC.currentCart?.deleteOnFirestore()
-            self.performSegue(withIdentifier: "deletingCartToHomeVC", sender: nil)
         })
         deleteAlert.addAction(confirmAction)
         
@@ -144,13 +140,5 @@ class EditCartSettingsTableViewController: UITableViewController, ImagePicker, U
         deleteAlert.addAction(cancelAction)
         
         self.present(deleteAlert, animated: true)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "deletingCartToHomeVC" {
-            if let destination = segue.destination as? MainMenuVC {
-                destination.deleteCartWithIdFromCartsList(cartId: lastDeletedCartId!)
-            }
-        }
     }
 }
