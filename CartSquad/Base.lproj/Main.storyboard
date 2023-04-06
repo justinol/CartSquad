@@ -16,6 +16,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hau-F5-P40">
                         <rect key="frame" x="0.0" y="59" width="430" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.72941176470000002" green="0.094117647060000004" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <navigationBarAppearance key="standardAppearance"/>
                     </navigationBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="gc6-bA-KAE"/>
@@ -2019,7 +2021,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="VyT-ox-5mk"/>
-        <segue reference="5iE-T0-fxg"/>
+        <segue reference="ols-2g-DOn"/>
         <segue reference="bFj-TZ-8t5"/>
     </inferredMetricsTieBreakers>
     <resources>

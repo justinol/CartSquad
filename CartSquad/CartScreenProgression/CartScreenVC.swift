@@ -17,18 +17,15 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     var onCartChangedUpdateMainMenu: ((Cart)->())?
     
     var snapshotListener: ListenerRegistration?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        createCustomNavBarView()
         
         cartTable.delegate = self
         cartTable.dataSource = self
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
-        
-        listenForCartDatabaseUpdates()
     }
     
     @objc func dismissKeyboard() {
@@ -36,81 +33,44 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
 
     // Custom Navbar
-    func createCustomNavBarView() {
+    func createCustomNavBarView(currCart: Cart) {
         // Create the horizontal stack view
         let horizontalStackView = UIStackView()
         horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
         horizontalStackView.axis = .horizontal
         horizontalStackView.spacing = 8
         view.addSubview(horizontalStackView)
-        
+
         // Create the image view
 //        let imageView = UIImageView(image: currentCart!.image)
 //        imageView.contentMode = .scaleAspectFit
-        
+
         // Create the vertical stack view
         let verticalStackView = UIStackView()
         verticalStackView.axis = .vertical
-        
+
         // Create the title label
         let titleLabel = UILabel()
-        titleLabel.text = CartScreenVC.currentCart!.name
+        titleLabel.text = currCart.name
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         titleLabel.textColor = .white
-        
+
         // Create the subtitle label
         let subtitleLabel = UILabel()
         titleLabel.font = UIFont.systemFont(ofSize: 24)
-        subtitleLabel.text = "Shopping at \(CartScreenVC.currentCart!.store)"
+        subtitleLabel.text = "Shopping at \(currCart.store)"
         subtitleLabel.textColor = .white
-        
+
 //        // Add the subviews to the stack views
 //        horizontalStackView.addArrangedSubview(imageView)
         horizontalStackView.addArrangedSubview(verticalStackView)
         verticalStackView.addArrangedSubview(titleLabel)
         verticalStackView.addArrangedSubview(subtitleLabel)
-        
-        
+
+
         navigationItem.titleView = horizontalStackView
     }
     
-    lazy var titleStackView: UIStackView = {
-        // Create the horizontal stack view
-        let horizontalStackView = UIStackView()
-        horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
-        horizontalStackView.axis = .horizontal
-        horizontalStackView.spacing = 8
-        view.addSubview(horizontalStackView)
-        
-        // Create the image view
-//        let imageView = UIImageView(image: currentCart!.image)
-//        imageView.contentMode = .scaleAspectFit
-        
-        // Create the vertical stack view
-        let verticalStackView = UIStackView()
-        verticalStackView.axis = .vertical
-        
-        // Create the title label
-        let titleLabel = UILabel()
-        titleLabel.text = CartScreenVC.currentCart!.name
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        titleLabel.textColor = .white
-        
-        // Create the subtitle label
-        let subtitleLabel = UILabel()
-        titleLabel.font = UIFont.systemFont(ofSize: 24)
-        subtitleLabel.text = "Shopping at \(CartScreenVC.currentCart!.store)"
-        subtitleLabel.textColor = .white
-        
-//        // Add the subviews to the stack views
-//        horizontalStackView.addArrangedSubview(imageView)
-        horizontalStackView.addArrangedSubview(verticalStackView)
-        verticalStackView.addArrangedSubview(titleLabel)
-        verticalStackView.addArrangedSubview(subtitleLabel)
-        
-        
-        return horizontalStackView
-    }()
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.row < (CartScreenVC.currentCart?.memberUIDs.count)!) {
@@ -124,6 +84,7 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 self.cartTable.beginUpdates()
                 self.cartTable.endUpdates()
             }
+            userSubcartCell.customInitForUse()
             return userSubcartCell
         } else {
             let addMemberToCartCell = tableView.dequeueReusableCell(withIdentifier: "AddCartMemberCell", for: indexPath) as! AddCartMemberCell
@@ -149,10 +110,9 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     // Listen for cart updates from database. Ex: for member addition/removal.
-    func listenForCartDatabaseUpdates() {
-        print("listening for db updates")
+    func listenForCartDatabaseUpdates(cartID: String) {
         let db = Firestore.firestore()
-        snapshotListener = db.collection("carts").document((CartScreenVC.currentCart?.cartID)!).addSnapshotListener { docSnapshot, error in
+        snapshotListener = db.collection("carts").document(cartID).addSnapshotListener { docSnapshot, error in
             guard let document = docSnapshot else {
                 print("Error fetching document")
                 return
@@ -166,7 +126,7 @@ class CartScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             print("new cart data, setting: \(data)")
             _ = Cart(dbCartData: data, onFinishInit: { cart in
                 CartScreenVC.currentCart = cart
-                self.createCustomNavBarView()
+                self.createCustomNavBarView(currCart: cart)
                 self.cartTable.reloadData()
                 self.onCartChangedUpdateMainMenu!(cart)
             })

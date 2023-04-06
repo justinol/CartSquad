@@ -18,8 +18,9 @@ class CartItem: NSObject {
     var itemTotalCost: Float?
     var image: UIImage?
     var imageURL: String?
+    var cartItemUID: String?
     
-    init(itemName: String?, itemPrice: Float = 0.00, itemQuantity: Int = 1, image: UIImage? = nil, imageURL: String? = nil) {
+    init(itemName: String?, itemPrice: Float = 0.00, itemQuantity: Int = 1, image: UIImage? = nil, imageURL: String? = nil, cartItemUID: String? = nil) {
         super.init()
         self.itemName = itemName
         self.itemPrice = itemPrice
@@ -27,6 +28,7 @@ class CartItem: NSObject {
         itemTotalCost = calculateTotalCost()
         self.image = image
         self.imageURL = imageURL
+        self.cartItemUID = cartItemUID
     }
     
     func calculateTotalCost() -> Float {
@@ -70,7 +72,7 @@ class CartItem: NSObject {
     
     // Add this cart item to a user's subcart within in a cart in the FireStore database
     func addToUserSubcartInDatabase() {
-        print("overwrote \(itemName!) in db")
+        cartItemUID = UUID().uuidString
 
         let db = Firestore.firestore()
         var data: [String:Any] = ["itemName": itemName!,
@@ -79,16 +81,16 @@ class CartItem: NSObject {
                                   "lastUpdated": FieldValue.serverTimestamp(),
                                   "imageURL": "none"]
         
-        let itemDoc = db.collection("carts").document((CartScreenVC.currentCart?.cartID)!).collection("users").document(Auth.auth().currentUser!.uid).collection("userCartItems").document(itemName!)
+        let itemDoc = db.collection("carts").document((CartScreenVC.currentCart?.cartID)!).collection("users").document(Auth.auth().currentUser!.uid).collection("userCartItems").document(cartItemUID!)
         
         // if img is not nil, upload to cloudstore
-        if let img = image, let imageData = img.jpegData(compressionQuality: 0.9) {
+        if let img = image, let imageData = img.jpegData(compressionQuality: 0.1) {
             print("uploading image")
             let metaData = StorageMetadata()
             metaData.contentType = "image/jpeg"
             
             let storage = Storage.storage()
-            let itemImageRef = storage.reference().child("cart_item_images").child(Auth.auth().currentUser!.uid).child("\(itemName!).jpeg")
+            let itemImageRef = storage.reference().child("cart_item_images").child(Auth.auth().currentUser!.uid).child("\(cartItemUID!).jpeg")
             
             itemImageRef.putData(imageData, metadata: metaData) { metaData, error in
                 guard metaData != nil else {
@@ -117,7 +119,7 @@ class CartItem: NSObject {
     // Update the quantity field only for this cart item in FireStore database.
     func updateQuantityForCartItemInDatabase()  {
         let db = Firestore.firestore()
-        let cartItemRef = db.collection("carts").document((CartScreenVC.currentCart?.cartID)!).collection("users").document(Auth.auth().currentUser!.uid).collection("userCartItems").document(itemName!)
+        let cartItemRef = db.collection("carts").document((CartScreenVC.currentCart?.cartID)!).collection("users").document(Auth.auth().currentUser!.uid).collection("userCartItems").document(cartItemUID!)
         cartItemRef.updateData(["itemQuantity": itemQuantity]) { err in
             if err != nil {
                 print("Error updating cart item quantity")
@@ -128,7 +130,7 @@ class CartItem: NSObject {
     // Remove this cart item from a user's subcart within in a cart in the FireStore database
     func removeFromUserSubcartInDatabase() {
         let db = Firestore.firestore()
-        db.collection("carts").document((CartScreenVC.currentCart?.cartID)!).collection("users").document(Auth.auth().currentUser!.uid).collection("userCartItems").document(itemName!).delete() { err in
+        db.collection("carts").document((CartScreenVC.currentCart?.cartID)!).collection("users").document(Auth.auth().currentUser!.uid).collection("userCartItems").document(cartItemUID!).delete() { err in
             if let err = err {
                 print("Error removing document: \(err)")
             } else {
@@ -139,7 +141,7 @@ class CartItem: NSObject {
         // remove image from cloud storage
         if image != nil || imageURL != "none" {
             let storage = Storage.storage()
-            let itemImageRef = storage.reference().child("cart_item_images").child(Auth.auth().currentUser!.uid).child("\(itemName!).jpeg")
+            let itemImageRef = storage.reference().child("cart_item_images").child(Auth.auth().currentUser!.uid).child("\(cartItemUID!).jpeg")
             itemImageRef.delete { error in
                 if error != nil {
                     print("error deleting image drom db")

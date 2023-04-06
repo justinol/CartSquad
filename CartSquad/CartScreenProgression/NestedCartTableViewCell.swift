@@ -40,9 +40,7 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
     // Dict to store mapping of cart item names to their cell row
     var cartItemNameToCellRow: [String:Int] = [:]
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
+    func customInitForUse() {
         usernameLabel.text = ownerUID!
         itemsTable.dataSource = self
         itemsTable.delegate = self
@@ -91,7 +89,7 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
         
         // notify the table view to update its layout
         itemsTable.setNeedsLayout()
-        
+
         // update parent table to reflect changes
         updateOuterTableSize?()
     }
@@ -111,9 +109,9 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
                 let itemPrice = cartItemData["itemPrice"] as! Float
                 let itemQuantity = cartItemData["itemQuantity"] as! Int
                 let itemImageURL = cartItemData["imageURL"] as! String
+                let cartItemUID = diff.document.documentID
                 if (diff.type == .added) {
-                    print("adding cart item for id: \(self.ownerUID!)")
-                    let cartItem = CartItem(itemName: itemName, itemPrice: itemPrice, itemQuantity: itemQuantity, imageURL: itemImageURL)
+                    let cartItem = CartItem(itemName: itemName, itemPrice: itemPrice, itemQuantity: itemQuantity, imageURL: itemImageURL, cartItemUID: cartItemUID)
                     self.cartItems.append(cartItem)
                 } else if (diff.type == .modified) {
                     // item updated, update data source and UI locally

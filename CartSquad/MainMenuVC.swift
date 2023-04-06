@@ -77,7 +77,8 @@ class MainMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             destination.delegate = self
         }
         if segue.identifier == "ToCartIdentifier", let destination = segue.destination as? CartScreenVC {
-            CartScreenVC.currentCart = selectedCart
+            destination.createCustomNavBarView(currCart: selectedCart!)
+            destination.listenForCartDatabaseUpdates(cartID: selectedCart!.cartID)
             // pass in function to propogate cart changes to main menu
             destination.onCartChangedUpdateMainMenu = { cart in
                 let index = self.idToCartIndex[cart.cartID]!
