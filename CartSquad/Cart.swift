@@ -62,7 +62,7 @@ class Cart {
             // Get a ref to the user's carts for the new cart.
             let userCartRef = db.collection("users").document(uid).collection("carts").document(cartId)
             
-            if let imageData = image.jpegData(compressionQuality: 0.9) {
+            if let imageData = image.jpegData(compressionQuality: 0.1) {
                 let metaData = StorageMetadata()
                 metaData.contentType = "image/jpeg"
                 
@@ -118,7 +118,7 @@ class Cart {
         print("updating cart image")
         let db = Firestore.firestore()
         let cartRef = db.collection("carts").document(cartID)
-        if let imageData = newImage.jpegData(compressionQuality: 0.9) {
+        if let imageData = newImage.jpegData(compressionQuality: 0.1) {
             let metaData = StorageMetadata()
             metaData.contentType = "image/jpeg"
             

@@ -82,7 +82,7 @@ class CartItem: NSObject {
         let itemDoc = db.collection("carts").document((CartScreenVC.currentCart?.cartID)!).collection("users").document(Auth.auth().currentUser!.uid).collection("userCartItems").document(itemName!)
         
         // if img is not nil, upload to cloudstore
-        if let img = image, let imageData = img.jpegData(compressionQuality: 0.9) {
+        if let img = image, let imageData = img.jpegData(compressionQuality: 0.1) {
             print("uploading image")
             let metaData = StorageMetadata()
             metaData.contentType = "image/jpeg"
