@@ -13,6 +13,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     
+    let segueIdentifier = "mainMenuSegue"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,7 +40,7 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            self.performSegue(withIdentifier: "mainMenuSegue", sender: self)
+            self.performSegue(withIdentifier: self.segueIdentifier, sender: self)
         }
     }
 }

@@ -15,6 +15,9 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var createPasswordText: UITextField!
     @IBOutlet weak var confirmPassword: UITextField!
     
+    let segueIdentifier = "createAccount"
+    var creatable = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,23 +29,41 @@ class CreateAccountViewController: UIViewController {
     //segues to the main menu screen.
     @IBAction func createAccountButtonPressed(_ sender: Any) {
         guard let createEmail = createEmailText.text, let createPass = createPasswordText.text,
-             let confirmPass = confirmPassword.text else {
-            print("Please enter email, password, or retype password")
+              let confirmPass = confirmPassword.text, let username = createUsernameText.text else {
+            print("Please enter email, username, password, or retype password")
             return
         }
+        
         if confirmPass != createPass {
             print("passwords do not match !")
             return
         }
-        Auth.auth().createUser(withEmail: createEmail, password: createPass){ firebaseResult ,error in
-            if let error = error  {
-                print("error creating account \(error.localizedDescription)")
+        let userCollection = Firestore.firestore().collection("users")
+        userCollection.whereField("username", isEqualTo: username).getDocuments{ (querySnapshot, error) in
+            if error != nil    {
+                print("error getting items")
                 return
             }
-            
-            self.performSegue(withIdentifier: "createAccount", sender: self)
-            
+            if querySnapshot!.documents.count > 0 {
+                //username exists
+                print("error: username already exists")
+                return
+            } else {
+                //username does not exists
+                Auth.auth().createUser(withEmail: createEmail, password: createPass){ firebaseResult ,error in
+                    if let error = error  {
+                        print("error creating account \(error.localizedDescription)")
+                        return
+                    }
+                }
+                self.creatable = true
+            }
+        }
+        if creatable == true {
+            userCollection.document(Auth.auth().currentUser!.uid).setData([
+                "username" : username
+            ])
+            self.performSegue(withIdentifier: self.segueIdentifier, sender: self)
         }
     }
-    
 }

@@ -44,8 +44,8 @@
 		66CB3B7729B7058D001939F7 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 66CB3B7629B7058D001939F7 /* FirebaseStorage */; };
 		66CB3B7929B7058D001939F7 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 66CB3B7829B7058D001939F7 /* FirebaseStorageCombine-Community */; };
 		66CB3B7B29B705C8001939F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66CB3B7A29B705C8001939F7 /* GoogleService-Info.plist */; };
+		66D5853929DFA52300127E21 /* UpdateProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D5853829DFA52300127E21 /* UpdateProfileInfoViewController.swift */; };
 		66F5D76B29D3AD5200DC98B4 /* AddCartMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F5D76A29D3AD5200DC98B4 /* AddCartMemberCell.swift */; };
-		74093CC029B6A1D3004FD061 /* UserProfileCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74093CBF29B6A1D3004FD061 /* UserProfileCreator.swift */; };
 		740B1B3A29B2D30D00493B33 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B1B3929B2D30D00493B33 /* CreateAccountViewController.swift */; };
 		740B1B3C29B2D33E00493B33 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B1B3B29B2D33E00493B33 /* LoginViewController.swift */; };
 		74E00E1329B592FE00C018FF /* PicPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E00E1229B592FE00C018FF /* PicPopupViewController.swift */; };
@@ -93,8 +93,8 @@
 		66CB3B6029B70281001939F7 /* AuthUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthUser.swift; sourceTree = "<group>"; };
 		66CB3B6129B70281001939F7 /* CartAddCustomItemsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartAddCustomItemsVC.swift; sourceTree = "<group>"; };
 		66CB3B7A29B705C8001939F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		66D5853829DFA52300127E21 /* UpdateProfileInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProfileInfoViewController.swift; sourceTree = "<group>"; };
 		66F5D76A29D3AD5200DC98B4 /* AddCartMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCartMemberCell.swift; sourceTree = "<group>"; };
-		74093CBF29B6A1D3004FD061 /* UserProfileCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCreator.swift; sourceTree = "<group>"; };
 		740B1B3929B2D30D00493B33 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		740B1B3B29B2D33E00493B33 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		74E00E1229B592FE00C018FF /* PicPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicPopupViewController.swift; sourceTree = "<group>"; };
@@ -188,11 +188,11 @@
 				D0541EDF29AD8F440053346E /* LaunchScreen.storyboard */,
 				D0541EE229AD8F440053346E /* Info.plist */,
 				66CB3B7A29B705C8001939F7 /* GoogleService-Info.plist */,
-				74093CBF29B6A1D3004FD061 /* UserProfileCreator.swift */,
 				66CB3B3F29B6F583001939F7 /* AddStoreViewController.swift */,
 				66CB3B3C29B6F583001939F7 /* CreateCartDateCell.swift */,
 				66CB3B3E29B6F583001939F7 /* CreateCartImageCell.swift */,
 				66CB3B3D29B6F583001939F7 /* CreateCartNameCell.swift */,
+				66D5853829DFA52300127E21 /* UpdateProfileInfoViewController.swift */,
 				66CB3B4629B6F584001939F7 /* CreateCartSaveCell.swift */,
 				66CB3B3B29B6F583001939F7 /* CreateCartStoreCell.swift */,
 				66CB3B3929B6F583001939F7 /* CreateCartTableViewController.swift */,
@@ -302,6 +302,7 @@
 				66CB3B5429B6F584001939F7 /* SearchStoreCell.swift in Sources */,
 				66CB3B6529B70281001939F7 /* CartScreenVC.swift in Sources */,
 				66CB3B4B29B6F584001939F7 /* CreateCartDateCell.swift in Sources */,
+				66D5853929DFA52300127E21 /* UpdateProfileInfoViewController.swift in Sources */,
 				66CB3B6A29B70281001939F7 /* CartAddCustomItemsVC.swift in Sources */,
 				66CB3B5629B6F584001939F7 /* Store.swift in Sources */,
 				740B1B3A29B2D30D00493B33 /* CreateAccountViewController.swift in Sources */,
@@ -315,7 +316,6 @@
 				66CB3B6729B70281001939F7 /* CartItemTableViewCell.swift in Sources */,
 				66CB3B4829B6F584001939F7 /* CreateCartTableViewController.swift in Sources */,
 				66CB3B6629B70281001939F7 /* CartCreateCustomItemVC.swift in Sources */,
-				74093CC029B6A1D3004FD061 /* UserProfileCreator.swift in Sources */,
 				66CB3B6829B70281001939F7 /* CustomTextField.swift in Sources */,
 				66C1B29C29DD1A3800DA0CFA /* ProductResponseModel.swift in Sources */,
 				66CB3B5829B6FACF001939F7 /* CartAdderProtocol.swift in Sources */,
