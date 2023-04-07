@@ -671,7 +671,7 @@
         <!--Create Cart-->
         <scene sceneID="aPr-vY-Tv2">
             <objects>
-                <tableViewController id="Hfr-hL-M7A" customClass="CreateCartTableViewController" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="Hfr-hL-M7A" customClass="CreateCartTableViewController" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Eri-lC-WG8">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -921,7 +921,7 @@
         <!--Add Store-->
         <scene sceneID="QEj-VA-ADR">
             <objects>
-                <viewController id="0mK-1f-Nde" customClass="AddStoreViewController" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="0mK-1f-Nde" customClass="AddStoreViewController" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QXP-8v-Z5s">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1129,13 +1129,13 @@
         <!--Cart ScreenVC-->
         <scene sceneID="8sv-LS-pwS">
             <objects>
-                <viewController id="nOe-Lr-R1k" customClass="CartScreenVC" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="nOe-Lr-R1k" customClass="CartScreenVC" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I5c-Se-BGG">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="agX-kL-YTj">
-                                <rect key="frame" x="20" y="113" width="390" height="736"/>
+                                <rect key="frame" x="20" y="113" width="390" height="785"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserCartCell" id="l4V-vg-c8F" customClass="NestedCartTableViewCell" customModule="CartSquad" customModuleProvider="target">
@@ -1325,7 +1325,7 @@
         <!--Add Items-->
         <scene sceneID="nfQ-B4-FDA">
             <objects>
-                <viewController id="UJq-NX-enh" customClass="CartAddItemsScreenVC" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="UJq-NX-enh" customClass="CartAddItemsScreenVC" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xg2-9M-Ntv">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1391,7 +1391,7 @@
         <!--Search Results-->
         <scene sceneID="zXu-zv-KUd">
             <objects>
-                <viewController id="Lg1-vv-JiG" customClass="CartSearchResultsVC" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="Lg1-vv-JiG" customClass="CartSearchResultsVC" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nz4-jH-aJl">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1496,7 +1496,7 @@
         <!--Cart Add Custom ItemsVC-->
         <scene sceneID="BGB-72-hcW">
             <objects>
-                <viewController id="Ys6-et-yAr" customClass="CartAddCustomItemsVC" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="Ys6-et-yAr" customClass="CartAddCustomItemsVC" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bj7-cn-rsi">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1547,7 +1547,7 @@
         <!--Cart Create Custom ItemVC-->
         <scene sceneID="Hmx-Hx-QKQ">
             <objects>
-                <viewController id="SDZ-5b-Hra" customClass="CartCreateCustomItemVC" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="SDZ-5b-Hra" customClass="CartCreateCustomItemVC" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1oF-He-YT5">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1694,7 +1694,7 @@
         <!--Cart Settings-->
         <scene sceneID="O0y-WO-z8l">
             <objects>
-                <tableViewController id="CSB-cZ-kqY" customClass="EditCartSettingsTableViewController" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="CSB-cZ-kqY" customClass="EditCartSettingsTableViewController" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Vbc-Ji-8gG">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2767,7 +2767,7 @@
         <!--Add Friend VC-->
         <scene sceneID="pRL-0Y-HNW">
             <objects>
-                <viewController id="fz4-E5-qcP" userLabel="Add Friend VC" customClass="AddFriendsVC" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="fz4-E5-qcP" userLabel="Add Friend VC" customClass="AddFriendsVC" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="swd-Jg-pyp">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="863"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2832,7 +2832,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="oek-eE-QJq"/>
+        <segue reference="yfg-jG-a7F"/>
         <segue reference="VyT-ox-5mk"/>
         <segue reference="bFj-TZ-8t5"/>
     </inferredMetricsTieBreakers>
