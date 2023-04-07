@@ -48,6 +48,9 @@
 		66D5854029DFAF2900127E21 /* AddFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D5853D29DFAF2800127E21 /* AddFriendCell.swift */; };
 		66D5854129DFAF2900127E21 /* AddFriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D5853E29DFAF2900127E21 /* AddFriendsVC.swift */; };
 		66D5854229DFAF2900127E21 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D5853F29DFAF2900127E21 /* Friend.swift */; };
+		66EE4EDE29DFD19300F1E4F8 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EE4EDB29DFD19300F1E4F8 /* FriendTableViewCell.swift */; };
+		66EE4EDF29DFD19300F1E4F8 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EE4EDC29DFD19300F1E4F8 /* UserTableViewCell.swift */; };
+		66EE4EE029DFD19300F1E4F8 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EE4EDD29DFD19300F1E4F8 /* FriendsViewController.swift */; };
 		66F5D76B29D3AD5200DC98B4 /* AddCartMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F5D76A29D3AD5200DC98B4 /* AddCartMemberCell.swift */; };
 		740B1B3A29B2D30D00493B33 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B1B3929B2D30D00493B33 /* CreateAccountViewController.swift */; };
 		740B1B3C29B2D33E00493B33 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B1B3B29B2D33E00493B33 /* LoginViewController.swift */; };
@@ -100,6 +103,9 @@
 		66D5853D29DFAF2800127E21 /* AddFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendCell.swift; sourceTree = "<group>"; };
 		66D5853E29DFAF2900127E21 /* AddFriendsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsVC.swift; sourceTree = "<group>"; };
 		66D5853F29DFAF2900127E21 /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		66EE4EDB29DFD19300F1E4F8 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
+		66EE4EDC29DFD19300F1E4F8 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		66EE4EDD29DFD19300F1E4F8 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		66F5D76A29D3AD5200DC98B4 /* AddCartMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCartMemberCell.swift; sourceTree = "<group>"; };
 		740B1B3929B2D30D00493B33 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		740B1B3B29B2D33E00493B33 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +153,16 @@
 			path = "Add Friends to Cart";
 			sourceTree = "<group>";
 		};
+		66EE4EDA29DFD17100F1E4F8 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				66EE4EDD29DFD19300F1E4F8 /* FriendsViewController.swift */,
+				66EE4EDB29DFD19300F1E4F8 /* FriendTableViewCell.swift */,
+				66EE4EDC29DFD19300F1E4F8 /* UserTableViewCell.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
 		66F5D76829D3764200DC98B4 /* CartScreenProgression */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +203,7 @@
 		D0541ED329AD8F430053346E /* CartSquad */ = {
 			isa = PBXGroup;
 			children = (
+				66EE4EDA29DFD17100F1E4F8 /* Friends */,
 				66F5D76829D3764200DC98B4 /* CartScreenProgression */,
 				D0541ED429AD8F430053346E /* AppDelegate.swift */,
 				66D5853C29DFAEF800127E21 /* Add Friends to Cart */,
@@ -327,9 +344,11 @@
 				66D5854129DFAF2900127E21 /* AddFriendsVC.swift in Sources */,
 				66CB3B4D29B6F584001939F7 /* CreateCartImageCell.swift in Sources */,
 				66C1B29829DD047C00DA0CFA /* CartSearchItemCollectionViewCell.swift in Sources */,
+				66EE4EDE29DFD19300F1E4F8 /* FriendTableViewCell.swift in Sources */,
 				66CB3B6229B70281001939F7 /* CartAddItemsScreenVC.swift in Sources */,
 				66CB3B5229B6F584001939F7 /* ImagePickerProtocol.swift in Sources */,
 				66CB3B4E29B6F584001939F7 /* AddStoreViewController.swift in Sources */,
+				66EE4EDF29DFD19300F1E4F8 /* UserTableViewCell.swift in Sources */,
 				D0541ED929AD8F430053346E /* ViewController.swift in Sources */,
 				66CB3B6729B70281001939F7 /* CartItemTableViewCell.swift in Sources */,
 				66CB3B4829B6F584001939F7 /* CreateCartTableViewController.swift in Sources */,
@@ -348,6 +367,7 @@
 				66D5854029DFAF2900127E21 /* AddFriendCell.swift in Sources */,
 				66CB3B6929B70281001939F7 /* AuthUser.swift in Sources */,
 				D0541ED729AD8F430053346E /* SceneDelegate.swift in Sources */,
+				66EE4EE029DFD19300F1E4F8 /* FriendsViewController.swift in Sources */,
 				66CB3B4F29B6F584001939F7 /* StoreSearchViewController.swift in Sources */,
 				66B95DCA29D60D6F00181E8C /* EditCartSettingsTableViewController.swift in Sources */,
 				66CB3B5329B6F584001939F7 /* StoreChangerProtocol.swift in Sources */,
