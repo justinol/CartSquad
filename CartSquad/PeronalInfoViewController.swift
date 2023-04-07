@@ -47,7 +47,7 @@ class PeronalInfoViewController: UIViewController {
     @IBAction func saveButtonPressed(_ sender: Any) {
         let userCollection = Firestore.firestore().collection("users")
         userCollection.document(Auth.auth().currentUser!.uid).updateData([
-            "Name" : nameText.text!,
+            "name" : nameText.text!,
             "address 1" : address1.text!,
             "address 2" : address2.text!,
             "city" : city.text!,
