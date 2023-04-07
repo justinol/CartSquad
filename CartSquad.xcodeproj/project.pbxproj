@@ -45,6 +45,9 @@
 		66CB3B7929B7058D001939F7 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 66CB3B7829B7058D001939F7 /* FirebaseStorageCombine-Community */; };
 		66CB3B7B29B705C8001939F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66CB3B7A29B705C8001939F7 /* GoogleService-Info.plist */; };
 		66D5853929DFA52300127E21 /* UpdateProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D5853829DFA52300127E21 /* UpdateProfileInfoViewController.swift */; };
+		66D5854029DFAF2900127E21 /* AddFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D5853D29DFAF2800127E21 /* AddFriendCell.swift */; };
+		66D5854129DFAF2900127E21 /* AddFriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D5853E29DFAF2900127E21 /* AddFriendsVC.swift */; };
+		66D5854229DFAF2900127E21 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D5853F29DFAF2900127E21 /* Friend.swift */; };
 		66F5D76B29D3AD5200DC98B4 /* AddCartMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F5D76A29D3AD5200DC98B4 /* AddCartMemberCell.swift */; };
 		740B1B3A29B2D30D00493B33 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B1B3929B2D30D00493B33 /* CreateAccountViewController.swift */; };
 		740B1B3C29B2D33E00493B33 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B1B3B29B2D33E00493B33 /* LoginViewController.swift */; };
@@ -94,6 +97,9 @@
 		66CB3B6129B70281001939F7 /* CartAddCustomItemsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartAddCustomItemsVC.swift; sourceTree = "<group>"; };
 		66CB3B7A29B705C8001939F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		66D5853829DFA52300127E21 /* UpdateProfileInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProfileInfoViewController.swift; sourceTree = "<group>"; };
+		66D5853D29DFAF2800127E21 /* AddFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendCell.swift; sourceTree = "<group>"; };
+		66D5853E29DFAF2900127E21 /* AddFriendsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsVC.swift; sourceTree = "<group>"; };
+		66D5853F29DFAF2900127E21 /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		66F5D76A29D3AD5200DC98B4 /* AddCartMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCartMemberCell.swift; sourceTree = "<group>"; };
 		740B1B3929B2D30D00493B33 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		740B1B3B29B2D33E00493B33 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +137,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		66D5853C29DFAEF800127E21 /* Add Friends to Cart */ = {
+			isa = PBXGroup;
+			children = (
+				66D5853D29DFAF2800127E21 /* AddFriendCell.swift */,
+				66D5853E29DFAF2900127E21 /* AddFriendsVC.swift */,
+				66D5853F29DFAF2900127E21 /* Friend.swift */,
+			);
+			path = "Add Friends to Cart";
+			sourceTree = "<group>";
+		};
 		66F5D76829D3764200DC98B4 /* CartScreenProgression */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +189,7 @@
 			children = (
 				66F5D76829D3764200DC98B4 /* CartScreenProgression */,
 				D0541ED429AD8F430053346E /* AppDelegate.swift */,
+				66D5853C29DFAEF800127E21 /* Add Friends to Cart */,
 				D0541ED629AD8F430053346E /* SceneDelegate.swift */,
 				D0541ED829AD8F430053346E /* ViewController.swift */,
 				740B1B3929B2D30D00493B33 /* CreateAccountViewController.swift */,
@@ -307,6 +324,7 @@
 				66CB3B5629B6F584001939F7 /* Store.swift in Sources */,
 				740B1B3A29B2D30D00493B33 /* CreateAccountViewController.swift in Sources */,
 				82EE091F29B6CD8A0045DA40 /* PeronalInfoViewController.swift in Sources */,
+				66D5854129DFAF2900127E21 /* AddFriendsVC.swift in Sources */,
 				66CB3B4D29B6F584001939F7 /* CreateCartImageCell.swift in Sources */,
 				66C1B29829DD047C00DA0CFA /* CartSearchItemCollectionViewCell.swift in Sources */,
 				66CB3B6229B70281001939F7 /* CartAddItemsScreenVC.swift in Sources */,
@@ -327,11 +345,13 @@
 				8214C36229B6CDF0005F7419 /* Cart.swift in Sources */,
 				740B1B3C29B2D33E00493B33 /* LoginViewController.swift in Sources */,
 				66C1B29A29DD121200DA0CFA /* ProductModel.swift in Sources */,
+				66D5854029DFAF2900127E21 /* AddFriendCell.swift in Sources */,
 				66CB3B6929B70281001939F7 /* AuthUser.swift in Sources */,
 				D0541ED729AD8F430053346E /* SceneDelegate.swift in Sources */,
 				66CB3B4F29B6F584001939F7 /* StoreSearchViewController.swift in Sources */,
 				66B95DCA29D60D6F00181E8C /* EditCartSettingsTableViewController.swift in Sources */,
 				66CB3B5329B6F584001939F7 /* StoreChangerProtocol.swift in Sources */,
+				66D5854229DFAF2900127E21 /* Friend.swift in Sources */,
 				66CB3B6329B70281001939F7 /* CartItem.swift in Sources */,
 				66CB3B4A29B6F584001939F7 /* CreateCartStoreCell.swift in Sources */,
 				66C1B29629DD010700DA0CFA /* CartSearchResultsVC.swift in Sources */,

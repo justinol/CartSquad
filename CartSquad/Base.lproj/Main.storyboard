@@ -1284,29 +1284,15 @@
                                                         <color key="baseBackgroundColor" red="0.78548878430000002" green="0.17374122140000001" blue="0.1380057633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </buttonConfiguration>
                                                     <connections>
-                                                        <action selector="addCartMemberButtonPressed:" destination="uHs-jO-XZr" eventType="touchUpInside" id="1du-Ci-qgC"/>
+                                                        <segue destination="fz4-E5-qcP" kind="presentation" identifier="addFriendsSegue" id="n9P-Cy-xd9"/>
                                                     </connections>
                                                 </button>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="is7-WD-jGD">
-                                                    <rect key="frame" x="20" y="5" width="97" height="34"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="97" id="DS5-0t-Nte"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="dRM-SH-AxE" firstAttribute="leading" secondItem="is7-WD-jGD" secondAttribute="trailing" constant="12.666666666666657" id="7wU-Fj-vIO"/>
-                                                <constraint firstItem="is7-WD-jGD" firstAttribute="centerY" secondItem="hKF-pS-Mnl" secondAttribute="centerY" id="AwK-o5-HHg"/>
                                                 <constraint firstItem="dRM-SH-AxE" firstAttribute="centerY" secondItem="hKF-pS-Mnl" secondAttribute="centerY" id="CIQ-ji-7Vr"/>
                                                 <constraint firstItem="dRM-SH-AxE" firstAttribute="centerX" secondItem="hKF-pS-Mnl" secondAttribute="centerX" id="mzq-AP-sDU"/>
-                                                <constraint firstItem="is7-WD-jGD" firstAttribute="leading" secondItem="hKF-pS-Mnl" secondAttribute="leading" constant="20" symbolic="YES" id="nn3-0f-cAL"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="userIDField" destination="is7-WD-jGD" id="cnN-iB-HnW"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -2789,6 +2775,72 @@
             </objects>
             <point key="canvasLocation" x="567" y="2694"/>
         </scene>
+        <!--Add Friend VC-->
+        <scene sceneID="pRL-0Y-HNW">
+            <objects>
+                <viewController id="fz4-E5-qcP" userLabel="Add Friend VC" customClass="AddFriendsVC" customModule="CartSquad" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="swd-Jg-pyp">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="863"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select a Friend to Add" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q48-lO-HSN">
+                                <rect key="frame" x="97" y="59" width="254" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="dH4-aW-Fpy" userLabel="Friend Table">
+                                <rect key="frame" x="20" y="119" width="390" height="681"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="friendCellIdentifier" id="KEK-a0-6UG" userLabel="Friend Cell" customClass="AddFriendCell" customModule="CartSquad" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="390" height="90"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KEK-a0-6UG" id="ldY-gH-PPT">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AddPhotoIcon" translatesAutoresizingMaskIntoConstraints="NO" id="MbK-Qy-o1M" userLabel="Friend Photo">
+                                                    <rect key="frame" x="20" y="11" width="66" height="68"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96G-SZ-cIp">
+                                                    <rect key="frame" x="115" y="11" width="255" height="27"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4K-fG-cC2">
+                                                    <rect key="frame" x="115" y="46" width="244" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="name" destination="96G-SZ-cIp" id="p80-AL-29x"/>
+                                            <outlet property="profilePhoto" destination="MbK-Qy-o1M" id="Ndz-a8-GtQ"/>
+                                            <outlet property="username" destination="d4K-fG-cC2" id="Yrn-Gv-eks"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="LPH-Xl-8jR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="friendTable" destination="dH4-aW-Fpy" id="9rV-3a-CHH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VXk-Y4-SNw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1821" y="2892"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="oek-eE-QJq"/>
@@ -2796,6 +2848,7 @@
         <segue reference="bFj-TZ-8t5"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="AddPhotoIcon" width="24" height="24"/>
         <image name="Image" width="93" height="100"/>
         <image name="NoImageIcon" width="22" height="22"/>
         <image name="Settingsicon" width="35" height="35"/>
