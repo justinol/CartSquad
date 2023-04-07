@@ -22,7 +22,7 @@ class CartMember {
         cartRef = db.collection("cart").document(cartId)
     }
     
-    func getPrivileges() -> String {
+//    func getPrivileges() -> String {
 //        cartRef.collection("users").document(userId)getDocument { (cart, error) in
 //            if let memberArray = cart.data()?["memberUIDs"] as? [String], memberArray.contains(uid) {
 //
@@ -30,18 +30,18 @@ class CartMember {
 //        }
 //
 //        return ""
-    }
-    
-    func setPrivileges(privilege:String){
-        
-    }
-
-    func getBudget() -> String {
-        
-    }
-    
-    func setBudget(budget:String) {
-        
-    }
-    
+//    }
+//
+//    func setPrivileges(privilege:String){
+//
+//    }
+//
+//    func getBudget() -> String {
+//
+//    }
+//
+//    func setBudget(budget:String) {
+//
+//    }
+//
 }

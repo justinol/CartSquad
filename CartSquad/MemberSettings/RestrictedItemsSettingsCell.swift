@@ -24,11 +24,11 @@ class RestrictedItemsSettingsCell: UITableViewCell, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        return itemsTable.dequeueReusableCell(withIdentifier: "addItemRestrictionCell")!
     }
 
 }
