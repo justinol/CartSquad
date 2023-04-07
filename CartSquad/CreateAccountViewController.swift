@@ -38,6 +38,7 @@ class CreateAccountViewController: UIViewController {
             print("passwords do not match !")
             return
         }
+        
         let userCollection = Firestore.firestore().collection("users")
         userCollection.whereField("username", isEqualTo: username).getDocuments{ (querySnapshot, error) in
             if error != nil    {
@@ -55,15 +56,20 @@ class CreateAccountViewController: UIViewController {
                         print("error creating account \(error.localizedDescription)")
                         return
                     }
+                    print("right before function")
+                    self.segueToPersonalInfo(userCollection: userCollection, username: username)
                 }
-                self.creatable = true
             }
         }
-        if creatable == true {
-            userCollection.document(Auth.auth().currentUser!.uid).setData([
-                "username" : username
-            ])
-            self.performSegue(withIdentifier: self.segueIdentifier, sender: self)
-        }
+    }
+    
+    
+    //function that performs the segue and stroes the username in the firestore database
+    func segueToPersonalInfo(userCollection : CollectionReference, username : String) {
+        print("in function")
+        userCollection.document(Auth.auth().currentUser!.uid).setData([
+            "username" : username
+        ])
+        self.performSegue(withIdentifier: self.segueIdentifier, sender: self)
     }
 }
