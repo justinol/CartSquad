@@ -2732,18 +2732,7 @@
                             <constraint firstItem="Gik-YL-1vU" firstAttribute="leading" secondItem="R2c-Um-a7J" secondAttribute="trailing" constant="12" id="zYd-QW-0r4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="VUH-xR-Vgj">
-                        <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="d3h-dl-bM3">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="m4W-vW-CoQ">
-                                <rect key="frame" x="315" y="0.0" width="95" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="icon 1">
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Profile" id="VUH-xR-Vgj"/>
                     <connections>
                         <outlet property="address1" destination="SA8-IR-Wk9" id="DcU-wD-ioc"/>
                         <outlet property="address2" destination="TYs-77-8za" id="DW1-9q-Byg"/>
@@ -2858,7 +2847,6 @@
         <image name="cart.circle" catalog="system" width="128" height="123"/>
         <image name="cart1" width="47" height="47"/>
         <image name="checkmark.circle" catalog="system" width="128" height="123"/>
-        <image name="icon 1" width="35" height="30"/>
         <image name="person.circle" catalog="system" width="128" height="123"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.circle" catalog="system" width="128" height="123"/>
