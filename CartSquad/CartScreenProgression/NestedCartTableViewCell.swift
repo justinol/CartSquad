@@ -40,8 +40,22 @@ class NestedCartTableViewCell: UITableViewCell, UITableViewDataSource, UITableVi
     // Dict to store mapping of cart item names to their cell row
     var cartItemNameToCellRow: [String:Int] = [:]
     
+    // Called by CartScreenVC for initialization.
     func customInitForUse() {
-        usernameLabel.text = ownerUID!
+        let db = Firestore.firestore()
+        
+        // Get name for user to set subcart usernameLabel cell.
+        let userRef = db.collection("users").document(ownerUID!)
+        userRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                if let userData = document.data() {
+                    self.usernameLabel.text = userData["name"] as? String
+                }
+            } else {
+                print("Document does not exist")
+            }
+        }
+        
         itemsTable.dataSource = self
         itemsTable.delegate = self
         updateItemsTableHeight()
