@@ -113,6 +113,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTableViewCell", for: indexPath as IndexPath) as! FriendTableViewCell
             let friendData = dataSource[section][row].1
             cell.nameLabel.text = friendData["name"] as? String
+            cell.userLabel.text = friendData["username"] as? String
             cell.uid = dataSource[section][row].0
             return cell
         }
@@ -120,6 +121,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             let cell = tableView.dequeueReusableCell(withIdentifier: "UserTableViewCell", for: indexPath as IndexPath) as! UserTableViewCell
             let userData = dataSource[section][row].1
             cell.nameLabel.text = userData["name"] as? String
+            cell.userLabel.text = userData["username"] as? String
             cell.uid = dataSource[section][row].0
             return cell
         }
