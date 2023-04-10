@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
-class UpdateProfileInfoViewController: UIViewController {
+class UpdateProfileInfoViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBOutlet weak var nameText: UITextField!
@@ -24,6 +24,12 @@ class UpdateProfileInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        nameText.delegate = self
+        address2.delegate = self
+        city.delegate = self
+        state.delegate = self
+        zipcode.delegate = self
+        address1.delegate = self
 
         // Do any additional setup after loading the view.
         let userInfo = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
@@ -55,18 +61,30 @@ class UpdateProfileInfoViewController: UIViewController {
             if let document = document, document.exists  {
                 let data = document.data().map(String.init(describing:)) ?? "nil"
                 print("document data : \(data)")
-                self.nameText.text = document.get("Name") as? String
+                self.nameText.text = document.get("name") as? String
                 self.address2.text = document.get("address 2") as? String
                 self.city.text = document.get("city") as? String
                 self.state.text = document.get("state") as? String
                 self.zipcode.text = document.get("zip") as? String
                 self.usernameText.text = "@\(document.get("username") as? String ?? "no user")"
                 self.address1.text = document.get("address 1") as? String
-                self.nameField.text = document.get("Name") as? String
+                self.nameField.text = document.get("name") as? String
             } else {
                 print("Error: document does not exist")
             }
         }
     }
+    
+    // Called when 'return' key pressed
+    func textFieldShouldReturn(_ textField:UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Called when the user clicks on the view outside of the UITextField
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+
     
 }

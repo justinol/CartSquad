@@ -11,7 +11,7 @@ let target = Store(name: "Target", address: "2025 Guadalupe St STE 01-100, Austi
 var stores:[Store] = [target]
 
 
-class AddStoreViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AddStoreViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var searchDistanceLabel: UILabel!
     @IBOutlet weak var nearbyStoresTable: UITableView!
@@ -25,6 +25,7 @@ class AddStoreViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         nearbyStoresTable.delegate = self
         nearbyStoresTable.dataSource = self
+        searchTF.delegate = self
     }
     
     
@@ -74,6 +75,18 @@ class AddStoreViewController: UIViewController, UITableViewDelegate, UITableView
             performSegue(withIdentifier: "SearchStoreSegueIdentifier", sender: self)
         }
     }
+    
+    // Called when 'return' key pressed
+    func textFieldShouldReturn(_ textField:UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Called when the user clicks on the view outside of the UITextField
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+
     
     // MARK: - Navigation
 

@@ -9,7 +9,7 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 
-class CreateAccountViewController: UIViewController {
+class CreateAccountViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var createEmailText: UITextField!
     @IBOutlet weak var createUsernameText: UITextField!
@@ -21,6 +21,10 @@ class CreateAccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        createEmailText.delegate = self
+        createUsernameText.delegate = self
+        createPasswordText.delegate = self
+        confirmPassword.delegate = self
 
         // Do any additional setup after loading the view.
         self.navigationItem.setHidesBackButton(true, animated: false)
@@ -72,5 +76,16 @@ class CreateAccountViewController: UIViewController {
             "username" : username
         ])
         self.performSegue(withIdentifier: self.segueIdentifier, sender: self)
+    }
+    
+    // Called when 'return' key pressed
+    func textFieldShouldReturn(_ textField:UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+        
+    // Called when the user clicks on the view outside of the UITextField
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }

@@ -20,7 +20,7 @@ import Firebase
 import FirebaseFirestore
 import FirebaseAuth
 
-class PeronalInfoViewController: UIViewController {
+class PeronalInfoViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var address1: UITextField!
     @IBOutlet weak var address2: UITextField!
@@ -33,6 +33,12 @@ class PeronalInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        address1.delegate = self
+        address2.delegate = self
+        city.delegate = self
+        state.delegate = self
+        zip.delegate = self
+        nameText.delegate = self
 
         // Do any additional setup after loading the view.
         self.navigationItem.setHidesBackButton(true, animated: false)
@@ -67,5 +73,15 @@ class PeronalInfoViewController: UIViewController {
         self.performSegue(withIdentifier: self.segueIdentifier, sender: self)
     }
     
+    // Called when 'return' key pressed
+    func textFieldShouldReturn(_ textField:UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+        
+    // Called when the user clicks on the view outside of the UITextField
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 
 }
