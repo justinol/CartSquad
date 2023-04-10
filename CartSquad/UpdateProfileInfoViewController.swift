@@ -39,7 +39,7 @@ class UpdateProfileInfoViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func saveChangesPressed(_ sender: Any) {
         let userInfo = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
-        userInfo.updateData(["Name" : nameText.text!,
+        userInfo.updateData(["name" : nameText.text!,
             "address 1" : address1.text!,
             "address 2" : address2.text!,
             "city" : city.text!,
