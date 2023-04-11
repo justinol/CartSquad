@@ -32,8 +32,11 @@ class FriendTableViewCell: UITableViewCell {
     @IBAction func onRemoveButtonPressed(_ sender: Any) {
         let db = Firestore.firestore()
         
-        let removed = db.collection("users").document(Auth.auth().currentUser!.uid).collection("friends").document(self.uid)
-        removed.delete()
+        let removingFromMyFriends = db.collection("users").document(Auth.auth().currentUser!.uid).collection("friends").document(self.uid)
+        removingFromMyFriends.delete()
+        
+        let removingFromTheirFriends = db.collection("users").document(self.uid).collection("friends").document(Auth.auth().currentUser!.uid)
+        removingFromTheirFriends.delete()
         
 //        removeButton.isEnabled = false
 //        removeButton.setTitle("Removed", for: .normal)
