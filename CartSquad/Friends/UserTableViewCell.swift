@@ -35,9 +35,11 @@ class UserTableViewCell: UITableViewCell {
 //        addButton.setTitle("Requested", for: .normal)
 //        addButton.setTitleColor(UIColor(named: "Gray"), for: .normal)
         let db = Firestore.firestore()
-        let ref = db.collection("users").document(Auth.auth().currentUser!.uid).collection("friends").document(self.uid!)
-        ref.setData([:])
-        
+        let addToMyFriends = db.collection("users").document(Auth.auth().currentUser!.uid).collection("friends").document(self.uid!)
+        addToMyFriends.setData([:])
+
+        let addToTheirFriends = db.collection("users").document(self.uid!).collection("friends").document(Auth.auth().currentUser!.uid)
+        addToTheirFriends.setData([:])
     }
     
 }

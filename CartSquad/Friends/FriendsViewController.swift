@@ -33,7 +33,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         initializeUsers{ (success) -> Void in
             if success {
-                print(self.users)
                 self.updateUsersData()
                 self.initializeFriends(updateData: self.updateFriendsData)
             }
@@ -179,11 +178,19 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 if diff.type == .removed {
                     self.friends[uid] = nil
                     self.updateFriendsData()
-//                    self.friendRemoved(uid: uid, data: diff.document.data())
+                    let docRef = db.collection("users").document(uid)
+                    docRef.getDocument { (document, error) in
+                        if let document = document, document.exists {
+                            let dataDescription = document.data()
+                            self.friendRemoved(uid: uid, data: dataDescription!)
+                        } else {
+                            print("Document does not exist")
+                        }
+                    }
                 } else {
                     self.friends[uid] = self.users[uid]
                     self.updateFriendsData()
-//                    self.friendAdded(uid: uid)
+                    self.friendAdded(uid: uid)
                 }
             }
         }
@@ -197,22 +204,20 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.reloadData()
     }
     
-//    func friendAdded(uid:String){
-//        self.users[uid] = nil
-//        updateUsersData()
-//    }
-//
-//    func friendRemoved(uid:String, data:Dictionary<String, Any>){
-//        self.users[uid] = data
-//        updateUsersData()
-//    }
+    func friendAdded(uid:String){
+        self.users[uid] = nil
+        updateUsersData()
+    }
+
+    func friendRemoved(uid:String, data:Dictionary<String, Any>){
+        self.users[uid] = data
+        updateUsersData()
+    }
     
     func updateFriendsData(){
-        print("hello")
         let temp:[(key:String,values:[String:Any])] = self.friends.compactMap({(key:$0, values:$1)})
         self.friendList = temp
         self.dataSource[0] = self.friendList
         self.tableView.reloadData()
-        print(dataSource)
     }
 }
