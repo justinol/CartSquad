@@ -1341,7 +1341,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search..." translatesAutoresizingMaskIntoConstraints="NO" id="4Oy-K4-cQn">
-                                <rect key="frame" x="-8" y="173" width="432" height="56"/>
+                                <rect key="frame" x="-8" y="173" width="431" height="56"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -1519,7 +1519,7 @@
                                 <color key="backgroundColor" red="0.72941176470000002" green="0.094117647060000004" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search custom items..." translatesAutoresizingMaskIntoConstraints="NO" id="5WY-uV-0pH">
-                                <rect key="frame" x="-1" y="146" width="432" height="44"/>
+                                <rect key="frame" x="-1" y="146" width="431" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -1650,7 +1650,7 @@
                                 <color key="backgroundColor" red="0.69411764710000001" green="0.65490196079999996" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NoImageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="LPd-zJ-Xn6">
-                                <rect key="frame" x="104" y="403" width="222" height="130"/>
+                                <rect key="frame" x="104" y="402" width="222" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YQ2-AR-PIM">
@@ -2987,6 +2987,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="searchTFChanged:" destination="09g-bb-faZ" eventType="editingChanged" id="FiB-mZ-oRz"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ugn-Xd-dZ1"/>
@@ -2994,6 +2997,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Friends" id="6Ml-b2-JG0"/>
                     <connections>
+                        <outlet property="searchTF" destination="JBb-CI-2yE" id="6Th-1y-xpE"/>
                         <outlet property="segCtrl" destination="jvx-yn-Cdc" id="LG2-DI-IAd"/>
                         <outlet property="tableView" destination="4SO-n5-JlY" id="Qua-fi-L1S"/>
                     </connections>
