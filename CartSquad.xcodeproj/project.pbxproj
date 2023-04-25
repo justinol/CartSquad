@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66873F1B29F75FA1003D910C /* CustomItemScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66873F1A29F75FA1003D910C /* CustomItemScreenVC.swift */; };
 		669CC8BC29DE7A0100E919EF /* DeleteCartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669CC8BB29DE7A0100E919EF /* DeleteCartTableViewCell.swift */; };
+		66AE6E6F29F7666A00FD0BED /* CustomItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AE6E6E29F7666A00FD0BED /* CustomItemTableViewCell.swift */; };
 		66B95DCA29D60D6F00181E8C /* EditCartSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B95DC929D60D6F00181E8C /* EditCartSettingsTableViewController.swift */; };
 		66C1B29629DD010700DA0CFA /* CartSearchResultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C1B29529DD010700DA0CFA /* CartSearchResultsVC.swift */; };
 		66C1B29829DD047C00DA0CFA /* CartSearchItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C1B29729DD047C00DA0CFA /* CartSearchItemCollectionViewCell.swift */; };
@@ -69,7 +71,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		66873F1A29F75FA1003D910C /* CustomItemScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomItemScreenVC.swift; sourceTree = "<group>"; };
 		669CC8BB29DE7A0100E919EF /* DeleteCartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCartTableViewCell.swift; sourceTree = "<group>"; };
+		66AE6E6E29F7666A00FD0BED /* CustomItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomItemTableViewCell.swift; sourceTree = "<group>"; };
 		66B95DC929D60D6F00181E8C /* EditCartSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCartSettingsTableViewController.swift; sourceTree = "<group>"; };
 		66C1B29529DD010700DA0CFA /* CartSearchResultsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartSearchResultsVC.swift; sourceTree = "<group>"; };
 		66C1B29729DD047C00DA0CFA /* CartSearchItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartSearchItemCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -143,6 +147,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		66873F1E29F76356003D910C /* CustomItems */ = {
+			isa = PBXGroup;
+			children = (
+				66873F1A29F75FA1003D910C /* CustomItemScreenVC.swift */,
+				66AE6E6E29F7666A00FD0BED /* CustomItemTableViewCell.swift */,
+			);
+			path = CustomItems;
+			sourceTree = "<group>";
+		};
 		66D5853C29DFAEF800127E21 /* Add Friends to Cart */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +216,7 @@
 		D0541ED329AD8F430053346E /* CartSquad */ = {
 			isa = PBXGroup;
 			children = (
+				66873F1E29F76356003D910C /* CustomItems */,
 				66EE4EDA29DFD17100F1E4F8 /* Friends */,
 				66F5D76829D3764200DC98B4 /* CartScreenProgression */,
 				D0541ED429AD8F430053346E /* AppDelegate.swift */,
@@ -334,6 +348,7 @@
 				66CB3B4C29B6F584001939F7 /* CreateCartNameCell.swift in Sources */,
 				66CB3B4929B6F584001939F7 /* SelectedStoreCell.swift in Sources */,
 				66CB3B5429B6F584001939F7 /* SearchStoreCell.swift in Sources */,
+				66AE6E6F29F7666A00FD0BED /* CustomItemTableViewCell.swift in Sources */,
 				66CB3B6529B70281001939F7 /* CartScreenVC.swift in Sources */,
 				66CB3B4B29B6F584001939F7 /* CreateCartDateCell.swift in Sources */,
 				66D5853929DFA52300127E21 /* UpdateProfileInfoViewController.swift in Sources */,
@@ -370,6 +385,7 @@
 				66EE4EE029DFD19300F1E4F8 /* FriendsViewController.swift in Sources */,
 				66CB3B4F29B6F584001939F7 /* StoreSearchViewController.swift in Sources */,
 				66B95DCA29D60D6F00181E8C /* EditCartSettingsTableViewController.swift in Sources */,
+				66873F1B29F75FA1003D910C /* CustomItemScreenVC.swift in Sources */,
 				66CB3B5329B6F584001939F7 /* StoreChangerProtocol.swift in Sources */,
 				66D5854229DFAF2900127E21 /* Friend.swift in Sources */,
 				66CB3B6329B70281001939F7 /* CartItem.swift in Sources */,

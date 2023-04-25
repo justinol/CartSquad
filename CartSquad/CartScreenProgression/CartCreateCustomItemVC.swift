@@ -16,9 +16,27 @@ class CartCreateCustomItemVC: UIViewController, UITextFieldDelegate, UINavigatio
     @IBOutlet weak var priceField: CustomTextField!
     @IBOutlet weak var quantityField: CustomTextField!
     @IBOutlet weak var itemImageView: UIImageView!
+    @IBOutlet weak var cartSaveImageButton: UIButton!
+    @IBOutlet weak var customItemSaveChangesButton: UIButton!
+    
+    @IBOutlet weak var itemQuantityTitleLabel: UILabel!
+    @IBOutlet weak var separator1: UIView!
+    @IBOutlet weak var separator2: UIView!
+    @IBOutlet weak var saveNewCustomItemButton: UIButton!
+    
     let imagePicker = UIImagePickerController()
     // denotes whether or not the user set a custom image
     var didSetImage: Bool = false
+    
+    
+    // Used to display the view with some pre-input values
+    var fromCustomItemCreate = false
+    var fromCustomItemEdit = false
+    var nameInput: String?
+    var priceInput: String?
+    var imageInput: UIImage?
+    var customItemToEdit: CartItem?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +46,34 @@ class CartCreateCustomItemVC: UIViewController, UITextFieldDelegate, UINavigatio
         nameField.delegate = self
         priceField.delegate = self
         quantityField.delegate = self
+        
+        if fromCustomItemCreate || fromCustomItemEdit {
+            cartSaveImageButton.isHidden = true
+            quantityField.isHidden = true
+            itemQuantityTitleLabel.isHidden = true
+            //separator1.isHidden = true
+            separator2.isHidden = true
+        }
+        
+        if fromCustomItemCreate {
+            print("from custom item create")
+            customItemSaveChangesButton.isHidden = true
+            saveNewCustomItemButton.isHidden = false
+        }
+        
+        // Set values if given input, coming from edit on CustomItemScreenVC
+        if fromCustomItemEdit && nameInput != nil {
+            print("from custom item edit")
+            nameField.text = nameInput
+            if priceInput != nil {
+                priceField.text = priceInput
+            }
+            if imageInput != nil {
+                itemImageView.image = imageInput
+            }
+            saveNewCustomItemButton.isHidden = true
+            customItemSaveChangesButton.isHidden = false
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -52,7 +98,7 @@ class CartCreateCustomItemVC: UIViewController, UITextFieldDelegate, UINavigatio
                                         itemPrice: priceEach,
                                         itemQuantity: quantity, image: itemImage)
                 cartItem.addToUserSubcartInDatabase()
-                CartCreateCustomItemVC.saveCustomItemOnFirestore(item: cartItem)
+                CartCreateCustomItemVC.saveCustomItemOnFirestore(item: cartItem, existingUid: nil)
             }
         }
     }
@@ -78,16 +124,39 @@ class CartCreateCustomItemVC: UIViewController, UITextFieldDelegate, UINavigatio
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "unwindToCartHomeVC" {
+        if identifier == "unwindToCartHomeVC" || identifier == "unwindToCustomItemHomeSegue" || identifier == "unwindToCustomItemHomeSegueForNewItem" {
             // cancel segue if required field "nameField" is empty
             return nameField.text != ""
         }
         return true
     }
     
-    static func saveCustomItemOnFirestore(item: CartItem) {
+    @IBAction func customItemSaveChangesButtonPressed(_ sender: Any) {
+        customItemToEdit?.itemName = nameField.text
+        customItemToEdit?.itemPrice = Float(priceField.text?.count == 0 ? "0.00" : priceField.text!)!
+        customItemToEdit?.image = itemImageView.image
+        CartCreateCustomItemVC.saveCustomItemOnFirestore(item: customItemToEdit!, existingUid: customItemToEdit?.cartItemUID)
+    }
+    
+    
+    @IBAction func saveNewCustomItemButtonPressed(_ sender: Any) {
+        let priceEach = Float(priceField.text?.count == 0 ? "0.00" : priceField.text!)!
+        
+        let itemImage = didSetImage ? itemImageView.image : nil
+        let newItem = CartItem(itemName: nameField.text,
+                                itemPrice: priceEach,
+                                image: itemImage)
+        CartCreateCustomItemVC.saveCustomItemOnFirestore(item: newItem, existingUid: nil)
+    }
+    
+    
+    
+    static func saveCustomItemOnFirestore(item: CartItem, existingUid: String?) {
         print("saving custom item on db")
-        let itemUID = UUID().uuidString
+        var itemUID = UUID().uuidString
+        if let uid = existingUid {
+            itemUID = uid
+        }
 
         let db = Firestore.firestore()
         var data: [String:Any] = ["itemName": item.itemName!,

@@ -70,6 +70,40 @@ class CartItem: NSObject {
         }
     }
     
+    func populateCustomItemTableViewCellInfo(cell: CustomItemTableViewCell) {
+        cell.nameLabel.text = (itemName ?? "")
+        if (itemPrice > 0) {
+            cell.priceLabel.text = "$\(NSString(format: "%.2f", itemPrice) as String)"
+        }
+        if let img = image {
+            // set UI image
+            cell.customItemImageView.image = img
+        }
+        else if let imgURL = imageURL {
+            if (imgURL != "none") {
+                // get image from image url and set
+                let storage = Storage.storage()
+                let itemImageURLRef = storage.reference(forURL: imgURL)
+                itemImageURLRef.getData(maxSize: 10 * 1024 * 1024) { data, error in
+                    if error != nil {
+                        // error occured
+                    } else {
+                        if (cell.customItem != self) {
+                            // guard in case cell != cartItem, can happen due to tableview cell reuse
+                            return
+                        }
+                        self.image = UIImage(data: data!)
+                        cell.customItemImageView.image = self.image
+                    }
+                }
+            }
+        }
+    }
+    
+    func getPriceString() -> String {
+        return "\(NSString(format: "%.2f", itemPrice) as String)"
+    }
+    
     // Add this cart item to a user's subcart within in a cart in the FireStore database
     func addToUserSubcartInDatabase() {
         cartItemUID = UUID().uuidString
