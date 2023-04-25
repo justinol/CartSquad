@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
+import FirebaseStorage
 
 class CartCreateCustomItemVC: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
@@ -49,6 +52,7 @@ class CartCreateCustomItemVC: UIViewController, UITextFieldDelegate, UINavigatio
                                         itemPrice: priceEach,
                                         itemQuantity: quantity, image: itemImage)
                 cartItem.addToUserSubcartInDatabase()
+                CartCreateCustomItemVC.saveCustomItemOnFirestore(item: cartItem)
             }
         }
     }
@@ -79,5 +83,50 @@ class CartCreateCustomItemVC: UIViewController, UITextFieldDelegate, UINavigatio
             return nameField.text != ""
         }
         return true
+    }
+    
+    static func saveCustomItemOnFirestore(item: CartItem) {
+        print("saving custom item on db")
+        let itemUID = UUID().uuidString
+
+        let db = Firestore.firestore()
+        var data: [String:Any] = ["itemName": item.itemName!,
+                                  "itemPrice": item.itemPrice,
+                                  "lastUpdated": FieldValue.serverTimestamp(),
+                                  "imageURL": "none"]
+        
+        let itemDoc = db.collection("users").document(Auth.auth().currentUser!.uid).collection("customItems").document(itemUID)
+        
+        // if img is not nil, upload to cloudstore
+        if let img = item.image, let imageData = img.jpegData(compressionQuality: 0.1) {
+            print("uploading image")
+            let metaData = StorageMetadata()
+            metaData.contentType = "image/jpeg"
+            
+            let storage = Storage.storage()
+            let itemImageRef = storage.reference().child("custom_item_images").child(Auth.auth().currentUser!.uid).child("\(itemUID).jpeg")
+            
+            itemImageRef.putData(imageData, metadata: metaData) { metaData, error in
+                guard metaData != nil else {
+                    print("cart item image upload error")
+                    return
+                }
+                print("cart item \(item.itemName!) image uploaded to cloudstore")
+                // get image url
+                itemImageRef.downloadURL { (url, error) in
+                    guard let downloadURL = url else {
+                        return
+                    }
+                    print("image url:\(downloadURL)")
+                    // image url obtained, update cartItem data in firestore
+                    data["imageURL"] = downloadURL.absoluteString
+                    // set data AFTER image upload has finished
+                    itemDoc.setData(data)
+                }
+            }
+        } else {
+            // set data with no image url
+            itemDoc.setData(data)
+        }
     }
 }
