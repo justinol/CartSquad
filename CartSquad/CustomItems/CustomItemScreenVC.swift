@@ -135,7 +135,6 @@ class CustomItemScreenVC: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     deinit {
-        print("deinitting deez")
         // Stop listening for snapshots when this object is deallocated.
         if let snapshotListener = snapshotListener {
             snapshotListener.remove()
