@@ -34,8 +34,6 @@ class CustomItemScreenVC: UIViewController, UITableViewDelegate, UITableViewData
         
         customItemsTableView.dataSource = self
         customItemsTableView.delegate = self
-        
-        listenForCustomItemChanges()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -59,7 +57,6 @@ class CustomItemScreenVC: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func listenForCustomItemChanges() {
-        print("custom item changes for \(Auth.auth().currentUser!.uid)")
         let db = Firestore.firestore()
         snapshotListener = db.collection("users").document(Auth.auth().currentUser!.uid).collection("customItems").addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
@@ -67,15 +64,12 @@ class CustomItemScreenVC: UIViewController, UITableViewDelegate, UITableViewData
                 return
             }
             snapshot.documentChanges.forEach { diff in
-                print("custom item changes")
                 let customItemData = diff.document.data()
                 let itemName = customItemData["itemName"] as! String
-                print("custom item name: \(itemName)")
                 let itemPrice = customItemData["itemPrice"] as! Float
                 let itemImageURL = customItemData["imageURL"] as! String
                 let customItemUID = diff.document.documentID
                 if (diff.type == .added) {
-                    print("custom item added")
                     let customItem = CartItem(itemName: itemName, itemPrice: itemPrice, imageURL: itemImageURL, cartItemUID: customItemUID)
                     self.customItems.append(customItem)
                 } else if (diff.type == .modified) {
@@ -128,7 +122,20 @@ class CustomItemScreenVC: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        customItems = []
+        customItemNameToCellRow = [:]
+        listenForCustomItemChanges()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if let snapshotListener = snapshotListener {
+            snapshotListener.remove()
+        }
+    }
+    
     deinit {
+        print("deinitting deez")
         // Stop listening for snapshots when this object is deallocated.
         if let snapshotListener = snapshotListener {
             snapshotListener.remove()

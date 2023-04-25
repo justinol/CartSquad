@@ -3145,6 +3145,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="searchTFChanged:" destination="09g-bb-faZ" eventType="editingChanged" id="XMd-tp-uGZ"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ugn-Xd-dZ1"/>
@@ -3152,6 +3155,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Friends" id="6Ml-b2-JG0"/>
                     <connections>
+                        <outlet property="searchTF" destination="JBb-CI-2yE" id="ngr-Dv-zyS"/>
                         <outlet property="segCtrl" destination="jvx-yn-Cdc" id="LG2-DI-IAd"/>
                         <outlet property="tableView" destination="4SO-n5-JlY" id="Qua-fi-L1S"/>
                     </connections>

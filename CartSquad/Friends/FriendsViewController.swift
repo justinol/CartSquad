@@ -9,11 +9,13 @@ import UIKit
 import FirebaseFirestore
 import FirebaseStorage
 import FirebaseAuth
+import SwiftUI
 
 class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var segCtrl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchTF: UITextField!
     
     var snapshotListener: ListenerRegistration?
     var friendsListener: ListenerRegistration?
@@ -42,6 +44,27 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         listenForFriendsDatabaseUpdates()
     }
     
+
+    @IBAction func searchTFChanged(_ sender: UITextField) {
+        let querytext = searchTF.text!
+        let db = Firestore.firestore()
+        
+        db.collection("users")
+            .whereField("username", isGreaterThanOrEqualTo: querytext)
+            .whereField("username", isLessThanOrEqualTo: querytext + "~")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    self.users = [:]
+                    for document in querySnapshot!.documents {
+                        self.users[document.documentID] = document.data()
+                    }
+                    self.updateUsersData()
+                }
+        }
+    }
+    
     func initializeUsers(completion: @escaping(_ success: Bool) -> Void) {
         let db = Firestore.firestore()
         db.collection("users").getDocuments() {
@@ -65,7 +88,14 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
-                    self.friends[document.documentID] = self.users[document.documentID]
+                    let userRef = db.collection("users").document(document.documentID)
+                    userRef.getDocument { (userDoc, error) in
+                        if let userDoc = userDoc, userDoc.exists {
+                            self.friends[document.documentID] = userDoc.data()
+                        } else {
+                            print("Document does not exist")
+                        }
+                    }
                 }
                 updateData()
             }
@@ -130,16 +160,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         return 100
     }
 
-    @IBAction func onSegmentChanged(_ sender: Any) {
-        switch segCtrl.selectedSegmentIndex {
-        case 0:
-            print("a")
-        case 1:
-            print("b")
-        default:
-            print("This Shouldn't Happen")
-        }
-    }
     
     func listenForUsersDatabaseUpdates() {
         print("listening for users updates")
@@ -178,41 +198,41 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 if diff.type == .removed {
                     self.friends[uid] = nil
                     self.updateFriendsData()
-//                    let docRef = db.collection("users").document(uid)
-//                    docRef.getDocument { (document, error) in
-//                        if let document = document, document.exists {
-//                            let dataDescription = document.data()
-//                            self.friendRemoved(uid: uid, data: dataDescription!)
-//                        } else {
-//                            print("Document does not exist")
-//                        }
-//                    }
+                    
+                    let docRef = db.collection("users").document(uid)
+                    docRef.getDocument { (document, error) in
+                        if let document = document, document.exists {
+                            let dataDescription = document.data()
+                            self.friendRemoved(uid: uid, data: dataDescription!)
+                        } else {
+                            print("Document does not exist")
+                        }
+                    }
                 } else {
                     self.friends[uid] = self.users[uid]
                     self.updateFriendsData()
-//                    self.friendAdded(uid: uid)
+                    self.friendAdded(uid: uid)
                 }
             }
         }
     }
     
     func updateUsersData(){
-        self.users[Auth.auth().currentUser!.uid] = nil
         let temp:[(key:String,values:[String:Any])] = self.users.compactMap({(key:$0, values:$1)})
         self.userList = temp
         self.dataSource[1] = self.userList
         self.tableView.reloadData()
     }
     
-//    func friendAdded(uid:String){
-//        self.users[uid] = nil
-//        updateUsersData()
-//    }
-//
-//    func friendRemoved(uid:String, data:Dictionary<String, Any>){
-//        self.users[uid] = data
-//        updateUsersData()
-//    }
+    func friendAdded(uid:String){
+        self.users[uid] = nil
+        updateUsersData()
+    }
+
+    func friendRemoved(uid:String, data:Dictionary<String, Any>){
+        self.users[uid] = data
+        updateUsersData()
+    }
     
     func updateFriendsData(){
         let temp:[(key:String,values:[String:Any])] = self.friends.compactMap({(key:$0, values:$1)})
